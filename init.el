@@ -7,10 +7,9 @@
 
 (require 'package)
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
-;; Comment/uncomment this line to enable MELPA Stable if desired.  See `package-archive-priorities`
-;; and `package-pinned-packages`. Most users will not need or want to do this.
-;;(add-to-list 'package-archives '("melpa-stable" . "https://stable.melpa.org/packages/") t)
 (package-initialize)
+
+;;(add-hook 'after-init-hook 'global-company-mode)
 
 ;;--smex---------------------------------------------------------------------
 (global-set-key (kbd "M-x") 'smex)
@@ -19,16 +18,36 @@
 (global-set-key (kbd "C-c C-c M-x") 'execute-extended-command)
 
 ;;--haskell mode--------------------------------------------------------------
-(define-key haskell-mode-map (kbd "<f5>") 'haskell-navigate-imports)
-(define-key haskell-mode-map (kbd "<f8>") 'haskell-mode-format-imports)
+;;haskell setup
+(setq haskell-process-log t)
+(setq haskell-process-type "stack-ghci")
+;;(define-key haskell-mode-map (kbd "<f5>") 'haskell-navigate-imports)
+;;(define-key haskell-mode-map (kbd "<f8>") 'haskell-mode-format-imports)
 
 ;;hooks
-(add-hook 'haskell-mode-hook 'haskell-interactive-mode)
-(add-hook 'haskell-mode-hook
-         (lambda ()
-            (set (make-local-variable 'company-backends)
-                 (append '((company-capf company-dabbrev-code))
-                         company-backends))))
+(add-hook 'haskell-mode-hook #'lsp-mode)
+(add-hook 'haskell-mode-hook 'company-mode)
+;;(add-hook 'haskell-mode-hook 'haskell-interactive-mode)
+
+
+;;(add-hook 'haskell-mode-hook 'haskell-indent-mode)
+;;(add-hook 'haskell-mode-hook 'interactive-haskell-mode)
+;;(add-hook 'haskell-mode-hook 'haskell-doc-mode)
+;;(add-hook 'haskell-mode-hook 'hindent-mode)
+
+;;--rust----------------------------------------------------
+(require 'lsp-mode)
+(setq lsp-rust-server 'rust-analyzer)
+(add-hook 'rust-mode-hook 'lsp-mode)
+(add-hook 'rust-mode-hook 'company-mode)
+
+(setq company-idle-delay 0.2)
+(setq company-minimum-prefix-length 1)
+
+(global-set-key (kbd "TAB") #'company-indent-or-complete-common) ;
+(setq company-tooltip-align-annotations t)
+
+
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
@@ -37,11 +56,11 @@
  ;; If there is more than one, they won't work right.
  '(ansi-color-names-vector
    ["#212526" "#ff4b4b" "#b4fa70" "#fce94f" "#729fcf" "#e090d7" "#8cc4ff" "#eeeeec"])
- '(custom-enabled-themes '(tango-dark))
+ '(custom-enabled-themes '(gruber-darker))
  '(custom-safe-themes
    '("5f824cddac6d892099a91c3f612fcf1b09bb6c322923d779216ab2094375c5ee" default))
  '(package-selected-packages
-   '(company-ghci company lsp-haskell lsp-mode lsp-ui haskell-mode gruber-darker-theme smex)))
+   '(company-racer flycheck flycheck-rust racer cargo rust-mode ac-haskell-process company-ghci company lsp-haskell lsp-mode lsp-ui haskell-mode gruber-darker-theme smex)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
