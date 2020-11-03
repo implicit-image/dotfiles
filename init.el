@@ -65,10 +65,25 @@
   (company-mode +1))
 
 
-(add-to-list 'auto-mode-alist '("\\.tsx\\'" . typescript-mode))
+
 (add-hook 'typescript-mode-hook #'setup-tide-mode)
+(add-to-list 'auto-mode-alist '("\\.tsx?\\'" . typescript-mode))
 
 
+;;javascript
+(defun setup-js-mode ()
+  (lsp-mode)
+  (eldoc-mode +1)
+  (company-mode +1))
+
+(add-to-list 'auto-mode-alist '("\\.js\\'" . js-mode)
+(add-hook 'js-mode-hook 'js2-minor-mode)
+(add-hook 'js-mode-hook  #'setup-js-mode)
+
+
+
+;;json
+(add-to-list 'auto-mode-alist '("\\.json\\'" . json-mode))
 
 ;;--custom variables
 (custom-set-variables
@@ -82,7 +97,7 @@
  '(custom-safe-themes
    '("5f824cddac6d892099a91c3f612fcf1b09bb6c322923d779216ab2094375c5ee" default))
  '(package-selected-packages
-   '(typescript-mode rjsx-mode tide js2-mode web-mode ace-window company-lsp company-racer flycheck flycheck-rust racer cargo rust-mode ac-haskell-process company-ghci company lsp-haskell lsp-mode lsp-ui haskell-mode gruber-darker-theme smex)))
+   '(json-mode typescript-mode rjsx-mode tide js2-mode web-mode ace-window company-lsp company-racer flycheck flycheck-rust racer cargo rust-mode ac-haskell-process company-ghci company lsp-haskell lsp-mode lsp-ui haskell-mode gruber-darker-theme smex)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
