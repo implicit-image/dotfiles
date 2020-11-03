@@ -18,22 +18,21 @@
 (global-set-key (kbd "C-c C-c M-x") 'execute-extended-command)
 
 ;;--haskell mode--------------------------------------------------------------
-;;haskell setup
+(require 'lsp)
+(require 'lsp-mode)
+(require 'lsp-haskell)
+
 (setq haskell-process-log t)
 (setq haskell-process-type "stack-ghci")
+
 ;;(define-key haskell-mode-map (kbd "<f5>") 'haskell-navigate-imports)
 ;;(define-key haskell-mode-map (kbd "<f8>") 'haskell-mode-format-imports)
 
 ;;hooks
-(add-hook 'haskell-mode-hook #'lsp-mode)
+(add-hook 'haskell-mode-hook #'lsp)
+(add-hook 'haskell-mode-hook 'lsp-mode)
 (add-hook 'haskell-mode-hook 'company-mode)
-;;(add-hook 'haskell-mode-hook 'haskell-interactive-mode)
 
-
-;;(add-hook 'haskell-mode-hook 'haskell-indent-mode)
-;;(add-hook 'haskell-mode-hook 'interactive-haskell-mode)
-;;(add-hook 'haskell-mode-hook 'haskell-doc-mode)
-;;(add-hook 'haskell-mode-hook 'hindent-mode)
 
 ;;--rust----------------------------------------------------
 (require 'lsp-mode)
@@ -46,6 +45,7 @@
 
 (global-set-key (kbd "TAB") #'company-indent-or-complete-common) ;
 (setq company-tooltip-align-annotations t)
+(global-set-key (kbd "M-p") 'ace-window)
 
 
 
@@ -60,7 +60,7 @@
  '(custom-safe-themes
    '("5f824cddac6d892099a91c3f612fcf1b09bb6c322923d779216ab2094375c5ee" default))
  '(package-selected-packages
-   '(company-racer flycheck flycheck-rust racer cargo rust-mode ac-haskell-process company-ghci company lsp-haskell lsp-mode lsp-ui haskell-mode gruber-darker-theme smex)))
+   '(ace-window company-lsp company-racer flycheck flycheck-rust racer cargo rust-mode ac-haskell-process company-ghci company lsp-haskell lsp-mode lsp-ui haskell-mode gruber-darker-theme smex)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
