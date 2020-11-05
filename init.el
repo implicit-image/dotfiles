@@ -36,11 +36,15 @@
 
 
 ;;rust
+
+(defun setup-rust-mode ()
+  (setq lsp-rust-analyzer-server-display-inlay-hints 0)
+  (lsp-mode +1)
+  (company-mode +1)
+  )
+
 (require 'lsp-mode)
-(setq lsp-rust-server 'rust-analyzer)
-(add-hook 'rust-mode-hook 'lsp-mode)
-(add-hook 'rust-mode-hook 'company-mode)
-(setq lsp-rust-analyzer-server-display-inlay-hints 0)
+(add-hook 'rust-mode-hook #'setup-rust-mode)
 
 
 
