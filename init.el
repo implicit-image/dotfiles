@@ -6,8 +6,9 @@
 
 (setq inhibit-startup-screen t)
 (setq visible-bell 1)
-
-
+(set-frame-parameter (selected-frame) 'alpha '(85 . 50))
+(add-to-list 'default-frame-alist '(alpha . (85 . 50)))
+(global-display-line-numbers-mode 1)
 (tool-bar-mode 0)
 (ido-mode 1)
 
@@ -33,7 +34,7 @@
 (add-hook 'haskell-mode-hook #'lsp)
 (add-hook 'haskell-mode-hook 'lsp-mode)
 (add-hook 'haskell-mode-hook 'company-mode)
-
+(add-hook 'haskell-mode-hook 'interactive-haskell-mode)
 
 ;;rust
 
@@ -51,16 +52,16 @@
 
 ;;company
 (require 'company)
-(setq company-idle-delay -1)
+;;(setq company-idle-delay -1)
 (setq company-minimum-prefix-length 1)
 (setq company-show-numbers t)
-(setq company-tooltip-offset-display 0)
+(setq company-tooltip-offset-display 1)
 
 	  
 (global-set-key (kbd "TAB") #'company-indent-or-complete-common) ;
 (setq company-tooltip-align-annotations t)
 (global-set-key (kbd "M-p") 'ace-window)
-(global-display-line-numbers-mode 1)
+
 
 
 
@@ -108,6 +109,9 @@
 
 ;;org
 
+(require 'org)
+
+
 
 
 
@@ -124,7 +128,7 @@
  '(custom-safe-themes
    '("5f824cddac6d892099a91c3f612fcf1b09bb6c322923d779216ab2094375c5ee" default))
  '(package-selected-packages
-   '(ox-epub org-brain org-noter org json-mode typescript-mode rjsx-mode tide js2-mode web-mode ace-window company-lsp company-racer flycheck flycheck-rust racer cargo rust-mode ac-haskell-process company-ghci company lsp-haskell lsp-mode lsp-ui haskell-mode gruber-darker-theme smex)))
+   '(org-present-remote vterm org-beautify-theme org-present ox-epub org-brain org-noter org json-mode typescript-mode rjsx-mode tide js2-mode web-mode ace-window company-lsp company-racer flycheck flycheck-rust racer cargo rust-mode ac-haskell-process company-ghci company lsp-haskell lsp-mode lsp-ui haskell-mode gruber-darker-theme smex)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
