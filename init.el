@@ -4,11 +4,13 @@
 
 (package-initialize)
 
+(setq org-startup-truncated nil)
 (setq inhibit-startup-screen t)
 (setq visible-bell 1)
 (set-frame-parameter (selected-frame) 'alpha '(85 . 50))
 (add-to-list 'default-frame-alist '(alpha . (85 . 50)))
 (global-display-line-numbers-mode 1)
+;;(setq display-line-numbers 'relative)
 (tool-bar-mode 0)
 (ido-mode 1)
 
@@ -77,10 +79,9 @@
   (company-mode +1))
 
 
-
 (add-hook 'typescript-mode-hook #'setup-tide-mode)
 (add-to-list 'auto-mode-alist '("\\.tsx?\\'" . typescript-mode))
-
+(add-to-list 'auto-mode-alist '("\\.pdf\\'" . pdf-view-mode))
 
 ;;javascript
 (add-to-list 'auto-mode-alist '("\\.jsx?\\'" . js2-mode))
@@ -112,6 +113,9 @@
 (require 'org)
 
 
+;;vterm
+
+
 
 
 
@@ -128,7 +132,7 @@
  '(custom-safe-themes
    '("5f824cddac6d892099a91c3f612fcf1b09bb6c322923d779216ab2094375c5ee" default))
  '(package-selected-packages
-   '(org-present-remote vterm org-beautify-theme org-present ox-epub org-brain org-noter org json-mode typescript-mode rjsx-mode tide js2-mode web-mode ace-window company-lsp company-racer flycheck flycheck-rust racer cargo rust-mode ac-haskell-process company-ghci company lsp-haskell lsp-mode lsp-ui haskell-mode gruber-darker-theme smex)))
+   '(pdfgrep pdf-tools pdf-view-restore lua-mode magit org-present-remote vterm org-beautify-theme org-present ox-epub org-brain org-noter org json-mode typescript-mode rjsx-mode tide js2-mode web-mode ace-window company-lsp company-racer flycheck flycheck-rust racer cargo rust-mode ac-haskell-process company-ghci company lsp-haskell lsp-mode lsp-ui haskell-mode gruber-darker-theme smex)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
