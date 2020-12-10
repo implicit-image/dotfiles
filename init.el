@@ -83,6 +83,8 @@
 (add-to-list 'auto-mode-alist '("\\.tsx?\\'" . typescript-mode))
 (add-to-list 'auto-mode-alist '("\\.pdf\\'" . pdf-view-mode))
 
+(add-hook 'pdf-view-mode-hook 'pdf-tools-install)
+
 ;;javascript
 (add-to-list 'auto-mode-alist '("\\.jsx?\\'" . js2-mode))
 (add-hook 'js2-mode-hook #'setup-tide-mode)
