@@ -12,6 +12,8 @@
 (global-display-line-numbers-mode 1)
 ;;(setq display-line-numbers 'relative)
 (tool-bar-mode 0)
+(menu-bar-mode -1)
+(toggle-scroll-bar -1)
 (ido-mode 1)
 
 
@@ -141,4 +143,4 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  )
-(setq backup-directory-alist '(("." . "~/.emacs_saves")))
+(setq backup-directory-alist '(("." . "~/.emacs.d/emacs_saves")))
