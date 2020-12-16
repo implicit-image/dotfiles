@@ -103,3 +103,4 @@ source $ZSH/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
 
+[ -f "/home/b/.ghcup/env" ] && source "/home/b/.ghcup/env" # ghcup-env

@@ -33,7 +33,7 @@
 (require 'haskell-mode)
 
 (setq haskell-process-log t)
-(setq haskell-process-type "stack-ghci")
+(setq haskell-process-type "cabal-ghci")
 
 (add-hook 'haskell-mode-hook #'lsp)
 (add-hook 'haskell-mode-hook 'lsp-mode)
@@ -45,8 +45,7 @@
 (defun setup-rust-mode ()
   (setq lsp-rust-analyzer-server-display-inlay-hints 0)
   (lsp-mode +1)
-  (company-mode +1)
-  )
+  (company-mode +1))
 
 (require 'lsp-mode)
 (add-hook 'rust-mode-hook #'setup-rust-mode)
@@ -136,7 +135,7 @@
  '(custom-safe-themes
    '("5f824cddac6d892099a91c3f612fcf1b09bb6c322923d779216ab2094375c5ee" default))
  '(package-selected-packages
-   '(pdfgrep pdf-tools pdf-view-restore lua-mode magit org-present-remote vterm org-beautify-theme org-present ox-epub org-brain org-noter org json-mode typescript-mode rjsx-mode tide js2-mode web-mode ace-window company-lsp company-racer flycheck flycheck-rust racer cargo rust-mode ac-haskell-process company-ghci company lsp-haskell lsp-mode lsp-ui haskell-mode gruber-darker-theme smex)))
+   '(use-package pdfgrep pdf-tools pdf-view-restore lua-mode magit org-present-remote vterm org-beautify-theme org-present ox-epub org-brain org-noter org json-mode typescript-mode rjsx-mode tide js2-mode web-mode ace-window company-lsp company-racer flycheck flycheck-rust racer cargo rust-mode ac-haskell-process company-ghci company lsp-haskell lsp-mode lsp-ui haskell-mode gruber-darker-theme smex)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

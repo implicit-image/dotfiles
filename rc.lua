@@ -88,10 +88,12 @@ local themes = {
     "custom-powerarrow" --12
 }
 
-local chosen_theme = themes[11]
+local chosen_theme = themes[12]
 local modkey       = "Mod4"
 local altkey       = "Mod1"
 local terminal     = "alacritty"
+local shutdown     = "shutdown now"
+local restart      = "shutdown -r now"
 local vi_focus     = false -- vi-like client focus - https://github.com/lcpz/awesome-copycats/issues/275
 local cycle_prev   = true -- cycle trough all previous client or just the first -- https://github.com/lcpz/awesome-copycats/issues/274
 local editor       = os.getenv("EDITOR") or "emacs"
@@ -100,7 +102,7 @@ local browser      = os.getenv("BROWSER") or "firefox"
 local scrlocker    = "slock"
 
 awful.util.terminal = terminal
-awful.util.tagnames = { "main", "web", "teams", "4", "5" }
+awful.util.tagnames = { "main", "dev", "docs", "teams", "5" }
 awful.layout.layouts = {
     awful.layout.suit.floating,
     awful.layout.suit.tile,
@@ -224,7 +226,9 @@ awful.util.mymainmenu = freedesktop.menu.build({
         -- other triads can be put here
     },
     after = {
-        { "Open terminal", terminal },
+       { "Open terminal", terminal },
+       { "Shutdown", shutdown},
+       { "Restart", restart}
         -- other triads can be put here
     }
 })
@@ -253,7 +257,7 @@ screen.connect_signal("arrange", function (s)
     local only_one = #s.tiled_clients == 1
     for _, c in pairs(s.clients) do
         if only_one and not c.floating or c.maximized then
-            c.border_width = 0
+	   c.border_width = 0
         else
             c.border_width = beautiful.border_width
         end
@@ -275,8 +279,8 @@ root.buttons(my_table.join(
 globalkeys = my_table.join(
     -- Take a screenshot
     -- https://github.com/lcpz/dots/blob/master/bin/screenshot
-    awful.key({ altkey }, "p", function() os.execute("screenshot") end,
-              {description = "take a screenshot", group = "hotkeys"}),
+    -- awful.key({ altkey }, "p", function() os.execute("screenshot") end,
+    --           {description = "take a screenshot", group = "hotkeys"}),
 
     -- X screen locker
     awful.key({ altkey, "Control" }, "l", function () os.execute(scrlocker) end,
@@ -413,7 +417,7 @@ globalkeys = my_table.join(
               {description = "quit awesome", group = "awesome"}),
 
     awful.key({ altkey, "Shift"   }, "l",     function () awful.tag.incmwfact( 0.05)          end,
-              {description = "increase master width factor", group = "layout"}),
+              {description = "increase master  factor", group = "layout"}),
     awful.key({ altkey, "Shift"   }, "h",     function () awful.tag.incmwfact(-0.05)          end,
               {description = "decrease master width factor", group = "layout"}),
     awful.key({ modkey, "Shift"   }, "h",     function () awful.tag.incnmaster( 1, nil, true) end,
@@ -693,6 +697,9 @@ clientbuttons = gears.table.join(
     end)
 )
 
+
+
+
 -- Set keys
 root.keys(globalkeys)
 -- }}}
@@ -710,8 +717,8 @@ awful.rules.rules = {
                      buttons = clientbuttons,
                      screen = awful.screen.preferred,
                      placement = awful.placement.no_overlap+awful.placement.no_offscreen,
-                     size_hints_honor = false
-     }
+                     size_hints_honor = false,
+        }
     },
 
     -- Titlebars
@@ -733,7 +740,7 @@ client.connect_signal("manage", function (c)
     -- Set the windows at the slave,
     -- i.e. put it at the end of others instead of setting it master.
     -- if not awesome.startup then awful.client.setslave(c) end
-
+    			 
     if awesome.startup and
       not c.size_hints.user_position
       and not c.size_hints.program_position then
