@@ -104,7 +104,7 @@ local scrlocker    = "slock"
 awful.util.terminal = terminal
 awful.util.tagnames = { "main", "dev", "docs", "teams", "5" }
 awful.layout.layouts = {
-    awful.layout.suit.floating,
+    --awful.layout.suit.floating,
     awful.layout.suit.tile,
     awful.layout.suit.tile.left,
     awful.layout.suit.tile.bottom,
@@ -811,4 +811,4 @@ client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_n
 
 
 
-beautiful.useless_gap = 10
+beautiful.useless_gap = 13
