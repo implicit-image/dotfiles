@@ -85,8 +85,8 @@
 
 
 ;; pdf
-;;(add-to-list 'auto-mode-alist '("\\.pdf\\'" . pdf-view-mode))
-(add-hook 'pdf-view-mode-hook #'pdf-tools-install)
+;;(add-to-list 'auto-mode-alist '("\\.pdf\\'" . pdf))
+;;(add-hook 'pdf-view-mode-hook #'pdf-tools-install)
 
 ;;javascript
 (add-to-list 'auto-mode-alist '("\\.jsx?\\'" . js2-mode))
