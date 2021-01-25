@@ -274,6 +274,20 @@ local bat = lain.widget.bat({
     end
 })
 
+--  Battery 2
+local baticon2 = wibox.widget.imagebox(theme.widget_batt)
+local bat2 = lain.widget.bat({
+    settings = function()
+        local perc = bat_now.perc ~= "N/A" and bat_now.perc .. "%" or bat_now.perc
+
+        if bat_now.ac_status == 1 then
+            perc = perc .. " plug"
+        end
+
+        widget:set_markup(markup.fontfg(theme.font, theme.fg_normal, perc .. " "))
+    end
+})
+
 -- Net
 local neticon = wibox.widget.imagebox(theme.widget_net)
 local net = lain.widget.net({
@@ -293,15 +307,14 @@ local brightwidget = awful.widget.watch('light -G', 0.1,
 end)
 
 
-
 -- ALSA volume
 local volicon = wibox.widget.imagebox(theme.widget_vol)
 theme.volume = lain.widget.alsa({
+    --cmd = "awk -F\"[][]\" '/Left:/ { print $2 }' <(amixer sget Master)"
     settings = function()
         if volume_now.status == "off" then
             volume_now.level = volume_now.level .. "M"
         end
-
         widget:set_markup(markup.fontfg(theme.font, "#7493d2", volume_now.level .. "% "))
     end
 })
@@ -399,7 +412,7 @@ function theme.at_screen_connect(s)
             --arrow(theme.bg_normal, "#888888"),
             wibox.container.background(wibox.container.margin(wibox.widget { mpdicon, theme.mpd.widget, layout = wibox.layout.align.horizontal }, dpi(3), dpi(6)), theme.bg_focus),
             arrow(theme.bg_normal, "#343434"),
-            wibox.container.background(wibox.container.margin(task, dpi(3), dpi(7)), "#343434"),
+            wibox.container.background(wibox.container.margin(volicon, dpi(3), dpi(7)), "#343434"),
             arrow("#343434", "#777E76"),
             wibox.container.background(wibox.container.margin(wibox.widget { memicon, mem.widget, layout = wibox.layout.align.horizontal }, dpi(2), dpi(3)), "#777E76"),
             arrow("#777E76", "#4B696D"),
@@ -408,7 +421,7 @@ function theme.at_screen_connect(s)
             wibox.container.background(wibox.container.margin(wibox.widget { tempicon, temp.widget, layout = wibox.layout.align.horizontal }, dpi(4), dpi(4)), "#4B3B51"),
             arrow("#4B3B51", "#CB755B"),
             wibox.container.background(wibox.container.margin(wibox.widget { fsicon, theme.fs and theme.fs.widget, layout = wibox.layout.align.horizontal }, dpi(3), dpi(3)), "#CB755B"),
-	    --wibox.container.background(wibox.container.margin(wibox.widget {, theme.fs and theme.fs.widget, layout = wibox.layout.align.horizontal }, dpi(3), dpi(3)), "#CB755B"),
+	    --wibox.container.background(wibox.container.margin(wibox.widget {fsicon, theme.fs and theme.fs.widget, layout = wibox.layout.align.horizontal }, dpi(3), dpi(3)), "#CB755B"),
             arrow("#CB755B", "#8DAA9A"),
             wibox.container.background(wibox.container.margin(wibox.widget { baticon, bat.widget, layout = wibox.layout.align.horizontal }, dpi(3), dpi(3)), "#8DAA9A"),
             arrow("#8DAA9A", "#C0C0A2"),

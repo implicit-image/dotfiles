@@ -102,7 +102,7 @@ local browser      = os.getenv("BROWSER") or "firefox"
 local scrlocker    = "slock"
 
 awful.util.terminal = terminal
-awful.util.tagnames = { "main", "dev", "docs", "teams", "5" }
+awful.util.tagnames = { "main", "dev", "docs", "teams", "5", "6", "7" }
 awful.layout.layouts = {
     --awful.layout.suit.floating,
     awful.layout.suit.tile,
@@ -621,7 +621,7 @@ clientkeys = my_table.join(
        
 )
 
--- Bind all key numbers to tags.
+-- bind all key numbers to tags.
 -- Be careful: we use keycodes to make it works on any keyboard layout.
 -- This should map on the top row of your keyboard, usually 1 to 9.
 

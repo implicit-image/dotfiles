@@ -86,69 +86,92 @@
   # Scrolling distance multiplier.
   #multiplier: 3
 
-# Font configuration
+
+# Font configuration (changes require restart)
 font:
-  # Normal (roman) font face
+  # The size to use.
+  size: 12
+  # The normal (roman) font face to use.
   normal:
-    # Font family
-    #
-    # Default:
-    #   - (macOS) Menlo
-    #   - (Linux/BSD) monospace
-    #   - (Windows) Consolas
-    family: monospace
+    family: Code New Roman Nerd Font Mono
+    # Style can be specified to pick a specific face.
+    style: Monospace
 
-    # The `style` can be specified to pick a specific face.
-    #style: Regular
-
-  # Bold font face
+  # The bold font face
   bold:
-    # Font family
-    #
-    # If the bold family is not specified, it will fall back to the
-    # value specified for the normal font.
-    family: monospace
+    family: Code New Roman Nerd Font Mono
+    # Style can be specified to pick a specific face.
+    # style: Bold
 
-    # The `style` can be specified to pick a specific face.
-    #style: Bold
-
-  # Italic font face
+  # The italic font face
   italic:
-    # Font family
-    #
-    # If the italic family is not specified, it will fall back to the
-    # value specified for the normal font.
-    family: monospace
+    family: Code New Roman Nerd Font Mono
+    # Style can be specified to pick a specific face.
+    # style: Italic
+    
+# # Font configuration
+# font:
+#   # Normal (roman) font face
+#   normal:
+#     # Font family
+#     #family: Code New Roman Mono
+#     # Default:
+#     #   - (macOS) Menlo
+#     #   - (Linux/BSD) monospace
+#     #   - (Windows) Consolas
+#     family: monospace
 
-    # The `style` can be specified to pick a specific face.
-    style: Italic
+#     # The `style` can be specified to pick a specific face.
+#     #style: Code New Roman
 
-  # Bold italic font face
-  bold_italic:
-    # Font family
-    #
-    # If the bold italic family is not specified, it will fall back to the
-    # value specified for the normal font.
-    family: monospace
+#   # Bold font face
+#   bold:
+#     # Font family
+#     #family: Code New Roman Mono
+#     # If the bold family is not specified, it will fall back to the
+#     # value specified for the normal font.
+#     family: monospace
 
-    # The `style` can be specified to pick a specific face.
-    #style: Bold Italic
+#     # The `style` can be specified to pick a specific face.
+#     style: Bold
+
+#   # Italic font face
+#   italic:
+#     # Font family
+#     #family: Code New Roman Mono
+#     # If the italic family is not specified, it will fall back to the
+#     # value specified for the normal font.
+#     family: monospace
+
+#     # The `style` can be specified to pick a specific face.
+#     style: Italic
+
+#   # Bold italic font face
+#   bold_italic:
+#     # Font family
+#     #family: Code New Roman Mono
+#     # If the bold italic family is not specified, it will fall back to the
+#     # value specified for the normal font.
+#     family: monospace
+
+#     # The `style` can be specified to pick a specific face.
+#     style: Bold Italic
 
   # Point size
   size: 8.0
 
   # Offset is the extra space around each character. `offset.y` can be thought of
   # as modifying the line spacing, and `offset.x` as modifying the letter spacing.
-  #offset:
-  #  x: 0
-  #  y: 0
+  offset:
+    x: 0
+    y: 0
 
   # Glyph offset determines the locations of the glyphs within their cells with
   # the default being at the bottom. Increasing `x` moves the glyph to the right,
   # increasing `y` moves the glyph upward.
-  #glyph_offset:
-  #  x: 0
-  #  y: 0
+  glyph_offset:
+    x: 0
+    y: 0
 
   # Thin stroke font rendering (macOS only)
   #
