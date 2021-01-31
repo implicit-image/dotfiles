@@ -88,7 +88,7 @@ local themes = {
     "custom-powerarrow" --12
 }
 
-local chosen_theme = themes[12]
+local chosen_theme = themes[11]
 local modkey       = "Mod4"
 local altkey       = "Mod1"
 local terminal     = "alacritty"
@@ -104,7 +104,7 @@ local scrlocker    = "slock"
 awful.util.terminal = terminal
 awful.util.tagnames = { "main", "dev", "docs", "teams", "5", "6", "7" }
 awful.layout.layouts = {
-    --awful.layout.suit.floating,
+    awful.layout.suit.floating,
     awful.layout.suit.tile,
     awful.layout.suit.tile.left,
     awful.layout.suit.tile.bottom,
@@ -448,14 +448,14 @@ globalkeys = my_table.join(
     awful.key({ modkey, }, "z", function () awful.screen.focused().quake:toggle() end,
               {description = "dropdown application", group = "launcher"}),
 
-    -- Widgets popups
+    --[[ Widgets popups
     awful.key({ altkey, }, "c", function () if beautiful.cal then beautiful.cal.show(7) end end,
               {description = "show calendar", group = "widgets"}),
     awful.key({ altkey, }, "h", function () if beautiful.fs then beautiful.fs.show(7) end end,
               {description = "show filesystem", group = "widgets"}),
     awful.key({ altkey, }, "w", function () if beautiful.weather then beautiful.weather.show(7) end end,
               {description = "show weather", group = "widgets"}),
-
+    ]]--
     -- Brightness
     awful.key({ }, "XF86MonBrightnessUp", function () os.execute("xbacklight -inc 10") end,
               {description = "+10%", group = "hotkeys"}),
@@ -802,8 +802,8 @@ client.connect_signal("mouse::enter", function(c)
     c:emit_signal("request::activate", "mouse_enter", {raise = vi_focus})
 end)
 
-client.connect_signal("focus", function(c) c.border_color = beautiful.border_focus end)
-client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_normal end)
+--client.connect_signal("focus", function(c) c.border_color = beautiful.border_focus end)
+--client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_normal end)
 
 -- possible workaround for tag preservation when switching back to default screen:
 -- https://github.com/lcpz/awesome-copycats/issues/251
