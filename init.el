@@ -7,7 +7,7 @@
 (setq org-startup-truncated nil)
 (setq inhibit-startup-screen t)
 (setq visible-bell 1)
-(set-frame-parameter (selected-frame) 'alpha '(85 . 50))
+;;(set-frame-parameter (selected-frame) 'alpha '(85 . 50))
 (add-to-list 'default-frame-alist '(alpha . (85 . 50)))
 (global-display-line-numbers-mode 1)
 ;;(setq display-line-numbers 'relative)
@@ -31,11 +31,17 @@
 (require 'lsp-haskell)
 (require 'haskell-mode)
 
-(setq haskell-process-log t)
-(setq haskell-process-type "cabal-ghci")
+(defun setup-haskell-mode ()
+  (setq haskell-process-log t)
+   (setq haskell-process-type "cabal-ghci")
+  )
 
-(add-hook 'haskell-mode-hook #'lsp)
+
+
+
+(add-hook 'haskell-mode-hook #'setup-haskell-mode)
 (add-hook 'haskell-mode-hook 'lsp-mode)
+(add-hook 'haskell-mode-hook #'lsp)
 (add-hook 'haskell-mode-hook 'company-mode)
 (add-hook 'haskell-mode-hook 'interactive-haskell-mode)
 

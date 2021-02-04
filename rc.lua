@@ -104,11 +104,11 @@ local scrlocker    = "slock"
 awful.util.terminal = terminal
 awful.util.tagnames = { "main", "dev", "docs", "teams", "5", "6", "7" }
 awful.layout.layouts = {
-    awful.layout.suit.floating,
     awful.layout.suit.tile,
     awful.layout.suit.tile.left,
     awful.layout.suit.tile.bottom,
     awful.layout.suit.tile.top,
+    awful.layout.suit.floating,
     --awful.layout.suit.fair,
     --awful.layout.suit.fair.horizontal,
     --awful.layout.suit.spiral,

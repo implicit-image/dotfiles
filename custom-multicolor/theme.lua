@@ -291,14 +291,14 @@ function theme.at_screen_connect(s)
             layout = wibox.layout.fixed.horizontal,
             --s.mylayoutbox,
             s.mytaglist,
-            s.mypromptbox,
-            mpdicon,
-            theme.mpd.widget,
+            s.mypromptbox
         },
         s.mytasklist, -- Middle widget
         { -- Right widgets
             layout = wibox.layout.fixed.horizontal,
             wibox.widget.systray(),
+	    mpdicon,
+            theme.mpd.widget,
             --mailicon,
             --theme.mail.widget,
             netdownicon,
