@@ -3,3 +3,5 @@
 	name = Błażej Niewiadomski
 [core]
 	editor = emacs
+[init]
+	defaultBranch = main
