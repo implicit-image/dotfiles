@@ -281,28 +281,91 @@ font:
 # GNOME Terminal Tango Dark
 colors:
   primary:
-    background: '0x2e3436'
+    background: '0x002b36'
     foreground: '0xd3d7cf'
     
   normal:
-    black: '0x2e3436'
-    red: '0xcc0000'
-    green: '0x4e9a06'
-    yellow: '0xc4a000'
-    blue: '0x3465a4'
-    magenta: '0x75507b'
-    cyan: '0x06989a'
-    white: '0xd3d7cf'
-
+    black: '0x262626'
+    red: '0xd70000'
+    green: '0x5f8700'
+    yellow: '0xaf8700'
+    blue: '0x0087ff'
+    magenta: '0xaf005f'
+    cyan: '0x00afaf'
+    white: '0xe4e4e4'
+    
   bright:
-    black: '0x555753'
-    red: '0xef2929'
-    green: '0x8ae234'
-    yellow: '0xfce94f'
-    blue: '0x729fcf'
-    magenta: '0xad7fa8'
-    cyan: '0x34e2e2'
-    white: '0xeeeeec'
+    black: '0x1c1c1c'
+    red: '0xd75f00'
+    green: '0x585858'
+    yellow: '0x626262'
+    blue: '0x808080'
+    magenta: '0x5f5faf'
+    cyan: '0x8a8a8a'
+    white: '0xffffd7'
+
+
+#schemes:
+  # Tokyo Night theme, based on both:
+  #   https://github.com/ghifarit53/tokyonight-vim
+  #   https://github.com/enkia/tokyo-night-vscode-theme
+ # tokyo-night: &tokyo-night
+colors:
+   # Default colors
+   primary:
+     background: '0x1a1b26'
+     foreground: '0xa9b1d6'
+
+   # Normal colors
+   normal:
+     black:   '0x32344a'
+     red:     '0xf7768e'
+     green:   '0x9ece6a'
+     yellow:  '0xe0af68'
+     blue:    '0x7aa2f7'
+     magenta: '0xad8ee6'
+     cyan:    '0x449dab'
+     white:   '0x787c99'
+
+   # Bright colors
+   bright:
+     black:   '0x444b6a'
+     red:     '0xff7a93'
+     green:   '0xb9f27c'
+     yellow:  '0xff9e64'
+     blue:    '0x7da6ff'
+     magenta: '0xbb9af7'
+     cyan:    '0x0db9d7'
+     white:   '0xacb0d0'
+
+  #tokyo-night-storm: &tokyo-night-storm
+colors:
+  # Default colors
+  primary:
+    background: '0x24283b'
+    foreground: '0xa9b1d6'
+
+  # Normal colors
+  normal:
+    black:   '0x32344a'
+    red:     '0xf7768e'
+    green:   '0x9ece6a'
+    yellow:  '0xe0af68'
+    blue:    '0x7aa2f7'
+    magenta: '0xad8ee6'
+    cyan:    '0x449dab'
+    white:   '0x9699a8'
+
+  # Bright colors
+  bright:
+    black:   '0x444b6a'
+    red:     '0xff7a93'
+    green:   '0xb9f27c'
+    yellow:  '0xff9e64'
+    blue:    '0x7da6ff'
+    magenta: '0xbb9af7'
+    cyan:    '0x0db9d7'
+    white:   '0xacb0d0'
 
 
 # Bell
