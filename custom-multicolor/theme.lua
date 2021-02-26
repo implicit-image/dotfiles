@@ -227,22 +227,34 @@ local mpdicon = wibox.widget.imagebox()
 theme.mpd = lain.widget.mpd({
     settings = function()
         mpd_notification_preset = {
-            text = string.format("%s [%s] - %s\n%s", mpd_now.artist,
-                   mpd_now.album, mpd_now.date, mpd_now.title)
+	   text = string.format(" %s", mpd_now.file .. " ") --string.sub(mpd_now.file, -1, -4))
+	   -- {  
+	   -- if mpd_now.artist == nil then  
+	   --      return string.format(" %s", mpd_now.track)
+	   --  elseif mpd_now.track == nil then
+	   --      return string.format(" %s", mpd_now.artist)
+	   --  elseif mpd_now.track == nil and mpd_now.artist == nil then
+	   --      return string.format("Playing")
+	   --  else
+	   --      return string.format(" %s", mpd_now.track)
+	   --  end
+	   --}
         }
 
         if mpd_now.state == "play" then
-            artist = mpd_now.artist .. " > "
-            title  = mpd_now.title .. " "
+            artist = ""--mpd_now.artist .. " > "
+	    title  = mpd_now.file .. " "
             mpdicon:set_image(theme.widget_note_on)
         elseif mpd_now.state == "pause" then
             artist = "mpd "
             title  = "paused "
+	    mpdicon:set_image(theme.widget_note_on)
         else
-            artist = ""
+            --artist = ""
             title  = ""
-            --mpdicon:set_image() -- not working in 4.0
-            mpdicon._private.image = nil
+            mpdicon:set_image() -- not working in 4.0
+	    mpdicon:set_image(theme.widget_note_on)
+            --mpdicon._private.image = nil
             mpdicon:emit_signal("widget::redraw_needed")
             mpdicon:emit_signal("widget::layout_changed")
         end

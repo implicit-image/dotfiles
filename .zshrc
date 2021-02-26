@@ -73,7 +73,7 @@ plugins=(
     zsh-autosuggestions
     zsh-syntax-highlighting)
 
-ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=10'
+ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=8'
 # 3 4 6 7
 
 # eval "$(starship init zsh)"
@@ -107,3 +107,4 @@ source $ZSH/oh-my-zsh.sh
 
 
 [ -f "/home/b/.ghcup/env" ] && source "/home/b/.ghcup/env" # ghcup-env
+source /usr/share/nvm/init-nvm.sh
