@@ -1,0 +1,5 @@
+#TabsToolbar { visibility: collapse !important; }
+
+#sidebar-header { display: none !important; }
+
+#titlebar { display: none; }

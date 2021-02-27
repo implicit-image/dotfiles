@@ -182,127 +182,6 @@ font:
 # If `true`, bold text is drawn using the bright color variants.
 #draw_bold_text_with_bright_colors: false
 
-# Colors (Tomorrow Night)
-#colors:
-  # Default colors
-  #primary:
-  #  background: '#1d1f21'
-  #  foreground: '#c5c8c6'
-
-    # Bright and dim foreground colors
-    #
-    # The dimmed foreground color is calculated automatically if it is not present.
-    # If the bright foreground color is not set, or `draw_bold_text_with_bright_colors`
-    # is `false`, the normal foreground color will be used.
-    #dim_foreground: '#828482'
-    #bright_foreground: '#eaeaea'
-
-  # Cursor colors
-  #
-  # Colors which should be used to draw the terminal cursor.
-  #
-  # Allowed values are CellForeground and CellBackground, which reference the
-  # affected cell, or hexadecimal colors like #ff00ff.
-  #cursor:
-  #  text: CellBackground
-  #  cursor: CellForeground
-
-  # Vi mode cursor colors
-  #
-  # Colors for the cursor when the vi mode is active.
-  #
-  # Allowed values are CellForeground and CellBackground, which reference the
-  # affected cell, or hexadecimal colors like #ff00ff.
-  #vi_mode_cursor:
-  #  text: CellBackground
-  #  cursor: CellForeground
-
-  # Selection colors
-  #
-  # Colors which should be used to draw the selection area.
-  #
-  # Allowed values are CellForeground and CellBackground, which reference the
-  # affected cell, or hexadecimal colors like #ff00ff.
-  #selection:
-  #  text: CellBackground
-  #  background: CellForeground
-
-  # Search colors
-  #
-  # Colors used for the search bar and match highlighting.
-  #
-  # Allowed values are CellForeground and CellBackground, which reference the
-  # affected cell, or hexadecimal colors like #ff00ff.
-  #search:
-  #  matches:
-  #    foreground: '#000000'
-  #    background: '#ffffff'
-  #
-  #  bar:
-  #    background: CellForeground
-  #    foreground: CellBackground
-
-  # Normal colors
-  #normal:
-  #  black:   '#1d1f21'
-  #  red:     '#ff1111'
-  #  green:   '#48bf0b'
-  #  yellow:  '#e2e328'
-  #  blue:    '#3d5db4'
-  #  magenta: '#c430ce'
-  #  cyan:    '#00ffff'
-  #  white:   '#c5c8c6'
-
-  # Bright colors
-  #bright:
-  #  black:   '#666666'
-  #  red:     '#ff1111'
-  #  green:   '#b9ca4a'
-  #  yellow:  '#e7c547'
-  #  blue:    '#7aa6da'
-  #  magenta: '#c397d8'
-  #  cyan:    '#70c0b1'
-  #  white:   '#eaeaea'
-
-  # Dim colors
-  #
-  # If the dim colors are not set, they will be calculated automatically based
-  # on the `normal` colors.
-  #dim:
-  #  black:   '#131415'
-  #  red:     '#864343'
-  #  green:   '#777c44'
-  #  yellow:  '#9e824c'
-  #  blue:    '#556a7d'
-  #  magenta: '#75617b'
-  #  cyan:    '#5b7d78'
-  #  white:   '#828482'
-
-# GNOME Terminal Tango Dark
-colors:
-  primary:
-    background: '0x002b36'
-    foreground: '0xd3d7cf'
-    
-  normal:
-    black: '0x262626'
-    red: '0xd70000'
-    green: '0x5f8700'
-    yellow: '0xaf8700'
-    blue: '0x0087ff'
-    magenta: '0xaf005f'
-    cyan: '0x00afaf'
-    white: '0xe4e4e4'
-    
-  bright:
-    black: '0x1c1c1c'
-    red: '0xd75f00'
-    green: '0x585858'
-    yellow: '0x626262'
-    blue: '0x808080'
-    magenta: '0x5f5faf'
-    cyan: '0x8a8a8a'
-    white: '0xffffd7'
 
 
 #schemes:
@@ -318,7 +197,7 @@ colors:
 
    # Normal colors
    normal:
-     black:   '0x32344a'
+     black:   '0x919191'     # '0x32344a'
      red:     '0xf7768e'
      green:   '0x9ece6a'
      yellow:  '0xe0af68'
@@ -338,34 +217,69 @@ colors:
      cyan:    '0x0db9d7'
      white:   '0xacb0d0'
 
-  #tokyo-night-storm: &tokyo-night-storm
-colors:
-  # Default colors
-  primary:
-    background: '0x24283b'
-    foreground: '0xa9b1d6'
+#   #tokyo-night-storm: &tokyo-night-storm
+# colors:
+#   # Default colors
+#   primary:
+#     background: '0x24283b'
+#     foreground: '0xa9b1d6'
 
-  # Normal colors
-  normal:
-    black:   '0x32344a'
-    red:     '0xf7768e'
-    green:   '0x9ece6a'
-    yellow:  '0xe0af68'
-    blue:    '0x7aa2f7'
-    magenta: '0xad8ee6'
-    cyan:    '0x449dab'
-    white:   '0x9699a8'
+#   # Normal colors
+#   normal:
+#     black:   '0x    # '0x32344a'
+#     red:     '0xf7768e'
+#     green:   '0x9ece6a'
+#     yellow:  '0xe0af68'
+#     blue:    '0x7aa2f7'
+#     magenta: '0xad8ee6'
+#     cyan:    '0x449dab'
+#     white:   '0x9699a8'
 
-  # Bright colors
-  bright:
-    black:   '0x444b6a'
-    red:     '0xff7a93'
-    green:   '0xb9f27c'
-    yellow:  '0xff9e64'
-    blue:    '0x7da6ff'
-    magenta: '0xbb9af7'
-    cyan:    '0x0db9d7'
-    white:   '0xacb0d0'
+#   # Bright colors
+#   bright:
+#     black:   '0x444b6a'
+#     red:     '0xff7a93'
+#     green:   '0xb9f27c'
+#     yellow:  '0xff9e64'
+#     blue:    '0x7da6ff'
+#     magenta: '0xbb9af7'
+#     cyan:    '0x0db9d7'
+#     white:   '0xacb0d0'
+
+# colors:
+#   # Default colors
+#   primary:
+#     background: '0x1d1f21'
+#     foreground: '0xc5c8c6'
+
+#   # Colors the cursor will use if `custom_cursor_colors` is true
+#   cursor:
+#     text: '0x1d1f21'
+#     cursor: '0xc5c8c6'
+
+#   # Normal colors
+#   normal:
+#     black:   '0x1d1f21'
+#     red:     '0xcc342b'
+#     green:   '0x198844'
+#     yellow:  '0xfba922'
+#     blue:    '0x3971ed'
+#     magenta: '0xa36ac7'
+#     cyan:    '0x3971ed'
+#     white:   '0xc5c8c6'
+
+#   # Bright colors
+#   bright:
+#     black:   '0x969896'
+#     red:     '0xf96a38'
+#     green:   '0x282a2e'
+#     yellow:  '0x373b41'
+#     blue:    '0xb4b7b4'
+#     magenta: '0xe0e0e0'
+#     cyan:    '0x3971ed'
+#     white:   '0xffffff'
+
+# draw_bold_text_with_bright_colors: false
 
 
 # Bell

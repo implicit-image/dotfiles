@@ -227,7 +227,7 @@ local mpdicon = wibox.widget.imagebox()
 theme.mpd = lain.widget.mpd({
     settings = function()
         mpd_notification_preset = {
-	   text = string.format(" %s", mpd_now.file .. " ") --string.sub(mpd_now.file, -1, -4))
+	   text = string.format("%s  |  %s", mpd_now.artist .. " ", mpd_now.title .. " ") --string.sub(mpd_now.file, -1, -4))
 	   -- {  
 	   -- if mpd_now.artist == nil then  
 	   --      return string.format(" %s", mpd_now.track)
@@ -242,17 +242,17 @@ theme.mpd = lain.widget.mpd({
         }
 
         if mpd_now.state == "play" then
-            artist = ""--mpd_now.artist .. " > "
-	    title  = mpd_now.file .. " "
+            artist = "" .. mpd_now.artist .. "  |  "
+	    title  = mpd_now.title .. " "
             mpdicon:set_image(theme.widget_note_on)
         elseif mpd_now.state == "pause" then
-            artist = "mpd "
-            title  = "paused "
+            artist = " ||  " .. mpd_now.artist .. "  |  "
+            title  = mpd_now.title .. " "
 	    mpdicon:set_image(theme.widget_note_on)
         else
-            --artist = ""
+            artist = ""
             title  = ""
-            mpdicon:set_image() -- not working in 4.0
+            --mpdicon:set_image() -- not working in 4.0
 	    mpdicon:set_image(theme.widget_note_on)
             --mpdicon._private.image = nil
             mpdicon:emit_signal("widget::redraw_needed")
@@ -262,7 +262,7 @@ theme.mpd = lain.widget.mpd({
     end
 })
 
-function theme.at_screen_connect(s)
+function theme.at_screen_connect(s)   
     -- Quake application
     s.quake = lain.util.quake({ app = awful.util.terminal })
 
@@ -295,6 +295,7 @@ function theme.at_screen_connect(s)
 
     -- Create the wibox
     s.mywibox = awful.wibar({ position = "top", screen = s, height = dpi(19), bg = theme.bg_normal, fg = theme.fg_normal })
+    s.mywibox.visible = not s.mywibox.visible
 
     -- Add widgets to the wibox
     s.mywibox:setup {

@@ -122,10 +122,10 @@ awful.layout.layouts = {
     --awful.layout.suit.corner.se,
     --lain.layout.cascade,
     --lain.layout.cascade.tile,
-    lain.layout.centerwork,
+    --lain.layout.centerwork,
     --lain.layout.centerwork.horizontal,
-    lain.layout.termfair,
-    lain.layout.termfair.center,
+    --lain.layout.termfair,
+    --lain.layout.termfair.center,
 }
 
 -- Keyboard map indicator and changer
@@ -801,7 +801,7 @@ end)
 --     c:emit_signal("request::activate", "mouse_enter", {raise = vi_focus})
 -- end)
 
---beautiful.useless_gap = 10
+beautiful.useless_gap = 0
 
 client.connect_signal("focus", function(c) c.border_color = beautiful.border_focus end)
 client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_normal end)
