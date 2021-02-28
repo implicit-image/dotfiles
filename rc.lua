@@ -543,9 +543,8 @@ globalkeys = my_table.join(
     -- User programs
     awful.key({ modkey }, "q", function () awful.spawn(browser) end,
               {description = "run browser", group = "launcher"}),
-    awful.key({ modkey }, "a", function () awful.spawn(gui_editor) end,
+    awful.key({ modkey }, "e", function () awful.spawn(gui_editor) end,
               {description = "run gui editor", group = "launcher"}),
-
     -- Default
     -- Menubar
     awful.key({ modkey }, "p", function() menubar.show() end,
@@ -801,7 +800,7 @@ end)
 --     c:emit_signal("request::activate", "mouse_enter", {raise = vi_focus})
 -- end)
 
-beautiful.useless_gap = 0
+beautiful.useless_gap = 10
 
 client.connect_signal("focus", function(c) c.border_color = beautiful.border_focus end)
 client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_normal end)

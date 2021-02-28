@@ -1,8 +1,5 @@
 --[[
-
-     Multicolor Awesome WM theme 2.0
-     github.com/lcpz
-
+     Theme based on Multicolor Awesome WM theme 2.0 found on github.com/lcpz
 --]]
 
 local gears = require("gears")
@@ -284,7 +281,8 @@ function theme.at_screen_connect(s)
 
     -- Create the wibox
     s.mywibox = awful.wibar({ position = "top", screen = s, height = dpi(19), bg = theme.bg_normal, fg = theme.fg_normal })
-    s.mywibox.visible = not s.mywibox.visible
+    --hide wibox 
+    s.mywibox.visible = not s.mywibox.visible 
 
     -- Add widgets to the wibox
     s.mywibox:setup {
