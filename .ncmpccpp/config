@@ -4,7 +4,7 @@ mpd_host = localhost
 mpd_port = 6600
 mpd_connection_timeout = 5
 mpd_music_dir = ~/Music
-mpd_crossfade_time = 5
+mpd_crossfade_time = 2
 #visualizer_fifo_path = /tmp/mpd.fifo
 #visualizer_output_name = mpd_fifo
 #visualizer_in_stereo = yes
@@ -39,7 +39,7 @@ seek_time = 1
 volume_change_step = 2
 autocenter_mode = yes
 centered_cursor = yes
-progressbar_look = =>
+progressbar_look = "■"
 default_place_to_search_in = database
 user_interface = alternative
 media_library_primary_tag = genre

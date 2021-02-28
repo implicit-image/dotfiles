@@ -96,7 +96,7 @@ local markup = lain.util.markup
 -- Textclock
 os.setlocale(os.getenv("LANG")) -- to localize the clock
 local clockicon = wibox.widget.imagebox(theme.widget_clock)
-local mytextclock = wibox.widget.textclock(markup("#7788af", "%A %d %B ") .. markup("#ab7367", ">") .. markup("#de5e1e", " %H:%M "))
+local mytextclock = wibox.widget.textclock( markup("#7788af", " %H:%M ") .. markup("#ab7367", " @ ") .. markup("#de5e1e", "%A %d %B "))
 mytextclock.font = theme.font
 
 -- Calendar
@@ -227,26 +227,15 @@ local mpdicon = wibox.widget.imagebox()
 theme.mpd = lain.widget.mpd({
     settings = function()
         mpd_notification_preset = {
-	   text = string.format("%s  |  %s", mpd_now.artist .. " ", mpd_now.title .. " ") --string.sub(mpd_now.file, -1, -4))
-	   -- {  
-	   -- if mpd_now.artist == nil then  
-	   --      return string.format(" %s", mpd_now.track)
-	   --  elseif mpd_now.track == nil then
-	   --      return string.format(" %s", mpd_now.artist)
-	   --  elseif mpd_now.track == nil and mpd_now.artist == nil then
-	   --      return string.format("Playing")
-	   --  else
-	   --      return string.format(" %s", mpd_now.track)
-	   --  end
-	   --}
+	   text = string.format("%s - %s", mpd_now.artist .. " ", mpd_now.title .. " ")
         }
 
         if mpd_now.state == "play" then
-            artist = "" .. mpd_now.artist .. "  |  "
+            artist = mpd_now.artist .. "  |  " --" ❙❙ " ..
 	    title  = mpd_now.title .. " "
             mpdicon:set_image(theme.widget_note_on)
         elseif mpd_now.state == "pause" then
-            artist = " ||  " .. mpd_now.artist .. "  |  "
+            artist = mpd_now.artist .. "  |  " --" ▶ " .. 
             title  = mpd_now.title .. " "
 	    mpdicon:set_image(theme.widget_note_on)
         else
