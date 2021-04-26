@@ -108,3 +108,10 @@ source $ZSH/oh-my-zsh.sh
 
 [ -f "/home/b/.ghcup/env" ] && source "/home/b/.ghcup/env" # ghcup-env
 source /usr/share/nvm/init-nvm.sh
+export GEM_HOME="$HOME/gems"
+export TESSDATA_PREFIX="/usr/share/tessdata/"
+export PATH="$HOME/gems/bin:$PATH"
+export PATH="$HOME/.local/share/gem/ruby/2.7.0/bin:$PATH"
+export PATH="$HOME/.config/rofi/bin:$PATH"
+export PATH="$HOME/projects/scripts:$PATH"
+

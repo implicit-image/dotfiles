@@ -10,7 +10,7 @@
   # each instance of Alacritty. If it is not present, alacritty will
   # check the local terminfo database and use `alacritty` if it is
   # available, otherwise `xterm-256color` is used.
-  #TERM: alacritty
+#TERM: xterm-256color
 
 #window:
   # Window dimensions (changes require restart)
@@ -90,7 +90,7 @@
 # Font configuration (changes require restart)
 font:
   # The size to use.
-  size: 12
+  size: 8
   # The normal (roman) font face to use.
   normal:
     family: Code New Roman Nerd Font Mono
@@ -157,9 +157,7 @@ font:
 #     # The `style` can be specified to pick a specific face.
 #     style: Bold Italic
 
-  # Point size
-  size: 8.0
-
+  
   # Offset is the extra space around each character. `offset.y` can be thought of
   # as modifying the line spacing, and `offset.x` as modifying the letter spacing.
   offset:
@@ -184,102 +182,119 @@ font:
 
 
 
-#schemes:
-  # Tokyo Night theme, based on both:
-  #   https://github.com/ghifarit53/tokyonight-vim
-  #   https://github.com/enkia/tokyo-night-vscode-theme
- # tokyo-night: &tokyo-night
-colors:
-   # Default colors
-   primary:
-     background: '0x1a1b26'
-     foreground: '0xa9b1d6'
-
-   # Normal colors
-   normal:
-     black:   '0x919191'     # '0x32344a'
-     red:     '0xf7768e'
-     green:   '0x9ece6a'
-     yellow:  '0xe0af68'
-     blue:    '0x7aa2f7'
-     magenta: '0xad8ee6'
-     cyan:    '0x449dab'
-     white:   '0x787c99'
-
-   # Bright colors
-   bright:
-     black:   '0x444b6a'
-     red:     '0xff7a93'
-     green:   '0xb9f27c'
-     yellow:  '0xff9e64'
-     blue:    '0x7da6ff'
-     magenta: '0xbb9af7'
-     cyan:    '0x0db9d7'
-     white:   '0xacb0d0'
-
-#   #tokyo-night-storm: &tokyo-night-storm
-# colors:
-#   # Default colors
-#   primary:
-#     background: '0x24283b'
-#     foreground: '0xa9b1d6'
-
-#   # Normal colors
-#   normal:
-#     black:   '0x    # '0x32344a'
-#     red:     '0xf7768e'
-#     green:   '0x9ece6a'
-#     yellow:  '0xe0af68'
-#     blue:    '0x7aa2f7'
-#     magenta: '0xad8ee6'
-#     cyan:    '0x449dab'
-#     white:   '0x9699a8'
-
-#   # Bright colors
-#   bright:
-#     black:   '0x444b6a'
-#     red:     '0xff7a93'
-#     green:   '0xb9f27c'
-#     yellow:  '0xff9e64'
-#     blue:    '0x7da6ff'
-#     magenta: '0xbb9af7'
-#     cyan:    '0x0db9d7'
-#     white:   '0xacb0d0'
 
 # colors:
-#   # Default colors
 #   primary:
-#     background: '0x1d1f21'
-#     foreground: '0xc5c8c6'
-
-#   # Colors the cursor will use if `custom_cursor_colors` is true
+#     background: '0x282a36'
+#     foreground: '0xf8f8f2'
 #   cursor:
-#     text: '0x1d1f21'
-#     cursor: '0xc5c8c6'
+#     text: CellBackground
+#     cursor: CellForeground
+#   vi_mode_cursor:
+#     text: CellBackground
+#     cursor: CellForeground
+#   search:
+#     matches:
+#       foreground: '0x44475a'
+#       background: '0x50fa7b'
+#     focused_match:
+#       foreground: '0x44475a'
+#       background: '0xffb86c'
+#     bar:
+#       background: '0x282a36'
+#       foreground: '0xf8f8f2'
+#   line_indicator:
+#     foreground: None
+#     background: None
+#   selection:
+#     text: CellForeground
+#     background: '0x44475a'
+#   normal:
+#     black:   '0x000000'
+#     red:     '0xff5555'
+#     green:   '0x50fa7b'
+#     yellow:  '0xf1fa8c'
+#     blue:    '0xbd93f9'
+#     magenta: '0xff79c6'
+#     cyan:    '0x8be9fd'
+#     white:   '0xbfbfbf'
+#   bright:
+#     black:   '0x4d4d4d'
+#     red:     '0xff6e67'
+#     green:   '0x5af78e'
+#     yellow:  '0xf4f99d'
+#     blue:    '0xcaa9fa'
+#     magenta: '0xff92d0'
+#     cyan:    '0x9aedfe'
+#     white:   '0xe6e6e6'
+#   dim:
+#     black:   '0x14151b'
+#     red:     '0xff2222'
+#     green:   '0x1ef956'
+#     yellow:  '0xebf85b'
+#     blue:    '0x4d5b86'
+#     magenta: '0xff46b0'
+#     cyan:    '0x59dffc'
+#     white:   '0xe6e6d1'
+
+# Colors (Blood Moon)
+# colors:
+#   # Default colors
+#   primary:
+#     background: '0x10100E'
+#     foreground: '0xC6C6C4'
 
 #   # Normal colors
 #   normal:
-#     black:   '0x1d1f21'
-#     red:     '0xcc342b'
-#     green:   '0x198844'
-#     yellow:  '0xfba922'
-#     blue:    '0x3971ed'
-#     magenta: '0xa36ac7'
-#     cyan:    '0x3971ed'
-#     white:   '0xc5c8c6'
+#     black:   '0x10100E'
+#     red:     '0xC40233'
+#     green:   '0x009F6B'
+#     yellow:  '0xFFD700'
+#     blue:    '0x0087BD'
+#     magenta: '0x9A4EAE'
+#     cyan:    '0x20B2AA'
+#     white:   '0xC6C6C4'
 
 #   # Bright colors
 #   bright:
-#     black:   '0x969896'
-#     red:     '0xf96a38'
-#     green:   '0x282a2e'
-#     yellow:  '0x373b41'
-#     blue:    '0xb4b7b4'
-#     magenta: '0xe0e0e0'
-#     cyan:    '0x3971ed'
-#     white:   '0xffffff'
-
+#     black:   '0x696969'
+#     red:     '0xFF2400'
+#     green:   '0x03C03C'
+#     yellow:  '0xFDFF00'
+#     blue:    '0x007FFF'
+#     magenta: '0xFF1493'
+#     cyan:    '0x00CCCC'
+#     white:   '0xFFFAFA'
 # draw_bold_text_with_bright_colors: false
+
+# Campbell (Windows 10 default)
+colors:
+  # Default colors
+  primary:
+    background: '0x0c0c0c'
+    foreground: '0xcccccc'
+
+  # Normal colors
+  normal:
+    black:      '0x0c0c0c'
+    red:        '0xc50f1f'
+    green:      '0x13a10e'
+    yellow:     '0xc19c00'
+    blue:       '0x0037da'
+    magenta:    '0x881798'
+    cyan:       '0x3a96dd'
+    white:      '0xcccccc'
+
+  # Bright colors
+  bright:
+    black:      '0x767676'
+    red:        '0xe74856'
+    green:      '0x16c60c'
+    yellow:     '0xf9f1a5'
+    blue:       '0x3b78ff'
+    magenta:    '0xb4009e'
+    cyan:       '0x61d6d6'
+    white:      '0xf2f2f2'
 
 
 # Bell
@@ -327,7 +342,7 @@ colors:
 #
 # Window opacity as a floating point number from `0.0` to `1.0`.
 # The value `0.0` is completely transparent and `1.0` is opaque.
-background_opacity: 0.92
+background_opacity: 0.9
 
 #selection:
   #semantic_escape_chars: ",│`|:\"' ()[]{}<>\t"
@@ -344,7 +359,7 @@ background_opacity: 0.92
   # Values for `style`:
   #   - ▇ Block
   #   - _ Underline
-  #   - | Beam
+  #   - | beam
   #style: Block
 
   # Vi mode cursor style

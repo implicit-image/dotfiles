@@ -99,7 +99,7 @@ local cycle_prev   = true -- cycle trough all previous client or just the first 
 local editor       = os.getenv("EDITOR") or "emacs"
 local gui_editor   = os.getenv("GUI_EDITOR") or "emacs"
 local browser      = os.getenv("BROWSER") or "firefox"
-local scrlocker    = "slock"
+local scrlocker    = "physlock"
 
 awful.util.terminal = terminal
 awful.util.tagnames = { "main", "dev", "docs", "teams", "music", "6", "7" }
@@ -109,8 +109,8 @@ awful.layout.layouts = {
     awful.layout.suit.tile.bottom,
     awful.layout.suit.tile.top,
     --awful.layout.suit.floating,
-    awful.layout.suit.fair,
-    --awful.layout.suit.fair.horizontal,
+    --awful.layout.suit.fair,
+    awful.layout.suit.fair.horizontal,
     --awful.layout.suit.spiral,
     --awful.layout.suit.spiral.dwindle,
     --awful.layout.suit.max,
@@ -127,21 +127,6 @@ awful.layout.layouts = {
     --lain.layout.termfair,
     --lain.layout.termfair.center,
 }
-
--- Keyboard map indicator and changer
-kbdcfg = {}
-kbdcfg.cmd = "setxkbmap"
-kbdcfg.layout = { "us", "pl" }
-kbdcfg.current = 1  -- us is our default layout
-kbdcfg.widget = wibox({ type = "textbox", align = "right" })
-kbdcfg.widget.text = " " .. kbdcfg.layout[kbdcfg.current] .. " "
-kbdcfg.switch = function ()
-    kbdcfg.current = kbdcfg.current % #(kbdcfg.layout) + 1
-    local t = kbdcfg.layout[kbdcfg.current]
-    kbdcfg.widget.text = " " .. t .. " "
-    os.execute( kbdcfg.cmd .. " " .. t)
-end
-
 
 
 
@@ -170,7 +155,7 @@ awful.util.tasklist_buttons = my_table.join(
             --c:emit_signal("request::activate", "tasklist", {raise = true})<Paste>
 
             -- Without this, the following
-            -- :isvisible() makes no sense
+            -- :isvisibe() makes no sense
             c.minimized = false
             if not c:isvisible() and c.first_tag then
                 c.first_tag:view_only()
@@ -238,6 +223,10 @@ awful.util.mymainmenu = freedesktop.menu.build({
 menubar.utils.terminal = terminal -- Set the Menubar terminal for applications that require it
 -- }}}
 
+-- client.connect_signal("manage", function(c)
+-- 			 c.shape = gears.shape.rounded_rect( , c.width, c.height, 20)
+-- end)
+
 -- {{{ Screen
 -- Re-set wallpaper when a screen's geometry changes (e.g. different resolution)
 screen.connect_signal("property::geometry", function(s)
@@ -279,8 +268,8 @@ root.buttons(my_table.join(
 globalkeys = my_table.join(
     -- Take a screenshot
     -- https://github.com/lcpz/dots/blob/master/bin/screenshot
-    -- awful.key({ altkey }, "p", function() os.execute("screenshot") end,
-    --           {description = "take a screenshot", group = "hotkeys"}),
+    awful.key({ modkey, "Shift" }, "p", function() os.execute("flameshot gui") end,
+               {description = "take a screenshot", group = "hotkeys"}),
 
     -- X screen locker
     awful.key({ altkey, "Control" }, "l", function () os.execute(scrlocker) end,
@@ -381,8 +370,8 @@ globalkeys = my_table.join(
 
     -- Show/Hide Wibox
     awful.key({ modkey }, "b", function ()
-            for s in screen do
-                s.mywibox.visible = not s.mywibox.visible
+           for s in screen do
+	        s.mywibox.visible = not s.mywibox.visible
                 if s.mybottomwibox then
                     s.mybottomwibox.visible = not s.mybottomwibox.visible
                 end
@@ -543,7 +532,7 @@ globalkeys = my_table.join(
     -- User programs
     awful.key({ modkey }, "q", function () awful.spawn(browser) end,
               {description = "run browser", group = "launcher"}),
-    awful.key({ modkey }, "e", function () awful.spawn(gui_editor) end,
+    awful.key({ modkey }, "e", function () awful.spawn(editor) end,
               {description = "run gui editor", group = "launcher"}),
     -- Default
     -- Menubar
@@ -558,13 +547,25 @@ globalkeys = my_table.join(
     
     -- alternatively use rofi, a dmenu-like application with more features
     -- check https://github.com/DaveDavenport/rofi for more details
-    --[[ rofi
-    awful.key({ modkey }, "x", function ()
-            os.execute(string.format("rofi -show %s -theme %s",
-            'run', 'dmenu'))
-        end,
-        {description = "show rofi", group = "launcher"}),
-    --]]
+    --[[ rofi --]]
+    -- awful.key({ modkey }, "p", function ()
+    --         os.execute(string.format("rofi -drun-use-desktop-cache -modi-combi %s -show %s -theme %s -icon-theme %s -show-icons",
+    --         'window,drun,combi', 'drun', 'Pop-Dark', 'Papirus'))
+    --     end,
+    --     {description = "show rofi", group = "launcher"}),
+    --
+    -- awful.key({ modkey }, "p", function ()
+    -- 	for s in screen do
+    -- 	    if s.mywibox.visible then
+    -- 	        os.execute(string.format("rofi -drun-use-desktop-cache -modi %s  -combi-modi %s -show %s  -theme %s -icon-theme %s -show-icons -combi-hide-mode-prefix -yoffset %s",
+    -- 	 			   'combi,window','drun,run' , 'combi' , 'flat-orange-custom','Papirus', '-10'))
+    -- 	    else
+    -- 	        os.execute(string.format("rofi -drun-use-desktop-cache -modi %s  -combi-modi %s -show %s  -theme %s -icon-theme %s -show-icons -combi-hide-mode-prefix -yoffset %s",
+    -- 	 			   'combi,window','drun,run' , 'combi' , 'flat-orange-custom','Papirus', '0'))
+    -- 	    end 
+    --     end
+    -- end,
+    -- {description = "show rofi", group = "launcher"}),
     -- Prompt
     awful.key({ modkey }, "r", function () awful.screen.focused().mypromptbox:run() end,
               {description = "run prompt", group = "launcher"}),
@@ -572,10 +573,10 @@ globalkeys = my_table.join(
     awful.key({ modkey }, "x",
               function ()
                   awful.prompt.run {
-                    prompt       = "Run Lua code: ",
-                    textbox      = awful.screen.focused().mypromptbox.widget,
-                    exe_callback = awful.util.eval,
-                    history_path = awful.util.get_cache_dir() .. "/history_eval"
+                      prompt       = "Run Lua code: ",
+                      textbox      = awful.screen.focused().mypromptbox.widget,
+                      exe_callback = awful.util.eval,
+                      history_path = awful.util.get_cache_dir() .. "/history_eval"
                   }
               end,
               {description = "lua execute prompt", group = "awesome"})
@@ -730,6 +731,7 @@ awful.rules.rules = {
     { rule = { class = "Gimp", role = "gimp-image-window" },
           properties = { maximized = true } },
 }
+
 -- }}}
 
 -- {{{ Signals
@@ -745,62 +747,14 @@ client.connect_signal("manage", function (c)
         -- Prevent clients from being unreachable after screen count changes.
         awful.placement.no_offscreen(c)
     end
+    
 end)
 
--- Add a titlebar if titlebars_enabled is set to true in the rules.
-client.connect_signal("request::titlebars", function(c)
-    -- Custom
-    if beautiful.titlebar_fun then
-        beautiful.titlebar_fun(c)
-        return
-    end
 
-    -- Default
-    -- buttons for the titlebar
-    local buttons = my_table.join(
-        awful.button({ }, 1, function()
-            c:emit_signal("request::activate", "titlebar", {raise = true})
-            awful.mouse.client.move(c)
-        end),
-        awful.button({ }, 2, function() c:kill() end),
-        awful.button({ }, 3, function()
-            c:emit_signal("request::activate", "titlebar", {raise = true})
-            awful.mouse.client.resize(c)
-        end)
-    )
-
-    awful.titlebar(c, {size = dpi(16)}) : setup {
-        { -- Left
-            awful.titlebar.widget.iconwidget(c),
-            buttons = buttons,
-            layout  = wibox.layout.fixed.horizontal
-        },
-        { -- Middle
-            { -- Title
-                align  = "center",
-                widget = awful.titlebar.widget.titlewidget(c)
-            },
-            buttons = buttons,
-            layout  = wibox.layout.flex.horizontal
-        },
-        { -- Right
-            awful.titlebar.widget.floatingbutton (c),
-            awful.titlebar.widget.maximizedbutton(c),
-            awful.titlebar.widget.stickybutton   (c),
-            awful.titlebar.widget.ontopbutton    (c),
-            awful.titlebar.widget.closebutton    (c),
-            layout = wibox.layout.fixed.horizontal()
-        },
-        layout = wibox.layout.align.horizontal
-    }
-end)
-
--- Enable sloppy focus, so that focus follows mouse.
--- client.connect_signal("mouse::enter", function(c)
---     c:emit_signal("request::activate", "mouse_enter", {raise = vi_focus})
--- end)
-
-beautiful.useless_gap = 15
+beautiful.useless_gap = 0
+beautiful.bg_systray = "#141414"
+menubar.show_categories = false
+awful.spawn.with_shell("~/.config/awesome/autorun.sh")
 
 client.connect_signal("focus", function(c) c.border_color = beautiful.border_focus end)
 client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_normal end)

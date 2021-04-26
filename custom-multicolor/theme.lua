@@ -14,12 +14,12 @@ local my_table = awful.util.table or gears.table -- 4.{0,1} compatibility
 local theme                                     = {}
 theme.confdir                                   = os.getenv("HOME") .. "/.config/awesome/themes/custom-multicolor"
 theme.wallpaper_dir                             = os.getenv("HOME") .. "/projects/dotfiles/wallpapers"
-theme.wallpaper                                 = theme.wallpaper_dir .. "/676496.jpg"
+theme.wallpaper                                 = theme.wallpaper_dir .. "/ni.jpg"
 theme.font                                      = "Terminus 8"
 theme.menu_bg_normal                            = "#000000"
 theme.menu_bg_focus                             = "#000000"
-theme.bg_normal                                 = "#000000"
-theme.bg_focus                                  = "#000000"
+theme.bg_normal                                 = "#000000aa"
+theme.bg_focus                                  = "#444444aa"
 theme.bg_urgent                                 = "#000000"
 theme.fg_normal                                 = "#aaaaaa"
 theme.fg_focus                                  = "#ff8c00"
@@ -94,8 +94,16 @@ local markup = lain.util.markup
 -- Textclock
 os.setlocale(os.getenv("LANG")) -- to localize the clock
 local clockicon = wibox.widget.imagebox(theme.widget_clock)
-local mytextclock = wibox.widget.textclock( markup("#7788af", " %H:%M ") .. markup("#ab7367", " @ ") .. markup("#de5e1e", "%A %d %B "))
+local mytextclock = wibox.widget.textclock( markup("#7788af", " %H:%M ") .. markup("#ab7367", " @ ") .. markup("#de5e1e", "%A %d.%m.%Y "))
 mytextclock.font = theme.font
+
+-- mytextclock = wibox.widget.textclock {
+--     args =  {
+--         format = markup("#7788af", " %H:%M ") .. markup("#ab7367", " @ ") .. markup("#de5e1e", "%a %b %d")
+--     }
+--     font = theme.font
+-- }
+
 
 -- Calendar
 theme.cal = lain.widget.cal({
@@ -160,6 +168,24 @@ local cpu = lain.widget.cpu({
         widget:set_markup(markup.fontfg(theme.font, "#e33a6e", cpu_now.usage .. "% "))
     end
 })
+
+
+
+-- keyboard layout changer
+kbdcfg = {}
+kbdcfg.cmd = "setxkbmap"
+kbdcfg.layout = { "us", "pl", "gr" }
+kbdcfg.current = 1  -- us is our default layout
+kbdcfg.widget = wibox({ type = "textbox", align = "right" })
+kbdcfg.widget.text = " " .. kbdcfg.layout[kbdcfg.current] .. " "
+kbdcfg.switch = function ()
+    kbdcfg.current = kbdcfg.current % #(kbdcfg.layout) + 1
+    local t = kbdcfg.layout[kbdcfg.current]
+    kbdcfg.widget.text = " " .. t .. " "
+    os.execute( kbdcfg.cmd .. " " .. t)
+end
+
+
 
 -- Coretemp
 local tempicon = wibox.widget.imagebox(theme.widget_temp)
@@ -229,11 +255,11 @@ theme.mpd = lain.widget.mpd({
         }
 
         if mpd_now.state == "play" then
-            artist = mpd_now.artist .. "  |  " --" ❙❙ " ..
+            artist = " ❙❙ " .. mpd_now.artist .. "  |  " --" ❙❙ " ..
 	    title  = mpd_now.title .. " "
             mpdicon:set_image(theme.widget_note_on)
         elseif mpd_now.state == "pause" then
-            artist = mpd_now.artist .. "  |  " --" ▶ " .. 
+            artist = " ▶ " .. mpd_now.artist .. "  |  " --" ▶ " .. 
             title  = mpd_now.title .. " "
 	    mpdicon:set_image(theme.widget_note_on)
         else
@@ -249,9 +275,17 @@ theme.mpd = lain.widget.mpd({
     end
 })
 
+
+
+
+
+
+
+
 function theme.at_screen_connect(s)   
     -- Quake application
     s.quake = lain.util.quake({ app = awful.util.terminal })
+   
 
     -- If wallpaper is a function, call it with the screen
     local wallpaper = theme.wallpaper
@@ -274,18 +308,45 @@ function theme.at_screen_connect(s)
                            awful.button({}, 3, function () awful.layout.inc(-1) end),
                            awful.button({}, 4, function () awful.layout.inc( 1) end),
                            awful.button({}, 5, function () awful.layout.inc(-1) end)))
+
+    -- create a systray widget
+    mysystray = wibox.widget.systray {
+       opacity = 0.8,
+       bg = theme.bg_normal
+    }
+   
     -- Create a taglist widget
-    s.mytaglist = awful.widget.taglist(s, awful.widget.taglist.filter.all, awful.util.taglist_buttons)
+    s.mytaglist = awful.widget.taglist {
+        screen = s,
+        filter = awful.widget.taglist.filter.all,
+        buttons = awful.util.taglist_buttons,
+        bg = theme.bg_normal
+    }
+    --create a tasklist widget
+    s.mytasklist = awful.widget.tasklist {
+        screen = s,
+        filter = awful.widget.tasklist.filter.currenttags,
+	buttons = awful.util.tasklist_buttons
+    }
+    -- Create the wibox     
+    s.mywibox = awful.wibar {
+        args = {
+            position = "top",
+	    screen = s,
+	    bg = theme.bg_normal,
+	    fg = theme.fg_normal,
+	    opacity = 0.8
+        },
+        visible = false,
+        height = dpi(20)
+    }
 
-    -- Create a tasklist widget
-    s.mytasklist = awful.widget.tasklist(s, awful.widget.tasklist.filter.currenttags, awful.util.tasklist_buttons)
 
-    -- Create the wibox
-    s.mywibox = awful.wibar({ position = "top", screen = s, height = dpi(19), bg = theme.bg_normal, fg = theme.fg_normal })
-    --hide wibox 
-    s.mywibox.visible = not s.mywibox.visible 
+    
+     --hide wibox TODO:declarative implementation
+     -- s.mywibox.visible = not s.mywibox.visible 
 
-    -- Add widgets to the wibox
+     -- Add widgets to the wibox
     s.mywibox:setup {
         layout = wibox.layout.align.horizontal,
         { -- Left widgets
@@ -297,7 +358,8 @@ function theme.at_screen_connect(s)
         s.mytasklist, -- Middle widget
         { -- Right widgets
             layout = wibox.layout.fixed.horizontal,
-            wibox.widget.systray(),
+            --wibox.widget.systray(),
+	    mysystray,
 	    mpdicon,
             theme.mpd.widget,
             --mailicon,
@@ -306,6 +368,7 @@ function theme.at_screen_connect(s)
             netdowninfo,
             netupicon,
             netupinfo.widget,
+	    --kbdcfg.widget,
             volicon,
             theme.volume.widget,
             memicon,
