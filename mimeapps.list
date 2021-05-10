@@ -1,6 +1,6 @@
 [Added Associations]
 application/octet-stream=calibre-gui.desktop;
-audio/mpeg=vlc.desktop;
+audio/mpeg=mpv.desktop;
 application/zip=org.gnome.FileRoller.desktop;
 application/pdf=calibre-gui.desktop;calibre-ebook-viewer.desktop;okular.desktop;
 application/epub+zip=calibre-gui.desktop;

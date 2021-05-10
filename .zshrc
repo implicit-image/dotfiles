@@ -8,7 +8,8 @@ export ZSH="/home/b/.oh-my-zsh"
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-ZSH_THEME="half-life"
+ZSH_THEME="fino-time"
+
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -70,6 +71,10 @@ ZSH_THEME="half-life"
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
     git
+    archlinux
+    npm
+    django
+    stack
     zsh-autosuggestions
     zsh-syntax-highlighting)
 
@@ -110,8 +115,10 @@ source $ZSH/oh-my-zsh.sh
 source /usr/share/nvm/init-nvm.sh
 export GEM_HOME="$HOME/gems"
 export TESSDATA_PREFIX="/usr/share/tessdata/"
+export QT_QPA_PLATFORMTHEME=qt5ct
 export PATH="$HOME/gems/bin:$PATH"
 export PATH="$HOME/.local/share/gem/ruby/2.7.0/bin:$PATH"
 export PATH="$HOME/.config/rofi/bin:$PATH"
-export PATH="$HOME/projects/scripts:$PATH"
+export PATH="$HOME/Projects/scripts:$PATH"
+export PATH="$HOME/.local/bin:$PATH"
 

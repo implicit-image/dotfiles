@@ -39,7 +39,7 @@ seek_time = 1
 volume_change_step = 2
 autocenter_mode = yes
 centered_cursor = yes
-progressbar_look = "■"
+progressbar_look = "=>"
 default_place_to_search_in = database
 user_interface = alternative
 media_library_primary_tag = genre
