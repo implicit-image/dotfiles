@@ -28,7 +28,7 @@
 # They all accept either a font-spec, font string ("Input Mono-12"), or xlfd
 # font string. You generally only need these two:
 #+begin_src elisp
-(setq doom-font (font-spec :family "Code New Roman Nerd Font Mono" :size 16)
+(setq doom-font (font-spec :family "Code New Roman Nerd Font Mono" :size 20)
        doom-variable-pitch-font (font-spec :family "sans" :size 16))
 #+end_src
 
@@ -37,7 +37,7 @@
 # available. You can either set `doom-theme' or manually load a theme with the
 # `load-theme' function. This is the default:
 #+begin_src elisp
-(setq doom-theme 'doom-gruvbox)
+(load-theme 'doom-tomorrow-night t)
 #+end_src
 
 
@@ -74,3 +74,18 @@
 #
 # You can also try 'gd' (or 'C-c c d') to jump to their definition and see how
 # they are implemented.
+** Highlight-indent-guides
+#+begin_src elisp
+(use-package! highlight-indent-guides
+  :hook (prog-mode . highlight-indent-guides-mode)
+  :config
+  (setq highlight-indent-guides-method 'fill))
+#+end_src
+** js2-mode
+#+begin_src elisp
+(setq js2-indent-level 2)
+#+end_src
+** org-mode
+#+begin_src elisp
+(setq org-odt-preffered-output-format "doc")
+#+end_src
