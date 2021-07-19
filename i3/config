@@ -15,7 +15,7 @@ set $ctrl Control
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
-font pango:monospace 10
+font pango:monospace 0
 
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
@@ -36,7 +36,7 @@ exec --no-startup-id feh --bg-fill /home/b/Projects/dotfiles/wallpapers/wall.jpg
 exec --no-startup-id gnome-settings-daemon
 exec_always emacs --daemon
 exec_always "setxkbmap -model pc105 -layout us,pl,gr -option grp:alt_shift_toggle"
-exec_always --no-startup-id bash $HOME/.config/polybar/launch.sh --forest
+exec_always --no-startup-id bash $HOME/.config/polybar/launch.sh --custom-forest
 #-no-startup-id nm-applet
 exec --no-startup-id blueman-applet
 
@@ -59,7 +59,10 @@ bindsym $mod+Return exec alacritty
 #start networkmanager-dmenu
 bindsym $mod+n exec networkmanager_dmenu
 
+#start firefox
 bindsym $mod+q exec firefox
+bindsym $mod+Shift+q exec firefox-developer-edition
+
 
 #emacs
 bindsym $mod+e exec emacsclient -c
@@ -192,6 +195,8 @@ bindsym $mod+Shift+0 move container to workspace number $ws10
 bindsym $alt+Left workspace prev
 bindsym $alt+Right workspace next
 
+#
+
 bindsym $mod+m move scratchpad
 bindsym $mod+Shift+m scratchpad show
 
@@ -235,6 +240,10 @@ hide_edge_borders yes
 focus_follows_mouse no
 
 
+#floating_minimum_size 300 x 150
+#floating_maximum_size 480 x 360
+
+
 #colors
 
 client.focused #000000 #285577 #ffffff #000000 #888888
@@ -250,6 +259,15 @@ client.focused #000000 #285577 #ffffff #000000 #888888
 # assignments to specific workspaces
 assign [class="teams"] $ws4
 
+
+
+
+for_window [class="gpick"] floating enable
+for_window [class="Gpick"] floating enable
+for_window [class="gpick"] floating_minimum_size 300 x 150
+for_window [class="gpick"] floating_maximum_size 480 x 360
+for_window [class="Gpick"] floating_maximum_size 300 x 150
+for_window [class="Gpick"] floating_minimum_size 480 x 360
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 # bar {
