@@ -34,8 +34,8 @@ exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork -i /home/
 exec_always --no-startup-id picom -b
 exec --no-startup-id feh --bg-fill /home/b/Projects/dotfiles/wallpapers/wall.jpg
 exec --no-startup-id gnome-settings-daemon
-exec_always emacs --daemon
-exec_always "setxkbmap -model pc105 -layout us,pl,gr -option grp:alt_shift_toggle"
+exec_always emacs --bg-daemon
+exec "setxkbmap -model pc105 -layout us,pl,gr -option grp:alt_shift_toggle"
 exec_always --no-startup-id bash $HOME/.config/polybar/launch.sh --custom-forest
 #-no-startup-id nm-applet
 exec --no-startup-id blueman-applet
@@ -64,6 +64,9 @@ bindsym $mod+q exec firefox
 bindsym $mod+Shift+q exec firefox-developer-edition
 
 
+#show polybar
+bindsym $mod+shift+b exec polybar-msg cmd toggle
+
 #emacs
 bindsym $mod+e exec emacsclient -c
 bindsym $ctrl+Shift+e exec $HOME/.emacs_anywhere/bin/run
@@ -77,10 +80,14 @@ bindsym $alt+Down exec pulsemixer --change-volume -1
 bindsym $ctrl+Shift+l exec i3lock -i /home/b/Projects/dotfiles/wallpapers/wall.png
 
 #take a screenshot
+bindsym Print exec flameshot full --path /home/b/Pictures/screenshots
+
+
+#snipping tool
 bindsym $mod+Shift+p exec flameshot gui
 
 #color picker
-bindsym $ctrl+Shift+c exec gpick
+bindsym $ctrl+Shift+c exec gpick -p
 
 
 
@@ -251,10 +258,10 @@ client.focused #000000 #285577 #ffffff #000000 #888888
 
 #gaps
 
-#smart_borders on
-#smart_gaps on
+smart_borders on
+smart_gaps on
 
-#gaps inner 20
+gaps inner 20
 
 # assignments to specific workspaces
 assign [class="teams"] $ws4

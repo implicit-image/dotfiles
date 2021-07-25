@@ -7,7 +7,7 @@
 
 
 
-* Name and email
+** Name and email
 # Some functionality uses this to identify you, e.g. GPG configuration, email
 # clients, file templates and snippets.
 #+begin_src elisp
@@ -17,7 +17,7 @@
 
 
 
-* Fonts
+** Fonts
 # Doom exposes five (optional) variables for controlling fonts in Doom. Here
 # are the three important ones:
 #
@@ -32,7 +32,7 @@
        doom-variable-pitch-font (font-spec :family "sans" :size 16))
 #+end_src
 
-* Themes
+** Themes
 # There are two ways to load a theme. Both assume the theme is installed and
 # available. You can either set `doom-theme' or manually load a theme with the
 # `load-theme' function. This is the default:
@@ -40,16 +40,18 @@
 (load-theme 'doom-tomorrow-night t)
 #+end_src
 
+** Pdf-view
+#+begin_src elisp
 
-* Org mode
+#+end_src
+** Org mode
 # If you use `org' and don't want your org files in the default location below,
 # change `org-directory'. It must be set before org loads!
 #+begin_src elisp
 (setq org-directory "~/org/")
 #+end_src
 
-
-* General editor settings
+** General editor settings
 # This determines the style of line numbers in effect. If set to `nil', line
 # numbers are disabled. For relative line numbers, set this to `relative'.
 #+begin_src elisp
@@ -57,7 +59,7 @@
 #+end_src
 
 
-* My Packages
+** My Packages
 # Here are some additional functions/macros that could help you configure Doom:
 #
 # - `load!' for loading external *.el files relative to this one
@@ -74,18 +76,15 @@
 #
 # You can also try 'gd' (or 'C-c c d') to jump to their definition and see how
 # they are implemented.
-** Highlight-indent-guides
+*** word-wrap
 #+begin_src elisp
-(use-package! highlight-indent-guides
-  :hook (prog-mode . highlight-indent-guides-mode)
-  :config
-  (setq highlight-indent-guides-method 'fill))
+(+global-word-wrap-mode +1)
 #+end_src
-** js2-mode
+*** js2-mode
 #+begin_src elisp
 (setq js2-indent-level 2)
 #+end_src
-** org-mode
+*** org-mode
 #+begin_src elisp
 (setq org-odt-preffered-output-format "doc")
 #+end_src
