@@ -15,7 +15,7 @@ set $ctrl Control
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
-font pango:monospace 0
+font pango:monospace 8
 
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
@@ -31,15 +31,83 @@ exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork -i /home/
 # NetworkManager is the most popular way to manage wireless networks on Linux,
 # and nm-applet is a desktop environment-independent system tray GUI for it.
 
+
+
 exec_always --no-startup-id picom -b
 exec --no-startup-id feh --bg-fill /home/b/Projects/dotfiles/wallpapers/wall.jpg
 exec --no-startup-id gnome-settings-daemon
 exec_always emacs --bg-daemon
 exec "setxkbmap -model pc105 -layout us,pl,gr -option grp:alt_shift_toggle"
 exec_always --no-startup-id bash $HOME/.config/polybar/launch.sh --custom-forest
+exec_always polybar-msg cmd hide
 #-no-startup-id nm-applet
 exec --no-startup-id blueman-applet
-
+exec lxpolkit
+exec "exec ssh-agent zsh"
+# keycode
+# set $one 10# 10  1
+# set $two 11# 11  2
+# set $three 12# 12  3
+# set $four 13# 13  4
+# set $five 14# 14  5
+# set $six 15# 15  6
+# set $seven 16# 16  7
+# set $eight 17# 17  8
+# set $nine 18# 18  9
+# set $zero 19# 19  0
+# set $minus 20# 20  minus
+# set $eq 21# 21  equal
+# set $tab 23 # 23  Tab
+# set $q 24# 24  q
+# set $w 25# 25  w
+# set $e 26# 26  e
+# set $r 27# 27  r
+# set $t 28# 28  t
+# set $y 29# 29  y
+# set $u 30# 30  u
+# set $i 31# 31  i
+# set $o 32# 32  o
+# set $p 33# 33  p
+# set $bracketleft 34# 34  bracketleft
+# set $bracketright 35# 35  bracketright
+# set $backlash 51# 51  backslash
+# set $a 38# 38  a
+# set $s 39# 39  s
+# set $d 40# 40  d
+# set $f 41# 41  f
+# set $g 42# 42  g
+# set $h 43# 43  h
+# set $j 44# 44  j
+# set $k 45# 45  k
+# set $l 46# 46  l
+# set $semicolon 47# 47  semicolon
+# set $apostrophe 48# 48  apostrophe
+# set $ret 36# 36  Return
+# set $z 52# 52  z
+# set $x 53# 53  x
+# set $c 54# 54  c
+# set $v 55# 55  v
+# set $b 56# 56  b
+# set $n 57# 57  n
+# set $m 58# 58  m
+# set $comma 59# 59  comma
+# set $period 60# 60  period
+# set $slash 61# 61  slash
+# set $capslock 66# 66  Caps_Lock
+# set $shiftleft 50# 50  Shift_L
+# set $shiftright 62# 62  Shift_R
+# set $controlleft 37# 37  Control_L
+# set $mod 133# 133 Super_L
+# set $altleft 64# 64  Alt_L
+# set $space 65# 65  space
+# set $altright 108# 108 Alt_R
+# set $controlleft 105# 105 Control_R
+# set $left 113# 113 Left
+# set $up 111# 111 Up
+# set $right 114# 114 Right
+# set $down 116# 116 Down
+# set $backspace 22# 22  BackSpace
+# set $weirdquote 49# 49  grave
 
 # Use pactl to adjust volume in PulseAudio.
 set $refresh_i3status killall -SIGUSR1 i3status
@@ -65,11 +133,12 @@ bindsym $mod+Shift+q exec firefox-developer-edition
 
 
 #show polybar
-bindsym $mod+shift+b exec polybar-msg cmd toggle
+bindsym $mod+b exec polybar-msg cmd toggle
 
 #emacs
 bindsym $mod+e exec emacsclient -c
-bindsym $ctrl+Shift+e exec $HOME/.emacs_anywhere/bin/run
+
+
 
 #pulseaudio
 bindsym $alt+m exec pulsemixer --toggle-mute
@@ -123,10 +192,10 @@ bindsym $mod+Shift+l move up
 bindsym $mod+Shift+semicolon move right
 
 # alternatively, you can use the cursor keys:
-bindsym $mod+Shift+Left move left
-bindsym $mod+Shift+Down move down
-bindsym $mod+Shift+Up move up
-bindsym $mod+Shift+Right move right
+# bindsym $mod+Shift+Left move left
+# bindsym $mod+Shift+Down move down
+# bindsym $mod+Shift+Up move up
+# bindsym $mod+Shift+Right move right
 
 # split in horizontal orientation
 bindsym $mod+h split h
@@ -175,6 +244,9 @@ set $ws8 "8"
 set $ws9 "9"
 set $ws10 "10"
 
+#new workspace
+#bindsym $mod+Shift+n exec i3-msg workspace NEW_WS
+
 # switch to workspace
 bindsym $mod+1 workspace number $ws1
 bindsym $mod+2 workspace number $ws2
@@ -202,7 +274,8 @@ bindsym $mod+Shift+0 move container to workspace number $ws10
 bindsym $alt+Left workspace prev
 bindsym $alt+Right workspace next
 
-#
+# bindsym $mod+Shift+Right move container to workspace next
+# bindsym $mod+Shift+Left move container to workspace prev
 
 bindsym $mod+m move scratchpad
 bindsym $mod+Shift+m scratchpad show
@@ -259,9 +332,9 @@ client.focused #000000 #285577 #ffffff #000000 #888888
 #gaps
 
 smart_borders on
-smart_gaps on
+# smart_gaps on
 
-gaps inner 20
+# gaps inner 20
 
 # assignments to specific workspaces
 assign [class="teams"] $ws4

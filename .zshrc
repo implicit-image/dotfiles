@@ -1,3 +1,10 @@
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
@@ -8,7 +15,7 @@ export ZSH="/home/b/.oh-my-zsh"
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-ZSH_THEME="fino-time"
+ZSH_THEME="ys"   #"rkj-repos"  #"duellj"   #"fino-time"   #"powerlevel10k/powerlevel10k"
 
 
 # Set list of themes to pick from when loading at random
@@ -88,8 +95,8 @@ source $ZSH/oh-my-zsh.sh
 
 # export MANPATH="/usr/local/man:$MANPATH"
 
-# You may need to manually set your language environment
-# export LANG=en_US.UTF-8
+#You may need to manually set your language environment
+export LANG=en_US.UTF-8
 
 # Preferred editor for local and remote sessions
 # if [[ -n $SSH_CONNECTION ]]; then
@@ -113,12 +120,21 @@ source $ZSH/oh-my-zsh.sh
 
 [ -f "/home/b/.ghcup/env" ] && source "/home/b/.ghcup/env" # ghcup-env
 source /usr/share/nvm/init-nvm.sh
-export GEM_HOME="$HOME/gems"
 export TESSDATA_PREFIX="/usr/share/tessdata/"
 export QT_QPA_PLATFORMTHEME=qt5ct
-export PATH="$HOME/gems/bin:$PATH"
-export PATH="$HOME/.local/share/gem/ruby/2.7.0/bin:$PATH"
+export _JAVA_AWT_WM_NONREPARENTING=1
 export PATH="$HOME/.config/rofi/bin:$PATH"
-export PATH="$HOME/Projects/scripts:$PATH"
+export PATH="$HOME/Projects/scripts/shell:$PATH"
+export PATH="$HOME/Projects/scripts/python/:$PATH"
+export PATH="$HOME/Projects/scripts/haskell/:$PATH"
 export PATH="$HOME/.local/bin:$PATH"
+export PATH="$HOME/.ghcup/bin:$PATH"
+PATH="/home/b/perl5/bin${PATH:+:${PATH}}"; export PATH;
+PERL5LIB="/home/b/perl5/lib/perl5${PERL5LIB:+:${PERL5LIB}}"; export PERL5LIB;
+PERL_LOCAL_LIB_ROOT="/home/b/perl5${PERL_LOCAL_LIB_ROOT:+:${PERL_LOCAL_LIB_ROOT}}"; export PERL_LOCAL_LIB_ROOT;
+PERL_MB_OPT="--install_base \"/home/b/perl5\""; export PERL_MB_OPT;
+PERL_MM_OPT="INSTALL_BASE=/home/b/perl5"; export PERL_MM_OPT;
+export TWITCH_TOKEN=$(cat /home/b/.secret/.twitch)
 
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+# [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
