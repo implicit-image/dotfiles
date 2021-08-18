@@ -34,7 +34,11 @@
 ;; haskell
 
 
-
+;;typescript
+(setq typescript-indent-level 2)
+(setq web-mode-code-indent-offset 2)
+(setq web-mode-markup-indent-offset 2)
+(setq standard-indent 2)
 
 ;;js2
 (setq js2-indent-level 2)
@@ -100,5 +104,9 @@
                    :channels ("#miamulder")))
 
 ;; (map!  )
+
+
+
+
 
 (provide 'config)
