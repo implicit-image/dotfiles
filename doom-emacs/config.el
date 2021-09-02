@@ -88,6 +88,12 @@
 (setq calibredb-db-dir (expand-file-name "metadata.db" calibredb-root-dir))
 (setq calibredb-library-alist '(("~/Library")))
 
+(map! :leader
+      (:prefix-map ("a" . "applications")
+       (:prefix ("c" . "calibre")
+        :desc "Open calibredb" "c" #'calibredb)))
+
+
 ;;pdf-view
 
 (setq +latex-viewers '(pdf-tools))
@@ -102,8 +108,7 @@
                    :nick "unexpectednick"
                    :sasl-password (getenv "TWITCH_TOKEN")
                    :channels ("#miamulder")))
-
-;; (map!  )
+;;
 
 
 
