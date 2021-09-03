@@ -9,8 +9,12 @@
 (setq doom-font (font-spec :family "Code New Roman Nerd Font Mono" :size 20)
        doom-variable-pitch-font (font-spec :family "sans" :size 16))
 
+;; (setq doom-font (font-spec :family "Cascadia Mono" :size 20)
+;;        doom-variable-pitch-font (font-spec :family "sans" :size 16))
+
+
 ;;theme
-(load-theme 'doom-tomorrow-night t)
+(load-theme 'doom-material t)
 
 
 ;;editor

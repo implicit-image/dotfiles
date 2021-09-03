@@ -135,6 +135,7 @@ PERL_LOCAL_LIB_ROOT="/home/b/perl5${PERL_LOCAL_LIB_ROOT:+:${PERL_LOCAL_LIB_ROOT}
 PERL_MB_OPT="--install_base \"/home/b/perl5\""; export PERL_MB_OPT;
 PERL_MM_OPT="INSTALL_BASE=/home/b/perl5"; export PERL_MM_OPT;
 export TWITCH_TOKEN=$(cat /home/b/.secret/.twitch)
+export TERM=xterm-256color
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 # [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
