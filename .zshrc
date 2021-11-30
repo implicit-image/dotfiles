@@ -80,6 +80,7 @@ plugins=(
     git
     archlinux
     npm
+    django
     stack
     zsh-autosuggestions
     zsh-syntax-highlighting)
