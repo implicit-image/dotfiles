@@ -147,9 +147,7 @@ bindsym $mod+p exec "$HOME/.config/rofi/powermenu/powermenu.sh"
 bindsym $mod+b exec polybar-msg cmd toggle
 
 #emacs
-bindsym $mod+e exec alacritty -e emacsclient -nw -c
-
-# emacsclient -c
+bindsym $mod+e exec emacsclient -c
 
 
 
