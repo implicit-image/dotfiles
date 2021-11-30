@@ -1,0 +1,23 @@
+configuration {
+	modi: "window,run,drun,filebrowser";
+	yoffset: 0;
+	show-icons: false;
+	terminal: "alacritty";
+	icon-theme: "Papirus";
+	cycle: true;
+	display-window: "w";
+	display-run: ">";
+	display-drun: "d";
+	display-combi: "c";
+	display-filebrowser: "f";
+	timeout {
+		action: "kb-cancel";
+		delay:  0;
+  	}
+	filebrowser {
+		directories-first: true;
+	  	sorting-method: "name";
+	}
+}
+
+@theme "ribbon"

@@ -1,0 +1,81 @@
+order+=window
+order+=mpd_status
+order+=volume_status
+order+=keyboard_layout
+order+=backlight
+order+=battery_level
+order+=time
+
+general {
+    output_format = "i3bar"
+    colors = true
+    interval = 1
+}
+
+
+backlight {
+    cache_timeout = 1
+    hide_when_unavailable = True
+}
+
+battery_level {
+    format = "{icon} {percent}%"
+}
+
+keyboard_layout {
+
+}
+
+mpd_status {
+    max_width = 20
+    format = "[{artist} - {title}|{file}]"
+}
+
+window {
+    max_width = 40
+}
+
+volume_status {
+
+}
+
+
+time {
+
+}
+
+disk "/" {
+    format = "%free"
+}
+
+cpu_usage {
+    format = "CPU %usage"
+}
+
+memory {
+    format = "%used"
+}
+
+volume master {
+    format = "♪: %volume"
+    format_muted = "♪: muted (%volume)"
+    # device = "pulse:alsa_output.pci-0000_00_14.2.analog-stereo"
+    device = "pulse"
+    color_good = "#ffffff"
+    color_bad = "#ff0000"
+    color_degraded = "#ff3232"
+}
+
+
+battery 0 {
+    last_full_capacity = true
+    format = "%status %percentage"
+    status_chr = "⚡ CHR"
+    status_bat = "🔋 BAT"
+    status_unk = "? UNK"
+    status_full = "☻ FULL"
+}
+
+#mpd
+#brightness
+#keyboard

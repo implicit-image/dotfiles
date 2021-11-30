@@ -1,6 +1,6 @@
 # Configuration for Alacritty, the GPU enhanced terminal emulator.
 
- #Font configuration (changes require restart)
+#Font configuration (changes require restart)
 font:
   # The size to use.
   size: 10
@@ -12,7 +12,7 @@ font:
 
   # The bold font face
   bold:
-    family: "MesloLGS NF"   #Code New Roman Nerd Font
+    family: "MesloLGS NF" #Code New Roman Nerd Font
     # Style can be specified to pick a specific face.
     style: Bold
 
@@ -22,10 +22,9 @@ font:
     # Style can be specified to pick a specific face.
     style: Italic
 
-# offset:
-#     x: 0
-#     y: 0
-
+  # offset:
+  #     x: 0
+  #     y: 0
   # Glyph offset determines the locations of the glyphs within their cells with
   # the default being at the bottom. Increasing `x` moves the glyph to the right,
   # increasing `y` moves the glyph upward.
@@ -121,38 +120,37 @@ font:
 # draw_bold_text_with_bright_colors: false
 # Campbell (Windows 10 default)
 colors:
-  name: 3024 (dark)
+  name: Atelierlakeside (dark)
   author: Chris Kempson
   primary:
-    background: "#090300"
-    foreground: "#a5a2a2"
+    background: "#161b1d"
+    foreground: "#7ea2b4"
   cursor:
-    text: "#090300"
-    cursor: "#a5a2a2"
+    text: "#161b1d"
+    cursor: "#7ea2b4"
   normal:
-    black: "#090300"
-    red: "#db2d20"
-    green: "#01a252"
-    yellow: "#fded02"
-    blue: "#01a0e4"
-    magenta: "#a16a94"
-    cyan: "#b5e4f4"
-    white: "#a5a2a2"
+    black: "#161b1d"
+    red: "#d22d72"
+    green: "#568c3b"
+    yellow: "#8a8a0f"
+    blue: "#257fad"
+    magenta: "#5d5db1"
+    cyan: "#2d8f6f"
+    white: "#7ea2b4"
   bright:
-    black: "#5c5855"
-    red: "#db2d20"
-    green: "#01a252"
-    yellow: "#fded02"
-    blue: "#01a0e4"
-    magenta: "#a16a94"
-    cyan: "#b5e4f4"
-    white: "#f7f7f7"
+    black: "#5a7b8c"
+    red: "#d22d72"
+    green: "#568c3b"
+    yellow: "#8a8a0f"
+    blue: "#257fad"
+    magenta: "#5d5db1"
+    cyan: "#2d8f6f"
+    white: "#ebf8ff"
 # Background opacity
 #
 # Window opacity as a floating point number from `0.0` to `1.0`.
 # The value `0.0` is completely transparent and `1.0` is opaque.
-background_opacity: 0.9
-
+# background_opacity: 0.9
 #selection:
 #semantic_escape_chars: ",│`|:\"' ()[]{}<>\t"
 # When set to `true`, selected text will be copied to the primary clipboard.
@@ -193,6 +191,7 @@ background_opacity: 0.9
 #   - (Windows) powershell
 #shell:
 program: /usr/bin/zsh
+theme: Atelierlakeside.dark
 
 #  args:
 #    - --login
