@@ -50,9 +50,23 @@
 #+begin_src elisp
 (setq org-directory "~/org/")
 
+(require 'color)
+(set-face-attribute 'org-block nil :background
+                    (color-darken-name
+                     (face-attribute 'default :background) 2))
+(set-face-attribute 'org-block-begin-line nil :background
+                    (color-darken-name
+                     (face-attribute 'default :background) 3))
+(set-face-attribute 'org-block-end-line nil :background
+                    (color-darken-name
+                     (face-attribute 'default :background) 3))
+(set-face-attribute 'org-block nil :foreground
+                    (color-lighten-name
+                     (face-attribute 'default :foreground) 3))
+
+
 
 #+end_src
-
 ** General editor settings
 # This determines the style of line numbers in effect. If set to `nil', line
 # numbers are disabled. For relative line numbers, set this to `relative'.
@@ -168,4 +182,8 @@
 *** pdfview
 #+begin_src
 (setq +latex-viewers '(pdf-tools))
+#+end_src
+*** haskell
+#+begin_src elisp
+
 #+end_src

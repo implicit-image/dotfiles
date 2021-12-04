@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+xkblayout-state print %s
+# killall -s USR1 py3status

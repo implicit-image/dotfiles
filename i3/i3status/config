@@ -1,7 +1,7 @@
 order+=window
 order+=mpd_status
 order+=volume_status
-order+=keyboard_layout
+order+=external_script
 order+=backlight
 order+=cpu_usage
 order+=memory
@@ -22,14 +22,15 @@ backlight {
 }
 
 battery_level {
-
     format = "🔋 {percent}%"
 }
 
-keyboard_layout {
-    layouts = ['us', 'pl', 'gr']
+external_script {
+    format = "{output}"
+    script_path = "~/Projects/dotfiles/i3/i3status/scripts/layout"
     cache_timeout = 1
 }
+
 
 mpd_status {
     max_width = 40
