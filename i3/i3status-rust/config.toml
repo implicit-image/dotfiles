@@ -1,0 +1,103 @@
+
+[theme]
+name = "plain"
+[theme.overrides]
+idle_bg = "#151515"
+good_bg = "#151515"
+good_fg = "#f1f1f1"
+# critical_bg = "#FFDD33"
+# critical_fg = "#111111"
+# alternating_tint_bg =
+# alternating_tint_fg
+# info_bg
+# info_fg
+# warning_bg
+# warning_fg
+# separator = " | "
+separator_bg = "#151515"
+
+[icons]
+name = "awesome"
+
+[[block]]
+block = "focused_window"
+format = "{title}"
+max_width = 40
+show_marks = "visible"
+
+[[block]]
+block = "custom"
+command = "mpc current"
+interval = 1
+on_click = "alacritty -e ncmpcpp"
+
+
+# [block.theme_overrides]
+# idle_bg = "#95A99F"
+# idle_fg = "#111111"
+
+# [[block]]
+# block = "music"
+# player = "mpdris"
+# smart_trim = true
+# format = "{artist} - {title}"
+# hide_when_empty = false
+
+
+
+# [[block]]
+# block = "networkmanager"
+# on_click = "alacritty -e nmtui"
+# interface_name_exclude = ["br\\-[0-9a-f]{12}", "docker\\d+"]
+# interface_name_include = []
+# ap_format = "{ssid^10}"
+
+#disk
+[[block]]
+block = "disk_space"
+path = "/"
+info_type = "free"
+format = "{icon} {free}"
+
+
+#memory
+[[block]]
+block = "memory"
+format_mem = "{mem_used}"
+display_type = "memory"
+icons = true
+
+
+#cpu
+[[block]]
+block = "cpu"
+interval = 1
+format = "{utilization} {barchart}"
+
+[[block]]
+block = "sound"
+step_width = 2
+
+[[block]]
+block = "custom"
+command = "xkblayout-state print %s"
+interval = 1
+
+[[block]]
+block = "backlight"
+device = "intel_backlight"
+minimum = 10
+maximum = 100
+cycle = [100, 50, 0, 50]
+format = "{brightness}"
+
+[[block]]
+block = "battery"
+interval = 10
+format = "{percentage}"
+
+[[block]]
+block = "time"
+format = "%a %d/%m %T"
+timezone = "Europe/Warsaw"
+interval = 1

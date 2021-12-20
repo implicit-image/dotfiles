@@ -120,32 +120,32 @@ font:
 # draw_bold_text_with_bright_colors: false
 # Campbell (Windows 10 default)
 colors:
-  name: Atelierlakeside (dark)
+  name: Atelierseaside (dark)
   author: Chris Kempson
   primary:
-    background: "#161b1d"
-    foreground: "#7ea2b4"
+    background: "#131513"
+    foreground: "#8ca68c"
   cursor:
-    text: "#161b1d"
-    cursor: "#7ea2b4"
+    text: "#131513"
+    cursor: "#8ca68c"
   normal:
-    black: "#161b1d"
-    red: "#d22d72"
-    green: "#568c3b"
-    yellow: "#8a8a0f"
-    blue: "#257fad"
-    magenta: "#5d5db1"
-    cyan: "#2d8f6f"
-    white: "#7ea2b4"
+    black: "#131513"
+    red: "#e6193c"
+    green: "#29a329"
+    yellow: "#c3c322"
+    blue: "#3d62f5"
+    magenta: "#ad2bee"
+    cyan: "#1999b3"
+    white: "#8ca68c"
   bright:
-    black: "#5a7b8c"
-    red: "#d22d72"
-    green: "#568c3b"
-    yellow: "#8a8a0f"
-    blue: "#257fad"
-    magenta: "#5d5db1"
-    cyan: "#2d8f6f"
-    white: "#ebf8ff"
+    black: "#687d68"
+    red: "#e6193c"
+    green: "#29a329"
+    yellow: "#c3c322"
+    blue: "#3d62f5"
+    magenta: "#ad2bee"
+    cyan: "#1999b3"
+    white: "#f0fff0"
 # Background opacity
 #
 # Window opacity as a floating point number from `0.0` to `1.0`.
@@ -191,7 +191,7 @@ colors:
 #   - (Windows) powershell
 #shell:
 program: /usr/bin/zsh
-theme: Atelierlakeside.dark
+theme: Atelierseaside.dark
 
 #  args:
 #    - --login
