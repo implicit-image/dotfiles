@@ -1,23 +1,24 @@
 
 [theme]
-name = "plain"
+name = "modern"
 [theme.overrides]
 idle_bg = "#151515"
 good_bg = "#151515"
 good_fg = "#f1f1f1"
-# critical_bg = "#FFDD33"
-# critical_fg = "#111111"
+critical_bg = "#6ebb38"
+critical_fg = "#111111"
 # alternating_tint_bg =
-# alternating_tint_fg
-# info_bg
-# info_fg
-# warning_bg
-# warning_fg
-# separator = " | "
+# alternating_tint_fg =
+info_bg = "#ffdd33"
+info_fg = "#151515"
+warning_bg = "#ff0000"
+warning_fg = "#151515"
+separator = "  "
+separator_fg = "#f1f1f1"
 separator_bg = "#151515"
 
 [icons]
-name = "awesome"
+name = "material-nf"
 
 [[block]]
 block = "focused_window"
@@ -25,23 +26,25 @@ format = "{title}"
 max_width = 40
 show_marks = "visible"
 
-[[block]]
-block = "custom"
-command = "mpc current"
-interval = 1
-on_click = "alacritty -e ncmpcpp"
+
+# [[block]]
+# block = "custom"
+# command = "mpc current"
+# interval = 1
+# on_click = "alacritty -e ncmpcpp"
 
 
 # [block.theme_overrides]
 # idle_bg = "#95A99F"
 # idle_fg = "#111111"
 
-# [[block]]
-# block = "music"
-# player = "mpdris"
-# smart_trim = true
-# format = "{artist} - {title}"
-# hide_when_empty = false
+[[block]]
+block = "music"
+player = "mpd"
+smart_trim = true
+format = "{artist} - {title}"
+hide_when_empty = false
+on_click = "alacritty -e ncmpcpp"
 
 
 

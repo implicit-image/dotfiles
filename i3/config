@@ -17,9 +17,10 @@ font pango:Fira Code 8
 # exec_always --no-startup-id xss-lock --transfer-sleep-lock -- betterscreenlock -l
 
 
-# NetworkManager is the most popular way to manage wireless networks on Linux,
+# networkmanager is the most popular way to manage wireless networks on Linux,
 # and nm-applet is a desktop environment-independent system tray GUI for it.
 
+exec mpDris2 -c /home/b/.config/mpDris2/mpDris2.conf
 exec_always nm-applet
 exec_always--no-startup-id light-locker --no-late-locking --lock-on-lid
 exec_always --no-startup-id picom -b
@@ -69,9 +70,9 @@ bindsym $mod+Shift+e exec emacsclient -c
 
 
 #pulseaudio
-bindsym $alt+m exec pulsemixer --toggle-mute
-bindsym $alt+Up exec pulsemixer --change-volume +1
-bindsym $alt+Down exec pulsemixer --change-volume -1
+# bindsym $mod+m exec pulsemixer --toggle-mute
+bindsym $mod+Up exec pulsemixer --change-volume +1
+bindsym $mod+Down exec pulsemixer --change-volume -1
 bindsym $mod+Shift+v exec alacritty -e pulsemixer
 
 
@@ -85,7 +86,7 @@ bindsym Print exec flameshot full --path /home/b/Pictures/screenshots
 bindsym $mod+Shift+p exec flameshot gui
 
 #color picker
-bindsym $ctrl+Shift+c exec gpick -p
+bindsym $mod+Shift+c exec gpick -p
 
 # kill focused window
 bindsym $mod+c kill
@@ -101,17 +102,17 @@ bindsym $mod+c kill
 # bindcode $mod+40 exec --no-startup-id i3-dmenu-desktop
 
 # change focus
-bindsym $mod+j focus left
-bindsym $mod+k focus down
-bindsym $mod+l focus up
-bindsym $mod+semicolon focus right
+bindsym $mod+h focus left
+bindsym $mod+j focus down
+bindsym $mod+k focus up
+bindsym $mod+l focus right
 
 # alternatively, you can use the cursor keys:
 # move focused window
-bindsym $mod+Shift+j move left
-bindsym $mod+Shift+k move down
-bindsym $mod+Shift+l move up
-bindsym $mod+Shift+semicolon move right
+bindsym $mod+Shift+h move left
+bindsym $mod+Shift+j move down
+bindsym $mod+Shift+k move up
+bindsym $mod+Shift+l move right
 
 # alternatively, you can use the cursor keys:
 # bindsym $mod+Shift+Left move left
@@ -120,7 +121,7 @@ bindsym $mod+Shift+semicolon move right
 # bindsym $mod+Shift+Right move right
 
 # split in horizontal orientation
-bindsym $mod+h split h
+bindsym $mod+s split h
 
 # split in vertical orientation
 bindsym $mod+v split v
@@ -129,7 +130,7 @@ bindsym $mod+v split v
 bindsym $mod+f fullscreen toggle
 
 # change container layout (stacked, tabbed, toggle split)
-bindsym $mod+s layout stacking
+bindsym $mod+z layout stacking
 bindsym $mod+w layout tabbed
 bindsym $mod+x layout toggle split
 
@@ -205,7 +206,8 @@ bindsym $mod+Shift+s reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+r restart
 # exit i3 (logs you out of your X session)
-bindsym $mod+Shift+q exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
+# bindsym $mod+Shift+q exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
+bindsym $mod+Shift+q exec lxsession-logout
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
@@ -271,6 +273,8 @@ assign [class="teams"] $ws4
 
 
 #for_window [class="gpick"] floating enable
+for_window [class="Bluetooth Devices"] floating enable
+for_window [class="Bluetooth Devices"] floating minimum_size 640 x 480
 for_window [class="Gpick"] floating enable
 for_window [class="gpick"] floating_minimum_size 300 x 150
 for_window [class="gpick"] floating_maximum_size 480 x 360
@@ -280,7 +284,7 @@ for_window [class="Gpick"] floating_minimum_size 480 x 360
 # finds out, if available)
 bar {
     # status_command "SCRIPT_DIR=~/.config/i3blocks/i3blocks-contrib i3blocks"
-    # status_command py3status -c ~/.config/i3status/config
+    # status_command py3status -c ~/.config/py3status/config
     status_command i3status-rs ~/Projects/dotfiles/i3/i3status-rust/config.toml
     mode dock
     position top

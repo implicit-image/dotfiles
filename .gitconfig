@@ -5,3 +5,5 @@
 	editor = emacs
 [init]
 	defaultBranch = main
+[color]
+	ui = auto

@@ -17,6 +17,7 @@
 (package! gruber-darker-theme)
 (package! whitespace)
 (package! color)
+(package! org-bullets)
 
 
 

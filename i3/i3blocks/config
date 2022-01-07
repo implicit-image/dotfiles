@@ -1,15 +1,62 @@
 
+
+[i3-focusedwindow]
+label=[X]
+command=$SCRIPT_DIR/i3-focusedwindow/i3-focusedwindow 30
+interval=persist
+
+
+[mediaplayer]
+command=$SCRIPT_DIR/mediaplayer/mediaplayer
+instance=mpd
+interval=1
+
+[disk]
+
+[memory]
+
 [cpu_usage]
 command=$SCRIPT_DIR/cpu_usage/cpu_usage
-interval=10
 LABEL=CPU:
 #min_width=CPU: 100.00%
+interval=1
 T_WARN=50
 T_CRIT=80
 DECIMALS=2
 COLOR_NORMAL=#EBDBB2
 COLOR_WARN=#FFFC00
 COLOR_CRIT=#FF0000
+
+
+[volume-pulseaudio]
+command=$SCRIPT_DIR/volume-pulseaudio/volume-pulseaudio
+interval=once
+signal=1
+MIXER=[determined automatically]
+#SCONTROL=[determined automatically]
+##exposed format variables: ${SYMB}, ${VOL}, ${INDEX}, ${NAME}
+#LONG_FORMAT="${SYMB} ${VOL}% [${INDEX}:${NAME}]"
+#SHORT_FORMAT="${SYMB} ${VOL}% [${INDEX}]"
+#AUDIO_HIGH_SYMBOL='  '
+#AUDIO_MED_THRESH=50
+#AUDIO_MED_SYMBOL='  '
+#AUDIO_LOW_THRESH=0
+#AUDIO_LOW_SYMBOL='  '
+#AUDIO_DELTA=5
+#DEFAULT_COLOR="#ffffff"
+#MUTED_COLOR="#a0a0a0"
+#USE_ALSA_NAME=0
+#USE_DESCRIPTION=0
+## SUBSCRIBE=1 requires interval=persist and always uses LONG_FORMAT
+#SUBSCRIBE=0
+
+[kbdd_layout]
+command=$SCRIPT_DIR/kbdd_layout/kbdd_layout
+interval=persist
+
+[brightness]
+command=$SCRIPT_DIR/brightness/bin/brightness -a /sys/class/backlight/intel_backlight/actual_brightness -m /sys/class/backlight/intel_backlight/max_brightness
+interval=persist
 
 [battery2]
 command=$SCRIPT_DIR/battery2/battery2
