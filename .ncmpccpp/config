@@ -9,7 +9,8 @@ mpd_crossfade_time = 2
 visualizer_output_name = mpd_fifo
 visualizer_in_stereo = yes
 # visualizer_sync_interval = 30
-visualizer_type = spectrum
+# spectrum, wave, wave_filled, ellipse
+visualizer_type = ellipse
 visualizer_look = ▮●
 visualizer_color = 41, 83, 119, 155, 185, 215, 209, 203, 197, 161
 system_encoding = "UTF-8"

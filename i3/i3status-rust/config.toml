@@ -5,24 +5,24 @@ name = "modern"
 idle_bg = "#151515"
 good_bg = "#151515"
 good_fg = "#f1f1f1"
-critical_bg = "#6ebb38"
-critical_fg = "#111111"
+critical_bg = "#151515"
+critical_fg = "#ff2233"
 # alternating_tint_bg =
 # alternating_tint_fg =
-info_bg = "#ffdd33"
-info_fg = "#151515"
-warning_bg = "#ff0000"
-warning_fg = "#151515"
+info_bg = "#151515"
+info_fg = "#ffdd33"
+warning_bg = "#151515"
+warning_fg = "#aa1111"
 separator = "  "
-separator_fg = "#f1f1f1"
 separator_bg = "#151515"
+separator_fg = "#f1f1f1"
 
 [icons]
 name = "material-nf"
 
 [[block]]
 block = "focused_window"
-format = "{title}"
+format = "[ {title} ]"
 max_width = 40
 show_marks = "visible"
 

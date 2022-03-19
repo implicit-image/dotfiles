@@ -117,8 +117,7 @@ export LANG=en_US.UTF-8
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
 
-[ -f "/home/b/.ghcup/env" ] && source "/home/b/.ghcup/env" # ghcup-env
-source /usr/share/nvm/init-nvm.sh
+#[ -f "/home/b/.ghcup/env" ] && source "/home/b/.ghcup/env" # ghcup-env
 export TESSDATA_PREFIX="/usr/share/tessdata/"
 export QT_QPA_PLATFORMTHEME=qt5ct
 export _JAVA_AWT_WM_NONREPARENTING=1
@@ -133,8 +132,14 @@ PERL5LIB="/home/b/perl5/lib/perl5${PERL5LIB:+:${PERL5LIB}}"; export PERL5LIB;
 PERL_LOCAL_LIB_ROOT="/home/b/perl5${PERL_LOCAL_LIB_ROOT:+:${PERL_LOCAL_LIB_ROOT}}"; export PERL_LOCAL_LIB_ROOT;
 PERL_MB_OPT="--install_base \"/home/b/perl5\""; export PERL_MB_OPT;
 PERL_MM_OPT="INSTALL_BASE=/home/b/perl5"; export PERL_MM_OPT;
-export TWITCH_TOKEN=$(cat /home/b/.secret/.twitch)
+export TWITCH_TOKEN=$(cat $HOME/.secret/.twitch)
+export CLARIFAI_API_KEY=$(cat $HOME/.secret/.clarifai)
 export TERM=xterm-256color
-
+export N_PREFIX=/home/b/n/
+export PATH="$N_PREFIX/bin:$PATH"
+export PATH="$HOME/.nimble/bin:$PATH"
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 # [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+[ -f "/home/b/.ghcup/env" ] && source "/home/b/.ghcup/env" # ghcup-env
+eval "$(rbenv init -)"
+DOTNET_CLI_TELEMETRY_OPTOUT=1.

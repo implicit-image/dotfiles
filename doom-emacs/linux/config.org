@@ -1,4 +1,4 @@
-#+TITLE: Config
+# +TITLE: Config
 # $DOOMDIR/config.el -*- lexical-binding: t; -*-
 
 # Place your private configuration here! Remember, you do not need to run 'doom
@@ -34,8 +34,12 @@
 # They all accept either a font-spec, font string ("Input Mono-12"), or xlfd
 # font string. You generally only need these two:
 #+begin_src elisp
-(setq doom-font (font-spec :family "Fira Code" :size 20)
-       doom-variable-pitch-font (font-spec :family "sans" :size 16))
+(setq doom-font (font-spec :family "JetBrains Mono" :size 20)
+      doom-variable-pitch-font (font-spec :family "sans" :size 16))
+;; Jetbrains Mono
+
+
+
 #+end_src
 
 ** Themes
@@ -43,16 +47,25 @@
 # available. You can either set `doom-theme' or manually load a theme with the
 # `load-theme' function. This is the default:
 #+begin_src elisp
+(require 'whitespace)
 (load-theme 'gruber-darker t)
-; doom-spectrum
 ; doom-old-hope
 ; doom-sourcerer
 ; doom-tomorrow-night
+; monokai-classic
+; monokai-spectrum
+; doom-nova
+; gruber-darker
 (set-face-foreground 'font-lock-comment-face "#8b8b83")
 (set-face-foreground 'font-lock-comment-delimiter-face "#8b8b83")
-(set-frame-parameter (selected-frame) 'alpha '(90 . 90))
- (add-to-list 'default-frame-alist '(alpha . (90 . 90)))
+(set-face-attribute 'whitespace-space nil :background nil :foreground "#777777")
+;; (set-frame-parameter (selected-frame) 'alpha '(90 . 90))
+;;  (add-to-list 'default-frame-alist '(alpha . (90 . 90)))
+;; (setq fancy-splash-image "~/.doom.d/blackhole.png")
+
 #+end_src
+
+#+RESULTS:
 
 ** Org mode
 # If you use `org' and don't want your org files in the default location below,
@@ -60,11 +73,10 @@
 #+begin_src elisp
 (setq org-directory "~/org/")
 
-
-
 (after! org-mode
   (lambda () (org-bullets-mode 1))
-  (visual-line-mode))
+  (visual-line-mode)
+  (emojify-mode))
 
 (require 'color)
 (require 'org)
@@ -85,27 +97,34 @@
 (set-face-attribute 'org-block nil :foreground
                    (color-lighten-name
                     (face-attribute 'default :foreground) 2))
+
 #+end_src
 ** General editor settings
-# This determines the style of line numbers in effect. If set to `nil', line
-# numbers are disabled. For relative line numbers, set this to `relative'.
 #+begin_src elisp
-(setq display-line-numbers-type 'relative)
-(setq highlight-indent-guides-responsive 1)
-(setq make-backup-files nil)
-(setq
- evil-want-fine-undo t
- auto-save-default t
- doom-modeline-buffer-file-name-style 'buffer-name)
-(display-time-mode 1)
-(display-battery-mode 1)
 
+(setq display-line-numbers-type 'relative
+      make-backup-files nil
+      evil-want-fine-undo t
+      auto-save-default t
+      doom-modeline-buffer-file-name-style 'buffer-name
+      whitespace-style '(face tabs spaces indentation space-mark tab-mark))
+
+(defun org-setup ()
+  (interactive)
+  (whitespace-mode -1))
+
+(add-hook! 'prog-mode-hook #'whitespace-mode)
+(add-hook! 'prog-mode-hook #'rainbow-delimiters-mode-enable)
+(add-hook! 'org-mode-hook #'org-setup)
+;; (display-time-mode 1)
+;; (display-battery-mode 1)
+;; (mini-modeline-mode)
+;; (setq sml/theme 'dark)
 
 #+end_src
 
 
 ** My Packages
-# Here are some additional functions/macros that could help you configure Doom:
 #
 # - `load!' for loading external *.el files relative to this one
 # - `use-package!' for configuring packages
@@ -121,28 +140,31 @@
 #
 # You can also try 'gd' (or 'C-c c d') to jump to their definition and see how
 # they are implemented.
+*** company
+#+begin_src elisp
+
+
+
+#+end_src
 *** lsp-mode
 IDE configuration
 #+begin_src elisp
 (require 'lsp-mode)
-(after! lsp-mode
- (setq lsp-enable-symbol-highlighting 1
-       lsp-ui-doc-enable nil
-       lsp-lens-enable 1
-       lsp-headerline-breadcrumb-enable 1
-       lsp-ui-sideline-enable nil
-       lsp-modeline-code-actions-enable 1
-       lsp-ui-sideline-enable nil
-       lsp-modeline-diagnostics-enable 1
-       lsp-signature-auto-activate 1
-       lsp-signature-render-documentation 1
-       lsp-completion-show-detail 1
-       lsp-completion-show-kind 1))
+(use-package! lsp-mode
+  :config (setq lsp-enable-symbol-highlighting 1
+                lsp-ui-doc-enable 1
+                lsp-lens-enable 1
+                lsp-ui-sideline-enable nil
+                lsp-modeline-code-actions-enable 1
+                lsp-modeline-diagnostics-enable 1
+                lsp-signature-auto-activate 1
+                lsp-signature-render-documentation 1
+                lsp-completion-show-detail 1
+                lsp-completion-show-kind 1))
 
 #+end_src
 *** TODO sort rest of config
 #+begin_src elisp
-(setq js2-indent-level 2)
 
 ;;org-mode
 (setq org-odt-preffered-output-format "doc")
@@ -156,7 +178,9 @@ IDE configuration
     (ox-extras-activate '(latex-header-blocks ignore-headlines))))
 
 (after! company
-  (setq company-idle-delay nil))
+  (setq company-idle-delay nil
+        company-selection-wrap-around t
+        company-show-numbers t))
 
 (after! org
   (use-package! ox-latex
@@ -178,23 +202,30 @@ IDE configuration
 (add-to-list 'auto-mode-alist
              '("\\.epub\\'" . nov-mode)
              '("\\.rasi\\'" . css-mode))
+             ;; '("\\.html\\'" . web-mode))
 
 
 #+end_src
+*** haskell
+#+begin_src elisp
+
+(use-package! haskell-mode
+  :config (setq haskell-doc-use-inf-haskell 1
+                haskell-interactive-popup-errors nil))
+#+end_src
+*** dashboard with kisses.el
 *** typescript
 #+begin_src elisp
-(setq typescript-indent-level 2)
-(setq web-mode-code-indent-offset 2)
-(setq web-mode-markup-indent-offset 2)
-(setq standard-indent 2)
+(setq typescript-indent-level 2
+      web-mode-code-indent-offset 2
+      web-mode-markup-indent-offset 2
+      standard-indent 2)
 #+end_src
 *** calibredb
 #+begin_src elisp
-(setq calibredb-root-dir "~/Library")
-(setq calibredb-db-dir (expand-file-name "metadata.db" calibredb-root-dir))
-(setq calibredb-library-alist '(("~/Library")))
-
-
+(setq calibredb-root-dir "~/Library"
+      calibredb-db-dir (expand-file-name "metadata.db" calibredb-root-dir)
+      calibredb-library-alist '(("~/Library")))
 #+end_src
 *** js2-mode
 #+begin_src elisp
@@ -202,7 +233,13 @@ IDE configuration
 #+end_src
 *** org-mode
 #+begin_src elisp
-(setq org-odt-preffered-output-format "doc")
+
+;; (after! org
+;;   (map! :leader
+;;         (:prefix "m"
+;;          :desc "Execute current source block" "E" #'org-babel-execute-src-block)))
+
+
 #+end_src
 *** pdfview
 #+begin_src elisp
@@ -221,8 +258,6 @@ IDE configuration
 
 (map! :leader
      (:prefix ("t" . "toggle")
-       :desc "Modeline" "M" #'hide-mode-line-mode))
-
-
+       :desc "Modeline" "M" #'global-hide-mode-line-mode))
 
 #+end_src

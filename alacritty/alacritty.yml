@@ -6,19 +6,19 @@ font:
   size: 10
   # The normal (roman) font face to use.
   normal:
-    family: "MesloLGS NF" #Code New Roman Nerd Font
+    family: "JetBrains Mono" #Code New Roman Nerd Font
     # Style can be specified to pick a specific face.
     style: Monospace
 
   # The bold font face
   bold:
-    family: "MesloLGS NF" #Code New Roman Nerd Font
+    family: "JetBrains Mono" #Code New Roman Nerd Font
     # Style can be specified to pick a specific face.
     style: Bold
 
   # The italic font face
   italic:
-    family: "MesloLGS NF" #Code New Roman Nerd Font
+    family: "JetBrains Mono" #Code New Roman Nerd Font
     # Style can be specified to pick a specific face.
     style: Italic
 
@@ -120,37 +120,37 @@ font:
 # draw_bold_text_with_bright_colors: false
 # Campbell (Windows 10 default)
 colors:
-  name: Atelierseaside (dark)
+  name: 3024 (dark)
   author: Chris Kempson
   primary:
-    background: "#131513"
-    foreground: "#8ca68c"
+    background: "#090300"
+    foreground: "#a5a2a2"
   cursor:
-    text: "#131513"
-    cursor: "#8ca68c"
+    text: "#090300"
+    cursor: "#a5a2a2"
   normal:
-    black: "#131513"
-    red: "#e6193c"
-    green: "#29a329"
-    yellow: "#c3c322"
-    blue: "#3d62f5"
-    magenta: "#ad2bee"
-    cyan: "#1999b3"
-    white: "#8ca68c"
+    black: "#090300"
+    red: "#db2d20"
+    green: "#01a252"
+    yellow: "#fded02"
+    blue: "#01a0e4"
+    magenta: "#a16a94"
+    cyan: "#b5e4f4"
+    white: "#a5a2a2"
   bright:
-    black: "#687d68"
-    red: "#e6193c"
-    green: "#29a329"
-    yellow: "#c3c322"
-    blue: "#3d62f5"
-    magenta: "#ad2bee"
-    cyan: "#1999b3"
-    white: "#f0fff0"
+    black: "#5c5855"
+    red: "#db2d20"
+    green: "#01a252"
+    yellow: "#fded02"
+    blue: "#01a0e4"
+    magenta: "#a16a94"
+    cyan: "#b5e4f4"
+    white: "#f7f7f7"
 # Background opacity
 #
 # Window opacity as a floating point number from `0.0` to `1.0`.
 # The value `0.0` is completely transparent and `1.0` is opaque.
-background_opacity: 0.90
+window.opacity: 1.00
 #selection:
 #semantic_escape_chars: ",│`|:\"' ()[]{}<>\t"
 # When set to `true`, selected text will be copied to the primary clipboard.
@@ -191,9 +191,10 @@ background_opacity: 0.90
 #   - (Windows) powershell
 #shell:
 program: /usr/bin/zsh
-theme: Atelierseaside.dark
+theme: 3024.dark
 
-args:  
+args:
   - --login
+
 # Startup directory
 #
