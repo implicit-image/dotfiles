@@ -13,7 +13,7 @@ font pango:Fira Code 8
 
 # xss-lock grabs a logind suspend inhibit lock and will use i3lock to lock the
 # screen before suspend. Use loginctl lock-session to lock your screen.
-# exec_always --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork -i /home/b/Projects/dotfiles/wallpapers/wall.png
+exec_always --no-startup-id xss-lock --transfer-sleep-lock -- light-locker-command --lock
 # exec_always --no-startup-id xss-lock --transfer-sleep-lock -- betterscreenlock -l
 
 
@@ -27,7 +27,7 @@ exec_always--no-startup-id light-locker --no-late-locking --lock-on-lid --lock-o
 exec_always --no-startup-id picom -b
 exec --no-startup-id nitrogen --restore &
 exec --no-startup-id gnome-settings-daemon
-exec_always emacs --bg-daemon
+exec_always emacs --with-profile doom --bg-daemon
 exec "setxkbmap -model pc105 -layout us,pl,gr -option grp:alt_shift_toggle"
 exec --no-startup-id blueman-applet
 exec lxpolkit
@@ -69,7 +69,7 @@ bindsym $mod+b exec i3-msg bar mode invisible
 bindsym $mod+Shift+b exec i3-msg bar mode dock
 
 #emacs
-bindsym $mod+e exec emacsclient -c
+bindsym $mod+e mode "launcher"
 bindsym $mod+Shift+e exec $HOME/.emacs.d/bin/doom everywhere
 
 #pulseaudio
@@ -243,10 +243,21 @@ mode "resize" {
 }
 
 
-mode "command center" {
+mode "launcher" {
+     bindsym $mod+v exec alacritty -e nvim; mode "default"
+     bindsym $mod+c exec vscodium; mode "default"
+     bindsym $mod+d exec emacsclient -c -s doom; mode "default"
+     bindsym $modd+Shift+d exec alacritty -e emacsclient -tty -c -s doom; mode "default"
+     bindsym $mod+g exec emacsclient -c -s default; mode "default"
+     bindsym $mod+Shift+g exec alacritty -e emacsclient -tty -c -s default; mode "default"
      bindsym Return mode "default"
      bindsym Escape mode "default"
      bindsym $mod+r mode "default"
+}
+
+
+mode "navigator" {
+
 }
 
 bindsym $mod+r mode "resize"
@@ -254,9 +265,9 @@ bindsym $mod+r mode "resize"
 
 
 
-default_border none
+default_border pixel 5
 default_floating_border normal
-hide_edge_borders none
+# hide_edge_borders none
 focus_follows_mouse no
 
 
@@ -275,7 +286,7 @@ bindsym $mod+g gaps inner current plus 10
 bindsym $mod+Shift+g gaps inner current minus 10
 
 smart_borders on
-smart_gaps on
+# smart_gaps on
 
 # gaps inner 20
 
@@ -291,10 +302,16 @@ for_window [class="Gpick"] floating_maximum_size 300 x 150
 for_window [class="Gpick"] floating_minimum_size 480 x 360
 
 for_window [class=".*"] title_format <b>%title</b>
-for_window [id=".*ssh*"] border pixel 1
+for_window [id=".*ssh*"] border pixel 5
+
+# class                                            border  backgr. text    indicator child_border
+for_window [title=".*ssh*"] client.focused          #717171 #151515 #ffffff #2e9ef4   #2e9ef4
+for_window [title=".*ssh*"] client.focused_inactive #333333 #151515 #ffffff #484e50   #2e9ef4
+for_window [title=".*ssh*"] client.unfocused        #151515 #222222 #888888 #292d2e   #2e9ef4
+for_window [title=".*ssh*"] client.urgent           #2f343a #900000 #ffffff #900000   #900000
+for_window [title=".*ssh*"] client.placeholder      #ffffff #0c0c0c #ffffff #000000   #0c0c0c
 
 for_window [title=".*Emacs Everywhere*"] floating enable
-for_window [title=".*Emacs Everywhere*"] floating_minimum_size 640 x 480
 for_window [title=".*Emacs Everywhere*"] floating_maximum_size 640 x 480
 # ssh window decoration
 # Start i3bar to display a workspace bar (plus the system information i3status
@@ -321,8 +338,8 @@ bar {
 
 # color
 # class                 border  backgr. text    indicator child_border
-client.focused          #717171 #151515 #ffffff #2e9ef4   #606060
-client.focused_inactive #333333 #5f676a #ffffff #484e50   #5f676a
+client.focused          #717171 #151515 #ffffff #2e9ef4   #444444
+client.focused_inactive #333333 #151515 #ffffff #484e50   #222222
 client.unfocused        #151515 #222222 #888888 #292d2e   #222222
 client.urgent           #2f343a #900000 #ffffff #900000   #900000
 client.placeholder      #ffffff #0c0c0c #ffffff #000000   #0c0c0c

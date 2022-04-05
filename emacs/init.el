@@ -16,8 +16,14 @@
 (ido-mode 1)
 (show-paren-mode 1)
 (electric-pair-mode 1)
+(whitespace-mode 1)
 
 
+(require 'evil)
+  (evil-mode 1)
+
+(require 'gruber-darker-theme)
+(load-theme 'gruber-darker 1)
 ;;(set-frame-parameter (selected-frame) 'alpha '(85 85))
 ;;(add-to-list 'default-frame-alist '(alpha 85 85))
 
@@ -27,14 +33,11 @@
 
 (global-set-key (kbd "C-x t") 'neotree-toggle)
 
-(set-face-attribute 'default nil :height 120)
-
+;; (set-face-attribute 'default nil :height 120)
+(set-default-font "JetBrains Mono 16")
 
 (add-hook 'dired-mode-hook 'all-the-icons-dired-mode)
 
-(when (display-graphic-p)
-  (setq highlight-indent-guides-method 'fill)
-  (add-hook 'prog-mode-hook 'highlight-indent-guides-mode))
 
 ;; (set-face-background 'highlight-indent-guides-odd-face "darkgray")
 ;; (set-face-background 'highlight-indent-guides-even-face "dimgray")
@@ -74,7 +77,8 @@
 (use-package company-mode
   :init (company-quickhelp-mode 1)
   :config
-  (setq company-minimum-prefix-length 1)
+  (setq company-minimum-prefix-length 2)
+  (setq company-idle-delay -1)
   (setq company-show-numbers t)
   (setq company-tooltip-offset-display 1)
   (setq company-quickhelp-delay nil)
@@ -90,7 +94,7 @@
   :init
   (autoload 'calibredb "calibredb")
   :config
-  (setq calibredb-root-dir "~/CalibreLibrary/")
+  (setq calibredb-root-dir "~/Library/")
   (setq calibredb-db-dir (expand-file-name "metadata.db" calibredb-root-dir))
   (setq calibredb-library-alist '(("~/CalibreLibrary"))))
 
@@ -298,9 +302,9 @@
    ["#212526" "#ff4b4b" "#b4fa70" "#fce94f" "#729fcf" "#e090d7" "#8cc4ff" "#eeeeec"])
  '(beacon-color "#F8BBD0")
  '(compilation-message-face 'default)
- '(custom-enabled-themes '(doom-gruvbox))
+ '(custom-enabled-themes '(gruber-darker))
  '(custom-safe-themes
-   '("75b8719c741c6d7afa290e0bb394d809f0cc62045b93e1d66cd646907f8e6d43" "76bfa9318742342233d8b0b42e824130b3a50dcc732866ff8e47366aed69de11" default))
+   '("3d2e532b010eeb2f5e09c79f0b3a277bfc268ca91a59cdda7ffd056b868a03bc" "75b8719c741c6d7afa290e0bb394d809f0cc62045b93e1d66cd646907f8e6d43" "76bfa9318742342233d8b0b42e824130b3a50dcc732866ff8e47366aed69de11" default))
  '(ensime-sem-high-faces
    '((var :foreground "#9876aa" :underline
 	  (:style wave :color "yellow"))
@@ -355,7 +359,7 @@
    '("#CC9393" "#DFAF8F" "#F0DFAF" "#7F9F7F" "#BFEBBF" "#93E0E3" "#94BFF3" "#DC8CC3"))
  '(objed-cursor-color "#dc322f")
  '(package-selected-packages
-   '(js3-mode dired-icon dired-subtree vterm-toggle dashboard major-mode-icons mode-icons multiple-cursors multi-web-mode abyss-theme apropospriate-theme arc-dark-theme badger-theme badwolf-theme cyberpunk-theme darkburn-theme darkmine-theme darkokai-theme dracula-theme exotica-theme atom-dark-theme atom-one-dark-theme dakrone-theme danneskjold-theme darcula-theme dark-krystal-theme dark-mint-theme darkroom darktooth-theme company-irony company-irony-c-headers irony irony-eldoc nim-mode 2048-game charmap gdscript-mode pipenv company-quickhelp unicode-fonts calibredb emoji-display emoji-fontset base16-theme smooth-scrolling jss all-the-icons-dired all-the-icons-gnus all-the-icons-ibuffer all-the-icons-ivy all-the-icons-ivy-rich neotree lsp-pyright doom-modeline doom-themes image+ iscroll look-mode image-dired+ company-c-headers company-shell company-web css-eldoc scss-mode monokai-alt-theme highlight-indent-guides org-bullets use-package pdfgrep pdf-tools pdf-view-restore lua-mode magit org-present-remote vterm org-beautify-theme org-present ox-epub org-brain org-noter org json-mode typescript-mode rjsx-mode tide js2-mode web-mode ace-window company-lsp company-racer flycheck flycheck-rust racer cargo rust-mode ac-haskell-process company-ghci company lsp-haskell lsp-mode lsp-ui haskell-mode gruber-darker-theme smex))
+   '(evil js3-mode dired-icon dired-subtree vterm-toggle dashboard major-mode-icons mode-icons multiple-cursors multi-web-mode abyss-theme apropospriate-theme arc-dark-theme badger-theme badwolf-theme cyberpunk-theme darkburn-theme darkmine-theme darkokai-theme dracula-theme exotica-theme atom-dark-theme atom-one-dark-theme dakrone-theme danneskjold-theme darcula-theme dark-krystal-theme dark-mint-theme darkroom darktooth-theme company-irony company-irony-c-headers irony irony-eldoc nim-mode 2048-game charmap gdscript-mode pipenv company-quickhelp unicode-fonts calibredb emoji-display emoji-fontset base16-theme smooth-scrolling jss all-the-icons-dired all-the-icons-gnus all-the-icons-ibuffer all-the-icons-ivy all-the-icons-ivy-rich neotree lsp-pyright doom-modeline doom-themes image+ iscroll look-mode image-dired+ company-c-headers company-shell company-web css-eldoc scss-mode monokai-alt-theme highlight-indent-guides org-bullets use-package pdfgrep pdf-tools pdf-view-restore lua-mode magit org-present-remote vterm org-beautify-theme org-present ox-epub org-brain org-noter org json-mode typescript-mode rjsx-mode tide js2-mode web-mode ace-window company-lsp company-racer flycheck flycheck-rust racer cargo rust-mode ac-haskell-process company-ghci company lsp-haskell lsp-mode lsp-ui haskell-mode gruber-darker-theme smex))
  '(pdf-view-midnight-colors (cons "#839496" "#002b36"))
  '(pos-tip-background-color "#36473A")
  '(pos-tip-foreground-color "#FFFFC8")
