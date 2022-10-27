@@ -213,6 +213,12 @@ IDE configuration
   :config (setq haskell-doc-use-inf-haskell 1
                 haskell-interactive-popup-errors nil))
 #+end_src
+*** rust
+#+begin_src elisp
+(after! rustic
+  (setq rustic-lsp-server 'rust-analyzer))
+
+#+end_src
 *** dashboard with kisses.el
 *** typescript
 #+begin_src elisp
