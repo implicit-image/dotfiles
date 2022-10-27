@@ -5,6 +5,7 @@ set $ctrl Control
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
+
 font pango:Fira Code 8
 
 
@@ -20,7 +21,7 @@ exec_always --no-startup-id xss-lock --transfer-sleep-lock -- light-locker-comma
 # networkmanager is the most popular way to manage wireless networks on Linux,
 # and nm-applet is a desktop environment-independent system tray GUI for it.
 
-# exec_always redshift -l 53:20
+exec_always pkill redshift && redshift -l 53:20
 exec mpDris2 -c /home/b/.config/mpDris2/mpDris2.conf
 exec_always nm-applet
 exec_always--no-startup-id light-locker --no-late-locking --lock-on-lid --lock-on-suspend
@@ -197,6 +198,9 @@ bindsym $mod+Shift+0 move container to workspace number $ws10
 bindsym $mod+Left workspace prev
 bindsym $mod+Right workspace next
 
+bindsym $mod+Tab workspace next
+bindsym $mod+Shift+Tab workspace prev
+
 # bindsym $mod+Shift+Right move container to workspace next
 # bindsym $mod+Shift+Left move container to workspace prev
 
@@ -247,7 +251,7 @@ mode "launcher" {
      bindsym $mod+v exec alacritty -e nvim; mode "default"
      bindsym $mod+c exec vscodium; mode "default"
      bindsym $mod+d exec emacsclient -c -s doom; mode "default"
-     bindsym $modd+Shift+d exec alacritty -e emacsclient -tty -c -s doom; mode "default"
+     bindsym $mod+Shift+d exec alacritty -e emacsclient -tty -c -s doom; mode "default"
      bindsym $mod+g exec emacsclient -c -s default; mode "default"
      bindsym $mod+Shift+g exec alacritty -e emacsclient -tty -c -s default; mode "default"
      bindsym Return mode "default"
@@ -264,10 +268,7 @@ bindsym $mod+r mode "resize"
 # bindsym $mod+e mode "execute"
 
 
-
 default_border pixel 5
-default_floating_border normal
-# hide_edge_borders none
 focus_follows_mouse no
 
 
@@ -275,20 +276,11 @@ focus_follows_mouse no
 #floating_maximum_size 480 x 360
 
 
-#colors
-
-client.focused #000000 #285577 #ffffff #000000 #888888
-
-
-#gaps
-
-bindsym $mod+g gaps inner current plus 10
-bindsym $mod+Shift+g gaps inner current minus 10
+#bindsym $mod+g gaps inner current plus 10
+##bindsym $mod+Shift+g gaps inner current minus 10
 
 smart_borders on
-# smart_gaps on
-
-# gaps inner 20
+# gaps inner 10
 
 # assignments to specific workspaces
 
@@ -305,7 +297,7 @@ for_window [class=".*"] title_format <b>%title</b>
 for_window [id=".*ssh*"] border pixel 5
 
 # class                                            border  backgr. text    indicator child_border
-for_window [title=".*ssh*"] client.focused          #717171 #151515 #ffffff #2e9ef4   #2e9ef4
+for_window [title=".*ssh*"] client.focused          #717171 #151515 #ffffff #292d2e   #2e9ef4
 for_window [title=".*ssh*"] client.focused_inactive #333333 #151515 #ffffff #484e50   #2e9ef4
 for_window [title=".*ssh*"] client.unfocused        #151515 #222222 #888888 #292d2e   #2e9ef4
 for_window [title=".*ssh*"] client.urgent           #2f343a #900000 #ffffff #900000   #900000
@@ -343,7 +335,5 @@ client.focused_inactive #333333 #151515 #ffffff #484e50   #222222
 client.unfocused        #151515 #222222 #888888 #292d2e   #222222
 client.urgent           #2f343a #900000 #ffffff #900000   #900000
 client.placeholder      #ffffff #0c0c0c #ffffff #000000   #0c0c0c
-
 client.background       #151515
 #
-# for_window [title="ssh?"] border pixel 6
