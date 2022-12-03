@@ -143,3 +143,4 @@ export PATH="$HOME/.nimble/bin:$PATH"
 [ -f "/home/b/.ghcup/env" ] && source "/home/b/.ghcup/env" # ghcup-env
 eval "$(rbenv init -)"
 DOTNET_CLI_TELEMETRY_OPTOUT=1.
+. /opt/asdf-vm/asdf.sh

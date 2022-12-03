@@ -17,6 +17,9 @@
 (package! gruber-darker-theme)
 (package! color)
 (package! org-bullets)
+(package! cheat-sh.el
+	  :recipe (:host github :repo "davep/cheat-sh.el"
+			 :files ("cheat-sh.el")))
 
 ;; To install a package directly from a remote git repo, you must specify a
 ;; `:recipe'. You'll find documentation on what `:recipe' accepts here:
