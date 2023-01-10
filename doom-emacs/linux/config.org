@@ -240,10 +240,10 @@ IDE configuration
 *** org-mode
 #+begin_src elisp
 
-;; (after! org
-;;   (map! :leader
-;;         (:prefix "m"
-;;          :desc "Execute current source block" "E" #'org-babel-execute-src-block)))
+(after! org
+  (map! :leader
+        (:prefix "m"
+         :desc "Render LaTeX blocks" "R" #'org-latex-preview)))
 
 
 #+end_src

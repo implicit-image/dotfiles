@@ -21,11 +21,11 @@ exec_always --no-startup-id xss-lock --transfer-sleep-lock -- light-locker-comma
 # networkmanager is the most popular way to manage wireless networks on Linux,
 # and nm-applet is a desktop environment-independent system tray GUI for it.
 
+exec_always --no-startup-id picom -b
 exec_always pkill redshift && redshift -l 53:20 &
 exec mpDris2 -c /home/b/.config/mpDris2/mpDris2.conf
 exec_always nm-applet
-exec_always--no-startup-id light-locker --no-late-locking --lock-on-lid --lock-on-suspend
-exec_always --no-startup-id picom -b
+exec_always --no-startup-id light-locker --no-late-locking --lock-on-lid --lock-on-suspend
 exec --no-startup-id nitrogen --restore &
 exec --no-startup-id gnome-settings-daemon
 exec_always emacs --with-profile doom --bg-daemon
