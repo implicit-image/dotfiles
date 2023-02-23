@@ -34,8 +34,8 @@
 # They all accept either a font-spec, font string ("Input Mono-12"), or xlfd
 # font string. You generally only need these two:
 #+begin_src elisp
-(setq doom-font (font-spec :family "CaskaydiaCove Nerd Font Mono Light" :size 20)
-      doom-variable-pitch-font (font-spec :family "sans" :size 16))
+(setq doom-font (font-spec :family "CaskaydiaCove Nerd Font Mono Light" :size 24)
+      doom-variable-pitch-font (font-spec :family "sans" :size 20))
 ;; Jetbrains Mono
 
 

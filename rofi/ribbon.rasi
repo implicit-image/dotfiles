@@ -5,19 +5,18 @@
 
 * {
   base-bg: #151515;
-  selected-bg: #f4005f;
+  selected-bg: #666666;
   background-color: @transparent;
   /* #4cacc1 */
   /* #94da24 */
   /* #9b64fb */
   /* #fa8419 */
   base-color: #151515;
-  selected-color: #222;
+  selected-color: #222222;
   border-color: #00000066;
   transparent: #00000000;
   text-color: #f1f1f1;
   font: "CaskaydiaCove Nerd Font Mono Italic Light 14";
-
 }
 
 #window {
@@ -68,6 +67,7 @@
 #element {
   background-color: @base-color;
   padding: 0.1em;
+  text-color: @text-color;
 }
 
 #element selected {
