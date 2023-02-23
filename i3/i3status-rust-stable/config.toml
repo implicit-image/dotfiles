@@ -88,11 +88,11 @@ interval = 1
 
 [[block]]
 block = "backlight"
-device = "intel_backlight"
+device = "amdgpu_bl0"
 minimum = 10
 maximum = 100
 cycle = [100, 50, 0, 50]
-format = "{brightness}"
+format = "$icon $brightness"
 
 [[block]]
 block = "battery"

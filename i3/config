@@ -28,7 +28,7 @@ exec_always nm-applet
 exec_always --no-startup-id light-locker --no-late-locking --lock-on-lid --lock-on-suspend
 exec --no-startup-id nitrogen --restore &
 exec --no-startup-id gnome-settings-daemon
-exec_always emacs --with-profile doom --bg-daemon
+exec emacs --with-profile doom --bg-daemon
 exec "setxkbmap -model pc105 -layout us,pl,gr -option grp:alt_shift_toggle"
 exec --no-startup-id blueman-applet
 exec lxpolkit
@@ -311,10 +311,10 @@ for_window [title=".*Emacs Everywhere*"] floating_maximum_size 640 x 480
 bar {
     # status_command "SCRIPT_DIR=~/.config/i3blocks/i3blocks-contrib i3blocks"
     # status_command py3status -c ~/.config/py3status/config
-    status_command i3status-rs ~/Projects/dotfiles/i3/i3status-rust/config.toml
+    status_command i3status-rs ~/repos/dotfiles/i3/i3status-rust-git/config.toml
     mode dock
     position top
-    font "pango:Fira Code 10"
+    font "pango:Fira Code 14"
     hidden_state hide
     modifier none
     separator_symbol " | "

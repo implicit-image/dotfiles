@@ -16,14 +16,15 @@
   border-color: #00000066;
   transparent: #00000000;
   text-color: #f1f1f1;
-  font: "Fira Code 10";
+  font: "CaskaydiaCove Nerd Font Mono Italic Light 14";
+
 }
 
 #window {
   anchor: north;
   location: north;
   width: 100%;
-  height: 25px;
+  height: 30px;
   background-color: @base-bg;
   margin: 0px 0px 0px 0px;
   children: [ horibox ];
