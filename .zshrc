@@ -116,7 +116,6 @@ export LANG=en_US.UTF-8
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-
 #[ -f "/home/b/.ghcup/env" ] && source "/home/b/.ghcup/env" # ghcup-env
 export TESSDATA_PREFIX="/usr/share/tessdata/"
 export QT_QPA_PLATFORMTHEME=qt5ct
