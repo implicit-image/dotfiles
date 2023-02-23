@@ -32,7 +32,7 @@ exec emacs --with-profile doom --bg-daemon
 exec "setxkbmap -model pc105 -layout us,pl,gr -option grp:alt_shift_toggle"
 exec --no-startup-id blueman-applet
 exec lxpolkit
-#exec_always "exec ssh-agent zsh"
+exec_always "exec ssh-agent zsh"
 
 # Use pactl to adjust volume in PulseAudio.
 set $refresh_i3status killall -SIGUSR1 i3status
