@@ -1,5 +1,5 @@
 configuration {
-	modi: "window,run,drun,filebrowser";
+	modi: "run,window,drun,filebrowser";
 	yoffset: 0;
 	show-icons: false;
 	terminal: "alacritty";
@@ -20,4 +20,4 @@ configuration {
 	}
 }
 
-@theme "ribbon"
+@theme "../themes/ribbon.rasi"

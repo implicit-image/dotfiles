@@ -91,7 +91,7 @@ config.set('content.headers.accept_language', '', 'https://matchmaker.krunker.io
 
 
 #font size
-config.set('fonts.default_size', '14pt')
+config.set('fonts.default_size', '20pt')
 
 
 
@@ -208,7 +208,7 @@ c.statusbar.show = 'in-mode'
 #   - bottom
 #   - left
 #   - right
-c.tabs.position = 'top'
+c.tabs.position = 'left'
 
 # When to show the tab bar.
 # Type: String
@@ -231,6 +231,9 @@ c.tabs.show = 'multiple'
 # Type: Bool
 c.colors.webpage.darkmode.enabled = True
 
+config.bind('xt', 'config-cycle tabs.show always never')
+
+c.tabs.width = '10%'
 
 config.source("theme.py")
 

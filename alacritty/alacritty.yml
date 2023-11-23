@@ -6,7 +6,7 @@ font:
   size: 10
   # The normal (roman) font face to use.
   normal:
-    family: "CaskaydiaCove Nerd Font Mono Light" #Code New Roman Nerd Font
+    family: "CaskaydiaCove NFM" #Code New Roman Nerd Font
     # Style can be specified to pick a specific face.
     style: Monospace
 
@@ -18,7 +18,7 @@ font:
 
   # The italic font face
   italic:
-    family: "CaksaydiaCove Nerd Font Mono Light Italic" #Code New Roman Nerd Font
+    family: "CaskaydiaCove Nerd Font Mono" #Code New Roman Nerd Font
     # Style can be specified to pick a specific face.
     style: Italic
 
@@ -37,120 +37,37 @@ font:
   # it is recommended to set `use_thin_strokes` to `false`.
   #use_thin_strokes: true
 # If `true`, bold text is drawn using the bright color variants.
-#draw_bold_text_with_bright_colors: false
-# colors:
-#   primary:
-#     background: '0x282a36'
-#     foreground: '0xf8f8f2'
-#   cursor:
-#     text: CellBackground
-#     cursor: CellForeground
-#   vi_mode_cursor:
-#     text: CellBackground
-#     cursor: CellForeground
-#   search:
-#     matches:
-#       foreground: '0x44475a'
-#       background: '0x50fa7b'
-#     focused_match:
-#       foreground: '0x44475a'
-#       background: '0xffb86c'
-#     bar:
-#       background: '0x282a36'
-#       foreground: '0xf8f8f2'
-#   line_indicator:
-#     foreground: None
-#     background: None
-#   selection:
-#     text: CellForeground
-#     background: '0x44475a'
-#   normal:
-#     black:   '0x000000'
-#     red:     '0xff5555'
-#     green:   '0x50fa7b'
-#     yellow:  '0xf1fa8c'
-#     blue:    '0xbd93f9'
-#     magenta: '0xff79c6'
-#     cyan:    '0x8be9fd'
-#     white:   '0xbfbfbf'
-#   bright:
-#     black:   '0x4d4d4d'
-#     red:     '0xff6e67'
-#     green:   '0x5af78e'
-#     yellow:  '0xf4f99d'
-#     blue:    '0xcaa9fa'
-#     magenta: '0xff92d0'
-#     cyan:    '0x9aedfe'
-#     white:   '0xe6e6e6'
-#   dim:
-#     black:   '0x14151b'
-#     red:     '0xff2222'
-#     green:   '0x1ef956'
-#     yellow:  '0xebf85b'
-#     blue:    '0x4d5b86'
-#     magenta: '0xff46b0'
-#     cyan:    '0x59dffc'
-#     white:   '0xe6e6d1'
-# Colors (Blood Moon)
-# colors:
-#   # Default colors
-#   primary:
-#     background: '0x10100E'
-#     foreground: '0xC6C6C4'
-#   # Normal colors
-#   normal:
-#     black:   '0x10100E'
-#     red:     '0xC40233'
-#     green:   '0x009F6B'
-#     yellow:  '0xFFD700'
-#     blue:    '0x0087BD'
-#     magenta: '0x9A4EAE'
-#     cyan:    '0x20B2AA'
-#     white:   '0xC6C6C4'
-#   # Bright colors
-#   bright:
-#     black:   '0x696969'
-#     red:     '0xFF2400'
-#     green:   '0x03C03C'
-#     yellow:  '0xFDFF00'
-#     blue:    '0x007FFF'
-#     magenta: '0xFF1493'
-#     cyan:    '0x00CCCC'
-#     white:   '0xFFFAFA'
-# draw_bold_text_with_bright_colors: false
-# Campbell (Windows 10 default)
+draw_bold_text_with_bright_colors: true
 colors:
-  name: 3024 (dark)
-  author: Chris Kempson
   primary:
-    background: "#090300"
-    foreground: "#a5a2a2"
+    background: "#181818"
+    foreground: "#cccccc"
   cursor:
-    text: "#090300"
-    cursor: "#a5a2a2"
+    text: "#cccccc"
+    cursor: "#cccccc"
   normal:
-    black: "#090300"
-    red: "#db2d20"
-    green: "#01a252"
-    yellow: "#fded02"
-    blue: "#01a0e4"
-    magenta: "#a16a94"
-    cyan: "#b5e4f4"
-    white: "#a5a2a2"
+    black: "#000000"
+    red: "#c73c3f"
+    green: "#73c936"
+    yellow: "#ffdd33"
+    blue: "#4682b4"
+    magenta: "#751175"
+    cyan: "#6d878d"
+    white: "#cccccc"
   bright:
-    black: "#5c5855"
-    red: "#db2d20"
-    green: "#01a252"
-    yellow: "#fded02"
-    blue: "#01a0e4"
-    magenta: "#a16a94"
-    cyan: "#b5e4f4"
-    white: "#f7f7f7"
+    black: "#453d41"
+    red: "#ff4f58"
+    green: "#bde077"
+    yellow: "#ffe863"
+    blue: "#aaccbb"
+    magenta: "#e16a98"
+    cyan: "#42717b"
+    white: "#ffffff"
 # Background opacity
 #
 # Window opacity as a floating point number from `0.0` to `1.0`.
 # The value `0.0` is completely transparent and `1.0` is opaque.
-window.opacity: 1.00
+window.opacity: 0.7
 #selection:
 #semantic_escape_chars: ",│`|:\"' ()[]{}<>\t"
 # When set to `true`, selected text will be copied to the primary clipboard.
@@ -171,7 +88,7 @@ window.opacity: 1.00
 # the style of the active value of the normal cursor.
 #
 # See `cursor.style` for available options.
-#vi_mode_style: None
+vi_mode_style: true
 # If this is `true`, the cursor will be rendered as a hollow box when the
 # window is not focused.
 #unfocused_hollow: true
@@ -191,8 +108,6 @@ window.opacity: 1.00
 #   - (Windows) powershell
 #shell:
 program: /usr/bin/zsh
-theme: 3024.dark
-
 args:
   - --login
 

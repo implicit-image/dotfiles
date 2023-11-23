@@ -15,7 +15,7 @@ export ZSH="/home/b/.oh-my-zsh"
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-ZSH_THEME="ys"   #"rkj-repos"  #"duellj"   #"fino-time"   #"powerlevel10k/powerlevel10k"
+ZSH_THEME="frisk"   #"rkj-repos"  #"duellj"   #"fino-time"   #"powerlevel10k/powerlevel10k"
 
 
 # Set list of themes to pick from when loading at random
@@ -131,15 +131,27 @@ PERL5LIB="/home/b/perl5/lib/perl5${PERL5LIB:+:${PERL5LIB}}"; export PERL5LIB;
 PERL_LOCAL_LIB_ROOT="/home/b/perl5${PERL_LOCAL_LIB_ROOT:+:${PERL_LOCAL_LIB_ROOT}}"; export PERL_LOCAL_LIB_ROOT;
 PERL_MB_OPT="--install_base \"/home/b/perl5\""; export PERL_MB_OPT;
 PERL_MM_OPT="INSTALL_BASE=/home/b/perl5"; export PERL_MM_OPT;
-export TWITCH_TOKEN=$(cat $HOME/.secret/.twitch)
-export CLARIFAI_API_KEY=$(cat $HOME/.secret/.clarifai)
 export TERM=xterm-256color
-export N_PREFIX=/home/b/n/
+export N_PREFIX=/home/b/.n/
 export PATH="$N_PREFIX/bin:$PATH"
 export PATH="$HOME/.nimble/bin:$PATH"
+export PATH="$HOME/.dotnet:$PATH"
+export PATH="/opt/lampp/bin:$PATH"
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 # [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-[ -f "/home/b/.ghcup/env" ] && source "/home/b/.ghcup/env" # ghcup-env
-eval "$(rbenv init -)"
+#[ -f "/home/b/.ghcup/env" ] && source "/home/b/.ghcup/env" # ghcup-env
+#eval "$(rbenv init -)"
 DOTNET_CLI_TELEMETRY_OPTOUT=1.
-. /opt/asdf-vm/asdf.sh
+#alias mx="mullvad-exclude"
+#. /opt/asdf-vm/asdf.sh
+
+
+
+# If not running interactively, do not do anything
+[[ $- != *i* ]] && return
+# Otherwise start tmux
+# [[ -z "$TMUX" ]] && exec tmux
+
+#!/bin/bash
+
+[ -f "/home/b/.ghcup/env" ] && source "/home/b/.ghcup/env" # ghcup-env

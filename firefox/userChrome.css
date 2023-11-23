@@ -1,18 +1,43 @@
 /* hides the title bar */
-#titlebar {
-  visibility: collapse;
+/* #titlebar { */
+/*   visibility: collapse; */
+/* } */
+menubar, toolbar, nav-bar, #TabsToolbar > *{
+  background-color: #181818 !important;
+  border: none !important;
+  box-shadow: none !important;
 }
-
+#sidebar-box {
+    background: #181818 !important;
+}
 /* hides the sidebar */
 #sidebar-header {
   visibility: collapse !important;
+  background-color: #181818;
 } 
 
 /* hides the native tabs */
 #TabsToolbar {
   visibility: collapse;
 }
+
+
+
+:root{
+  --tab-surface-regular: #181818;
+  --theme-colors-frame: #181818​;
+}
 /* leaves space for the window buttons */
-#nav-bar {
-  visibility: collapse !important;
+/* #nav-bar { */
+/*   visibility: collapse !important; */
+/* } */
+/*
+ * Tree style Tabs specific
+ */
+.tab {
+    background: #181818;
+}
+
+#background {
+  background-color: #181818;
 }

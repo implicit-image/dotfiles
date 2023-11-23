@@ -22,9 +22,8 @@ name = "material-nf"
 
 [[block]]
 block = "focused_window"
-format = "[ {title} ]"
-max_width = 40
-show_marks = "visible"
+#format = "[ {title} ]"
+#show_marks = "visible"
 
 
 # [[block]]
@@ -41,9 +40,9 @@ show_marks = "visible"
 [[block]]
 block = "music"
 player = "mpd"
-smart_trim = true
+#smart_trim = true
 format = "{artist} - {title}"
-hide_when_empty = false
+#hide_when_empty = false
 on_click = "alacritty -e ncmpcpp"
 
 

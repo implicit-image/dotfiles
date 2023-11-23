@@ -6,4 +6,4 @@
             (server-name . "doom")
             (straight-p . 1)))
  ("default" . ((user-emacs-directory . "~/.emacs.default.d")
-               (server-name . "default"))))
+               (server-name . "og"))))

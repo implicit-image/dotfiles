@@ -5,7 +5,7 @@
 ## style-1   style-2   style-3   style-4   style-5
 
 # Current Theme
-dir="$HOME/repos/dotfiles/rofi/"
+dir="$HOME/repos/dotfiles/rofi/themes"
 theme='ribbon'
 
 # CMDs
@@ -90,11 +90,7 @@ case ${chosen} in
 		run_cmd --reboot
         ;;
     $lock)
-		if [[ -x '/usr/bin/betterlockscreen' ]]; then
-			betterlockscreen -l
-		elif [[ -x '/usr/bin/i3lock' ]]; then
-			i3lock
-		fi
+		light-locker-command -l
         ;;
     $suspend)
 		run_cmd --suspend

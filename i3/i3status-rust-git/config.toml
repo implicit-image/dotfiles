@@ -11,53 +11,67 @@ icons_format = "{icon}"
 [theme]
 theme = "modern"
 [theme.overrides]
-idle_bg = "#151515"
-good_bg = "#151515"
+idle_bg = "#181818"
+good_bg = "#181818"
 good_fg = "#f1f1f1"
-critical_bg = "#151515"
+critical_bg = "#181818"
 critical_fg = "#ff2233"
 # alternating_tint_bg =
 # alternating_tint_fg =
 info_bg = "#151515"
 info_fg = "#ffdd33"
-warning_bg = "#151515"
+warning_bg = "#181818"
 warning_fg = "#aa1111"
 separator = "  "
-separator_bg = "#151515"
+separator_bg = "#181818"
 separator_fg = "#f1f1f1"
 [icons]
 icons = "material-nf"
 [icons.overrides]
-bat = " | | "
-bat_full = " |X| "
-bat_charging = " |^| "
-bat_discharging = " |v| "
+#bat = " | | "
+#bat_full = " |X| "
+#bat_charging = " |^| "
+#bat_discharging = " |v| "
 
 
 [[block]]
 block = "focused_window"
-format = "[ $title ] |---"
+format = "[ $title.str(max_w:35, rot_interval:0.3) ] |---"
 
 [[block]]
 block = "music"
+player = ["mpd", "firefox"]
+format= "{$icon $combo.str(max_w:20, rot_interval:0.3) |$icon}"
 
 [[block]]
 block = "disk_space"
 path = "/"
 info_type = "available"
-alert_unit = "GB"
 interval = 20
 warning = 20.0
 alert = 10.0
-format = " $icon $available.eng(w:2) "
+format = " $icon $path $available.eng(w:2) "
+
+
+[[block]]
+block = "disk_space"
+path = "/media/storage"
+info_type = "available"
+interval = 20
+warning = 20.0
+alert = 10.0
+format = " $icon $path $available.eng(w:2) "
 
 [[block]]
 block = "memory"
-format = " $icon $mem_total_used_percents.eng(w:2) "
-format_alt = " $icon_swap $swap_used_percents.eng(w:2) "
+format = " $icon $mem_used.eng(w:4) "
+interval = 10
+format_alt = " $icon_swap $swap_used.eng(w:2) "
+warning_swap = 101
 
 [[block]]
 block = "cpu"
+format = "$icon $barchart $utilization"
 
 
 [[block]]
@@ -67,13 +81,7 @@ button = "left"
 #launch mixer
 
 [[block]]
-block = "custom"
-command = "xkblayout-state print %s"
-interval = 1
-
-[[block]]
 block = "backlight"
-device = "amdgpu_bl0"
 minimum = 10
 maximum = 100
 cycle = [100, 50, 0, 50]
@@ -81,8 +89,9 @@ format = "$icon $brightness"
 
 [[block]]
 block = "battery"
-interval = 10 
-format = "$icon $precentage"
+device = "BAT0"
+driver = "sysfs"
+format = "$icon $percentage $time"
 
 [[block]]
 block = "time"
