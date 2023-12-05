@@ -125,6 +125,8 @@
     (unless (boundp 'org-latex-classes)
       (setq org-latex-classes nil))))
 
+(add-to-list 'org-src-lang-modes (cons "jsx" 'rjsx))
+
 (use-package! company
   :config
   (setq company-idle-delay nil

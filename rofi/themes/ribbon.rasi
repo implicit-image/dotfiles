@@ -16,7 +16,8 @@
   border-color: #00000066;
   transparent: #00000000;
   text-color: #f1f1f1;
-  font: "CaskaydiaCove Nerd Font Mono Italic Light 14";
+  font: "Iosevka Nerd Font 15";
+
 }
 
 #window {

@@ -7,7 +7,7 @@ set $ctrl Control
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
 
-font pango:CaskaydiaCove Nerd Font Mono Light
+font pango:Iosevka Nerd Font Light
 
 
 # The combination of xss-lock, nm-applet and pactl is a popular choice, so
@@ -22,12 +22,17 @@ exec_always --no-startup-id xss-lock --transfer-sleep-lock -- light-locker-comma
 # networkmanager is the most popular way to manage wireless networks on Linux,
 # and nm-applet is a desktop environment-independent system tray GUI for it.
 
+# use autostart files
+# exec /home/b/.config/autostart.sh
+# exec_always /home/b/.config/autostart.sh always
 exec_always --no-startup-id picom -b
 exec_always touchegg
 # exec redshift -l 53:20 &
-exec mpDris2 -c /home/b/.config/mpDris2/mpDris2.conf
 exec_always nm-applet
 exec_always --no-startup-id light-locker --no-late-locking --lock-on-lid --lock-on-suspend
+exec_always "ssh-agent"
+exec_always blueman-applet
+exec mpDris2 -c /home/b/.config/mpDris2/mpDris2.conf
 #exec --no-startup-id nitrogen --restore &
 exec --no-startup-id variety &
 exec --no-startup-id gnome-settings-daemon
@@ -35,8 +40,11 @@ exec emacs --with-profile doom --bg-daemon
 exec --no-startup-id keepassxc
 exec "setxkbmap -model pc105 -layout us,pl -option grp:alt_shift_toggle"
 exec lxpolkit
-exec_always "ssh-agent"
-exec_always blueman-applet
+
+# keycode variables 
+# names based on english qwerty keyboard
+set $bracketright 35
+set $bracketleft 34
 
 # Use pactl to adjust volume in PulseAudio.
 set $refresh_i3status killall -SIGUSR1 i3status
@@ -83,10 +91,10 @@ bindsym $mod+j focus down
 bindsym $mod+k focus up
 bindsym $mod+l focus right
 
-bindsym $mod+Shift+h move left
-bindsym $mod+Shift+j move down
-bindsym $mod+Shift+k move up
-bindsym $mod+Shift+l move right
+bindsym $mod+Shift+h [floating] move left 100; move left
+bindsym $mod+Shift+j [floating] move down 100; move down
+bindsym $mod+Shift+k [floating] move up 100; move up
+bindsym $mod+Shift+l [floating] move right 100; move right
 
 bindsym $mod+v split h
 bindsym $mod+s split v
@@ -122,6 +130,7 @@ set $ws8 "8:VIII"
 set $ws9 "9:IX"
 set $ws10 "10:X"
 
+
 # switch to workspace
 bindsym $mod+1 workspace number $ws1
 bindsym $mod+2 workspace number $ws2
@@ -147,12 +156,8 @@ bindsym $mod+Shift+9 move container to workspace number $ws9
 bindsym $mod+Shift+0 move container to workspace number $ws10
 
 
-bindsym $mod+Left workspace prev
-bindsym $mod+Right workspace next
-
-bindsym $mod+Tab workspace next
-bindsym $mod+Shift+Tab workspace prev
-
+bindcode $mod+$bracketright workspace next
+bindcode $mod+$bracketleft workspace prev
 # bindsym $mod+Shift+Right move container to workspace next
 # bindsym $mod+Shift+Left move container to workspace prev
 
@@ -163,6 +168,13 @@ bindsym $mod+Shift+s reload
 
 bindsym $mod+Shift+r restart
 
+
+#window switching
+
+# bindcode $mod_c+Shift+$tab
+
+
+#powermenu
 bindsym $mod+Shift+q exec ~/repos/dotfiles/rofi/powermenu/powermenu.sh
 
 
@@ -171,25 +183,20 @@ bindsym $mod+Shift+q exec ~/repos/dotfiles/rofi/powermenu/powermenu.sh
 mode "resize" {
         # These bindings trigger as soon as you enter the resize mode
 
-        bindsym j resize shrink width 1 px or 1 ppt
-        bindsym k resize grow height 1 px or 1 ppt
-        bindsym l resize shrink height 1 px or 1 ppt
-        bindsym semicolon resize grow width 1 px or 1 ppt
+        bindsym j         resize shrink width 10 px or 10 ppt
+        bindsym k         resize grow height 10 px or 10 ppt
+        bindsym l         resize shrink height 10 px or 10 ppt
+        bindsym semicolon resize grow width 10 px or 10 ppt
 
-        bindsym Shift+j resize shrink width 10 px or 10 ppt
-        bindsym Shift+k resize grow height 10 px or 10 ppt
-        bindsym Shift+l resize shrink height 10 px or 10 ppt
-        bindsym Shift+semicolon resize grow width 10 px or 10 ppt
-        # same bindings, but for the arrow keys
-        bindsym Left resize shrink width 1 px or 1 ppt
-        bindsym Down resize grow height 1 px or 1 ppt
-        bindsym Up resize shrink height 1 px or 1 ppt
-        bindsym Right resize grow width 1 px or 1 ppt
+        bindsym Shift+j         resize shrink width 50 px or 50 ppt
+        bindsym Shift+k         resize grow height 50 px or 50 ppt
+        bindsym Shift+l         resize shrink height 50 px or 50 ppt
+        bindsym Shift+semicolon resize grow width 50 px or 50 ppt
 
-        # back to normal: Enter or Escape or $mod+r
         bindsym Return mode "default"
         bindsym Escape mode "default"
         bindsym $mod+r mode "default"
+        bindsym q      mode "default"
 }
 
 
@@ -256,7 +263,7 @@ bar {
     status_command i3status-rs ~/repos/dotfiles/i3/i3status-rust-git/config.toml
     mode dock
     position top
-    font "pango:CaskaydiaCove Nerd Font Mono Light 14"
+    font "pango:Iosevka 15"
     hidden_state hide
     modifier none
     separator_symbol " | "

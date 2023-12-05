@@ -36,7 +36,7 @@
        hl-todo           ; highlight TODO/FIXME/NOTE/DEPRECATED/HACK/REVIEW
        ;;hydra
        ;; indent-guides     ; highlighted indent columns
-       (ligatures +iosevka +extra)     ; ligatures and symbols to make your code pretty again
+       ;; (ligatures +iosevka +extra)     ; ligatures and symbols to make your code pretty again
        ;; minimap           ; show a map of the code on the side
        (modeline)          ; snazzy, Atom-inspired modeline, plus API
        ;;nav-flash         ; blink cursor line after big motions
@@ -71,7 +71,7 @@
        (dired +icons)            ; making dired pretty [functional]
        electric          ; smarter, keyword-based electric-indent
        ibuffer         ; interactive buffer management
-       undo              ; persistent, smarter undo for your inevitable mistakes
+       (undo +tree)              ; persistent, smarter undo for your inevitable mistakes
        vc                ; version-control and Emacs, sitting in a tree
 
        :term
@@ -98,7 +98,7 @@
        (lsp +peek)
        magit             ; a git porcelain for Emacs
        make              ; run make tasks from Emacs
-       pass              ; password manager for nerds
+       (pass +auth)              ; password manager for nerds
        pdf               ; pdf enhancements
        ;;prodigy           ; FIXME managing external services & code builders
        rgb               ; creating color strings
@@ -126,7 +126,7 @@
        (elm +lsp +tree-sitter)  ; care for a cup of TEA?
        emacs-lisp        ; drown in parentheses
        (erlang +lsp)            ; an elegant language for a more civilized age
-       ;;ess               ; emacs speaks statistics
+       (ess +stan +tree-sitter)               ; emacs speaks statistics
        ;;factor
        ;;faust             ; dsp, but you get to keep your soul
        fsharp            ; ML stands for Microsoft's Language
@@ -169,7 +169,7 @@
        ;;swift             ; who asked for emoji variables?
        ;;terra             ; Earth and Moon in alignment for performance.
        (web +lsp)               ; the tubes
-       yaml              ; JSON, but readable
+       (yaml +lsp +tree-sitter)              ; JSON, but readable
        (zig +lsp)               ; C, but simpler
 
        :email
