@@ -1,2 +1,7 @@
--- bootstrap lazy.nvim, LazyVim and your plugins
-require("config.lazy")
+require "local.options"
+require "local.keymaps"
+require "local.plugins"
+require "local.colorscheme"
+require "local.cmp"
+require "local.lsp"
+require "local.telescope"

@@ -1,7 +1,0 @@
-require "local.options"
-require "local.keymaps"
-require "local.plugins"
-require "local.colorscheme"
-require "local.cmp"
-require "local.lsp"
-require "local.telescope"
