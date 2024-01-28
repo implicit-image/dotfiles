@@ -1,0 +1,54 @@
+
+[shell]
+args = ["--login"]
+program = "/usr/bin/zsh"
+
+[colors]
+draw_bold_text_with_bright_colors = true
+
+[colors.bright]
+black = "#453d41"
+blue = "#aaccbb"
+cyan = "#42717b"
+green = "#bde077"
+magenta = "#e16a98"
+red = "#ff4f58"
+white = "#ffffff"
+yellow = "#ffe863"
+
+[colors.cursor]
+cursor = "#cccccc"
+text = "#cccccc"
+
+[colors.normal]
+black = "#000000"
+blue = "#4682b4"
+cyan = "#6d878d"
+green = "#73c936"
+magenta = "#751175"
+red = "#c73c3f"
+white = "#cccccc"
+yellow = "#ffdd33"
+
+[colors.primary]
+background = "#181818"
+foreground = "#cccccc"
+
+[font]
+size = 10
+
+[font.bold]
+family = "Iosevka"
+style = "Bold"
+
+[font.glyph_offset]
+x = 0
+y = 0
+
+[font.italic]
+family = "Iosevka"
+style = "Italic"
+
+[font.normal]
+family = "Iosevka"
+style = "Monospace"

@@ -1,5 +1,7 @@
-(load-file "./local.el")
+;;(load-file "local.el")
 
+(add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
+(add-to-list 'package-archives '("org" . "https://orgmode.org/elpa/") t)
 
 (defvar bootstrap-version)
 (let ((bootstrap-file
@@ -18,28 +20,33 @@
 
 (straight-use-package 'use-package)
 
-(cfg/require 'package)
-(cfg/require 'smex)
-(cfg/require 'company)
-(cfg/require 'lsp-mode)
-(cfg/require 'rust-mode)
-(cfg/require 'haskell-mode)
-
-
-(add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
-(add-to-list 'package-archives '("org" . "https://orgmode.org/elpa/") t)
+;;(cfg/require 'package)
+;;(cfg/require 'smex)
+;;(cfg/require 'company)
+;;(cfg/require 'lsp-mode)
+;;(cfg/require 'rust-mode)
+;;(cfg/require 'haskell-mode)
 
 
 
 
+(use-package package
+  :ensure t)
+(use-package lsp-mode
+  :ensure t)
+(use-package rust-mode
+  :ensure t)
+(use-package haskell-mode
+  :ensure t)
 
-(setq org-startup-truncated nil
+
+(setq 
       inhibit-startup-screen t
-      visible-bell 0
+      visible-bell nil
+      display-line-numbers-type 'relative
       create-lockfiles nil
       whitespace-style '(face tabs spaces indentation space-mark tab-mark))
 (global-display-line-numbers-mode 1)
-(setq display-line-numbers-type 'relative)
 
 
 (tool-bar-mode 0)
@@ -58,13 +65,9 @@
 (load-theme 'gruber-darker 1)
 
 (require 'multiple-cursors)
-(global-set-key (kbd "C-S-c C-S-c") 'mc/edit-lines)
-
 
 (global-set-key (kbd "C-x t") 'neotree-toggle)
-
-(set-frame-font "Iosevka 30")
-
+(set-frame-font "Iosevka 23")
 (add-hook 'dired-mode-hook 'all-the-icons-dired-mode)
 
 
@@ -88,12 +91,12 @@
 
 (use-package company-mode
   :config
-  (setq company-minimum-prefix-length 2)
-  (setq company-idle-delay -1)
-  (setq company-show-numbers t)
-  (setq company-tooltip-offset-display 1)
-  (setq company-quickhelp-delay nil)
-  (setq company-tooltip-align-annotations t)
+  (setq company-minimum-prefix-length 2
+	company-idle-delay -1
+	company-show-numbers t
+	company-tooltip-offset-display 1
+	company-quickhelp-delay nil
+	company-tooltip-align-annotations t)
   :bind (:map company-mode-map
 	      ("C-c h" . company-quickhelp-manual-begin))
   :hook (prog-mode web-mode))
@@ -115,7 +118,7 @@
 (global-set-key (kbd "M-X") 'smex-major-mode-commands)
 ;;(global-set-key (kbd "C-i d") 'neotree)
 ;; This is your old M-x.
-(global-set-key (kbd "C-c C-c M-x") 'execute-extended-command);
+(global-set-key (kbd "C-c C-c M-x") 'execute-extended-command)
 
 
 (use-package haskell-mode
@@ -157,58 +160,55 @@
 
 (use-package irony
   :hook (c++-mode))
-  (use-package web-mode
-    :hook (html-mode))
-  ;;(define-key rust-mode-map (kbd "C-c C-c") 'rust-run)
+(use-package web-mode
+  :hook (html-mode))
+;;(define-key rust-mode-map (kbd "C-c C-c") 'rust-run)
 
-  ;;company
-(global-set-key (kbd "M-p") 'ace-window)
-
-  ;; ;;tide
-  (cfg/require 'tide)
-  (defun setup-tide-mode ()
-    (interactive)
-    (tide-setup)
-    (flycheck-mode +1)
-    (setq flycheck-check-syntax-automatically '(save mode-enabled))
-    (eldoc-mode +1)
-    (tide-hl-identifier-mode +1)
-    (company-mode +1))
+;;tide
+(defun setup-tide-mode ()
+  (interactive)
+  (tide-setup)
+  (flycheck-mode +1)
+  (setq flycheck-check-syntax-automatically '(save mode-enabled))
+  (eldoc-mode +1)
+  (tide-hl-identifier-mode +1)
+  (company-mode +1))
 
 
-  (add-hook 'typescript-mode-hook #'setup-tide-mode)
-  (add-to-list 'auto-mode-alist '("\\.tsx?\\'" . typescript-mode))
+(add-hook 'typescript-mode-hook #'setup-tide-mode)
+(add-to-list 'auto-mode-alist '("\\.tsx?\\'" . typescript-mode))
 
 
   ;; ;;lisp
-  (defun setup-lisp-mode()
-    (company-mode +1)
-    (eldoc-mode +1))
-  (add-hook 'emacs-lisp-mode-hook #'setup-lisp-mode)
+(defun setup-lisp-mode()
+  (company-mode +1)
+  (eldoc-mode +1))
+(add-hook 'emacs-lisp-mode-hook #'setup-lisp-mode)
 
   ;; pdf
 
   ;;javascript
-  (add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode))
-  (add-hook 'js2-mode-hook #'setup-tide-mode)
+(add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode))
+(add-hook 'js2-mode-hook #'setup-tide-mode)
 
 
-  ;;react
+;;react
 
-  (defun setup-react-mode()
-    (flycheck-mode +1)
-    (eldoc-mode +1)
-    (company-mode +1))
+(defun setup-react-mode()
+  (flycheck-mode +1)
+  (eldoc-mode +1)
+  (company-mode +1))
 
-  (setq js-indent-level 2)
-  (add-to-list 'auto-mode-alist '("\\.jsx?\\'" . rjsx-mode))
-  (add-to-list 'auto-mode-alist '("components\\/.*\\.js\\'" . rjsx-mode))
-  (add-hook 'rjsx-mode-hook #'lsp)
-  (add-hook 'rjsx-mode-hook #'setup-react-mode)
+(setq js-indent-level 2)
+(add-to-list 'auto-mode-alist '("\\.jsx?\\'" . rjsx-mode))
+(add-to-list 'auto-mode-alist '("components\\/.*\\.js\\'" . rjsx-mode))
+(add-hook 'rjsx-mode-hook #'lsp)
+(add-hook 'rjsx-mode-hook #'setup-react-mode)
 
-  (require 'org)
+(require 'org)
 
-
+(use-package org-mode
+  :config (setq org-startup-truncated nil))
   ;; (defun setup-company-mode()
   ;;   (setq company-minimum-prefix-length 1)
   ;;   (setq company-show-numbers t)

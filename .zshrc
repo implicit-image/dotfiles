@@ -81,6 +81,11 @@ plugins=(
     archlinux
     npm
     stack
+    dotnet
+    keychain
+    themes
+    cabal
+    zsh-navigation-tools
     zsh-autosuggestions
     zsh-syntax-highlighting)
 
@@ -116,26 +121,26 @@ fi
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
+cmd() {
+  echo '|>>' $1 ${@:2} 
+  $1 ${@:2} 
+}
+
+#alias mx="mullvad-exclude"
+mx() { cmd mullvad-exclude $@ }
+
+
+
+
 export TESSDATA_PREFIX="/usr/share/tessdata/"
 export QT_QPA_PLATFORMTHEME=qt5ct
 export _JAVA_AWT_WM_NONREPARENTING=1
-export PATH="$HOME/.config/rofi/bin:$PATH"
-# export PATH="$HOME/Projects/scripts/shell:$PATH"
-# export PATH="$HOME/Projects/scripts/python/:$PATH"
-# export PATH="$HOME/Projects/scripts/haskell/:$PATH"
-export PATH="$HOME/.local/bin:$PATH"
-export PATH="$HOME/.ghcup/bin:$PATH"
-PATH="/home/b/perl5/bin${PATH:+:${PATH}}"; export PATH;
 PERL5LIB="/home/b/perl5/lib/perl5${PERL5LIB:+:${PERL5LIB}}"; export PERL5LIB;
 PERL_LOCAL_LIB_ROOT="/home/b/perl5${PERL_LOCAL_LIB_ROOT:+:${PERL_LOCAL_LIB_ROOT}}"; export PERL_LOCAL_LIB_ROOT;
 PERL_MB_OPT="--install_base \"/home/b/perl5\""; export PERL_MB_OPT;
 PERL_MM_OPT="INSTALL_BASE=/home/b/perl5"; export PERL_MM_OPT;
 export TERM=xterm-256color
 export N_PREFIX=/home/b/.n/
-export PATH="$N_PREFIX/bin:$PATH"
-export PATH="$HOME/.nimble/bin:$PATH"
-export PATH="$HOME/.dotnet:$PATH"
-export PATH="/opt/lampp/bin:$PATH"
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 # [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 #[ -f "/home/b/.ghcup/env" ] && source "/home/b/.ghcup/env" # ghcup-env
@@ -154,3 +159,18 @@ DOTNET_CLI_TELEMETRY_OPTOUT=1.
 #!/bin/bash
 
 [ -f "/home/b/.ghcup/env" ] && source "/home/b/.ghcup/env" # ghcup-env
+
+
+export PATH="$HOME/.config/rofi/bin:$PATH"
+# export PATH="$HOME/Projects/scripts/shell:$PATH"
+# export PATH="$HOME/Projects/scripts/python/:$PATH"
+# export PATH="$HOME/Projects/scripts/haskell/:$PATH"
+export PATH="$HOME/.local/bin:$PATH"
+export PATH="$HOME/.ghcup/bin:$PATH"
+PATH="/home/b/perl5/bin${PATH:+:${PATH}}"; export PATH;
+export PATH="$N_PREFIX/bin:$PATH"
+export PATH="$HOME/.nimble/bin:$PATH"
+export PATH="$HOME/.dotnet:$PATH"
+export PATH="/opt/lampp/bin:$PATH"
+export PATH="/opt/anaconda/bin:$PATH"
+export PATH="/home/b/Games/modding/infinityengine/gemrb:$PATH"
