@@ -11,14 +11,14 @@
 ;; (load-theme 'doom-sourcerer)
 ;;(load-theme ')
 
-;; (require 'whitespace)
+(require 'whitespace)
 (require 'color)
 (require 'org)
 (require 'olivetti)
 
 (set-face-foreground 'font-lock-comment-face "#8b8b83")
 (set-face-foreground 'font-lock-comment-delimiter-face "#8b8b83")
-;; (set-face-attribute 'whitespace-space nil :background nil :foreground "#777777")
+(set-face-attribute 'whitespace-space nil :background nil :foreground "#777777")
 
 
 (use-package! ox-extra
@@ -56,7 +56,7 @@
          :desc "Render LaTeX blocks" "R" #'org-latex-preview)
      (org-bullets-mode 1)
      (visual-line-mode 1)
-     ;; (whitespace-mode -1)
+     (whitespace-mode -1)
      ;;fix the look of babel blocks
      ;; (set-face-attribute 'whitespace-space nil :background nil :foreground "#777777")
      (set-face-attribute 'org-block nil :background "#181818")
@@ -88,24 +88,24 @@
         dashboard-set-navigator t
         dashboard-items '((recents . 5) (agenda . 5))))
 
-(use-package! highlight-indent-guides
-  :config
-  (setq highlight-indent-guides-method 'bitmap
-        highlight-indent-guides-bitmap-function #'highlight-indent-guides--bitmap-line
-        highlight-indent-guides-responsive 'stack
-        highlight-indent-guides-auto-character-face-perc 200))
+;; (use-package! highlight-indent-guides
+;;   :config
+;;   (setq highlight-indent-guides-method 'bitmap
+;;         highlight-indent-guides-bitmap-function #'highlight-indent-guides--bitmap-line
+;;         highlight-indent-guides-responsive 'stack
+;;         highlight-indent-guides-auto-character-face-perc 200))
 
 (setq display-line-numbers-type 'relative
       make-backup-files nil
       evil-want-fine-undo t
       auto-save-default t
       doom-modeline-buffer-file-name-style 'buffer-name
-      ;;whitespace-style '(face tabs spaces indentation space-mark tab-mark)
+      whitespace-style '(face tabs spaces indentation space-mark tab-mark)
       initial-buffer-choice (lambda () (get-buffer-create "*dashboard*"))
       )
 
 
-;; (add-hook! 'prog-mode-hook #'whitespace-mode)
+(add-hook! 'prog-mode-hook #'whitespace-mode)
 (add-hook! 'prog-mode-hook #'rainbow-delimiters-mode-enable)
 
 (use-package! dired
@@ -152,7 +152,7 @@
 
 (add-to-list 'auto-mode-alist '("\\.epub\\'" . nov-mode))
 (add-to-list 'auto-mode-alist '("\\.rasi\\'" . css-mode))
-(add-to-list 'auto-mode-alist '("\\.nss\\'" . zig-mode))
+(add-to-list 'auto-mode-alist '("\\.nss\\'" . c-mode))
 
 (use-package! lsp-haskell
   :hook haskell-mode-hook)
@@ -173,6 +173,8 @@
                 org-noter-notes-search-path '("~/org/booknotes/")
                 org-noter-default-heading-title "PAGE $p$"))
 
+(use-package! ivy
+  :config (setq ivy-height 10))
 
 ;; editor config
 (setq standard-indent 4
@@ -196,7 +198,6 @@
 
 ;; KEYBINDINGS
 
-
 (map! :leader
       (:prefix ("a" . "applications")
        :desc "Open calibredb" "c" #'calibredb))
@@ -207,5 +208,4 @@
 
 (map! :leader
      (:prefix ("t" . "toggle")
-      :desc "Visual line mode" "M" #'global-hide-mode-line-mode))
-
+      :desc "Modeline" "M" #'global-hide-mode-line-mode))
