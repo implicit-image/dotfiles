@@ -137,8 +137,12 @@
 (setq org-odt-preffered-output-format "doc")
 (setq org-directory "~/org/")
 
+(use-package! twittering-mode
+  :config (setq twittering-cert-file "/etc/ssl/certs/ca-bundle.crt"
+                twittering-connection-type-order '(wget curl urllib-http native urllib-https)))
 
 
+(add-to-list 'recentf-exclude "\\.priv\\'")
 (add-to-list 'org-src-lang-modes (cons "jsx" 'rjsx))
 
 (use-package! company

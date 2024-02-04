@@ -24,7 +24,7 @@
   anchor: north;
   location: north;
   width: 100%;
-  height: 30px;
+  height: 32px;
   background-color: @base-bg;
   margin: 0px 0px 0px 0px;
   children: [ horibox ];
