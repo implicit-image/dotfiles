@@ -1,124 +1,72 @@
-# +TITLE: Config
-# $DOOMDIR/config.el -*- lexical-binding: t; -*-
+#+title: Config
 
-# Place your private configuration here! Remember, you do not need to run 'doom
-# sync' after modifying this file!
-
-* :toc:
-  - [[#name-and-email][Name and email]]
-  - [[#fonts][Fonts]]
-  - [[#themes][Themes]]
+* Table of contents :toc:
+- [[#meta][Meta]]
+- [[#require][Require]]
+- [[#custom-variables][Custom Variables]]
+- [[#local-functions][Local functions]]
+- [[#general-settings][General settings]]
+  - [[#font][Font]]
+  - [[#global-variables][Global variables]]
+  - [[#special-faces][Special faces]]
+- [[#package-config][Package config]]
+  - [[#gdscript-mode][GDscript mode]]
   - [[#org-mode][Org mode]]
-  - [[#general-editor-settings][General editor settings]]
-  - [[#my-packages][My Packages]]
-  - [[#global-keybindings][Global keybindings]]
-  - [[#blog][Blog]]
+  - [[#dashboard][Dashboard]]
+  - [[#highlight-indent-guides][Highlight indent guides]]
+  - [[#dired][Dired]]
+  - [[#lsp-mode][LSP Mode]]
+  - [[#twittering-mode][Twittering mode]]
+  - [[#company][Company]]
+  - [[#haskell][Haskell]]
+  - [[#rust][Rust]]
+  - [[#org-noter][Org noter]]
+  - [[#ivy][Ivy]]
+  - [[#calibredb][Calibredb]]
+- [[#keybindings][Keybindings]]
 
-** Name and email
-# Some functionality uses this to identify you, e.g. GPG configuration, email
-# clients, file templates and snippets.
-#+begin_src elisp
+* Meta
+
+#+begin_src emacs-lisp
+
 (setq user-full-name "Błażej Niewiadomski"
       user-mail-address "blaz.nie@protonmail.com")
 #+end_src
 
-
-
-** Fonts
-# Doom exposes five (optional) variables for controlling fonts in Doom. Here
-# are the three important ones:
-#
-# + `doom-font'
-# + `doom-variable-pitch-font'
-# + `doom-big-font' -- used for `doom-big-font-mode'; use this for
-#   presentations or streaming.
-# They all accept either a font-spec, font string ("Input Mono-12"), or xlfd
-# font string. You generally only need these two:
-#+begin_src elisp
-(setq doom-font (font-spec :family "CaskaydiaCove NFM" :size 28)
-      doom-variable-pitch-font (font-spec :family "sans" :size 24))
-;; Jetbrains Mono
-
-
-
-#+end_src
-
-** Themes
-# There are two ways to load a theme. Both assume the theme is installed and
-# available. You can either set `doom-theme' or manually load a theme with the
-# `load-theme' function. This is the default:
-#+begin_src elisp
+* Require
+#+begin_src emacs-lisp
 (require 'whitespace)
-(load-theme 'gruber-darker t)
-
-
-#+end_src
-
-#+RESULTS:
-
-** Org mode
-# If you use `org' and don't want your org files in the default location below,
-# change `org-directory'. It must be set before org loads!
-#+begin_src elisp
-
-
 (require 'color)
 (require 'org)
+(require 'olivetti)
+#+end_src
 
+* Custom Variables
 
+#+begin_src emacs-lisp
+(defvar my/org-bg-color "#111111" "Color to which change org-block background")
+#+end_src
 
-
-
-
-(after! org
-  (lambda () (org-bullets-mode 1))
-  (visual-line-mode)
-  (whitespace-mode -1)
-  (set-face-attribute 'whitespace-space nil :background nil :foreground "#777777")
-  (set-face-attribute 'org-block nil :background "#181818")
-  (set-face-attribute 'org-block-begin-line nil :background
-                      (color-darken-name
-                       (face-attribute 'default :background) 2))
-  (set-face-attribute 'org-block-end-line nil :background
-                      (color-darken-name
-                       (face-attribute 'default :background) 2))
-  (set-face-attribute 'org-block nil :foreground
-                      (color-lighten-name
-                       (face-attribute 'default :foreground) 2))
-  (map! :desc "Evaluate babel source block" :niv "C-c C-s" #'org-babel-execute-src-block:async)
-  ;; (map! :leader
-  ;;       (:prefix "m"
-  ;;        :desc "Execute current source block" "x" #'org-babel-execute-src-block:async))
-  (map! :leader
-        (:prefix "m"
-         :desc "Render LaTeX blocks" "R" #'org-latex-preview)))
-
-(setq
- org-hide-emphasis-markers 1
- org-directory "~/org/"
- org-hide-macro-markers 1
- org-confirm-babel-evaluate nil
- org-md-headline-style 'setext)
-
+* Local functions
+#+begin_src emacs-lisp
 
 #+end_src
 
-#+RESULTS:
+* General settings
+** Font
+#+begin_src emacs-lisp
 
-** General editor settings
-#+begin_src elisp
+(setq doom-font (font-spec :family "Iosevka" :size 30)
+      doom-variable-pitch-font (font-spec :family "sans" :size 24))
 
-(require 'dashboard)
-(dashboard-setup-startup-hook)
+(load-theme 'gruber-darker t)
 
-(use-package! dashboard
-  :config
-  (setq
-   dashboard-startup-banner 2
-   dashboard-set-file-icons t
-   dashboard-set-heading-icons t
-   dashboard-set-navigator t))
+#+end_src
+** Global variables
 
+#+begin_src emacs-lisp
+;; TODO move that to use-package declarations
+(add-to-list 'org-src-lang-modes (cons "jsx" 'rjsx))
 
 (setq display-line-numbers-type 'relative
       make-backup-files nil
@@ -127,198 +75,218 @@
       doom-modeline-buffer-file-name-style 'buffer-name
       whitespace-style '(face tabs spaces indentation space-mark tab-mark)
       initial-buffer-choice (lambda () (get-buffer-create "*dashboard*"))
-      )
-
-;; (defun org-setup ()
-;;   (interactive)
-;;   (whitespace-mode -1))
+      ;; indent
+      standard-indent 4
+      ;;typescript
+      typescript-indent-level 4
+      ;;web
+      web-mode-code-indent-offset 4
+      web-mode-markup-indent-offset 4
+      ;;C
+      c-basic-offset 4
+      ;;js
+      js2-indent-level 4
+      ;; pdf
+      +latex-viewers '(pdf-tools))
 
 (add-hook! 'prog-mode-hook #'whitespace-mode)
 (add-hook! 'prog-mode-hook #'rainbow-delimiters-mode-enable)
-;; (add-hook! 'org-mode-hook #'org-setup)
-;; (display-time-mode 1)
-;; (display-battery-mode 1)
-;; (mini-modeline-mode)
-;; (setq sml/theme 'dark)
+(add-hook! 'gdscript-mode-hook #'lsp)
+#+end_src
 
+** Special faces
+Sets up faces to fix appearance
 
-
-
+#+begin_src emacs-lisp
+;;TODO: move them to theme
+(progn
+  (set-face-foreground 'font-lock-comment-face "#8b8b83")
+  (set-face-foreground 'font-lock-comment-delimiter-face "#8b8b83")
+  (set-face-foreground 'whitespace-space "#777777")
+  (set-face-attribute 'org-block nil :background my/org-bg-color :foreground (color-lighten-name (face-attribute 'default :foreground) 30))
+  (set-face-attribute 'org-block-begin-line nil
+                      :background (color-darken-name (face-attribute 'default :background) 30))
+  (set-face-attribute 'org-block-end-line nil :background
+                      (color-darken-name
+                       (face-attribute 'default :background) 30)))
 #+end_src
 
 
-** My Packages
-#
-# - `load!' for loading external *.el files relative to this one
-# - `use-package!' for configuring packages
-# - `after!' for running code after a package has loaded
-# - `add-load-path!' for adding directories to the `load-path', relative to
-#   this file. Emacs searches the `load-path' when you load packages with
-#   `require' or `use-package'.
-#    `map!' for binding new keys
-#
-# To get information about any of these functions/macros, move the cursor over
-# the highlighted symbol at press 'K' (non-evil users must press 'C-c c k').
-# This will open documentation for it, including demos of how they are used.
-#
-# You can also try 'gd' (or 'C-c c d') to jump to their definition and see how
-# they are implemented.
-*** dired
-#+begin_src elisp
-(use-package! dired :config (setq dired-omit-mode 0))
+* Package config
+
+** GDscript mode
+
+By default uses godot4
+#+begin_src emacs-lisp
+
+(use-package! gdscript-mode
+  :config (setq gdscript-godot-executable "godot4"))
 #+end_src
-*** lsp-mode
-IDE configuration
-#+begin_src elisp
+
+** Org mode
+#+begin_src emacs-lisp
+
+(use-package! org
+  :config
+  (progn
+    (set-face-attribute 'whitespace-space nil :background my/org-bg-color :foreground "#777777")
+   (setq org-hide-emphasis-markers 1
+         org-directory "~/org/"
+         org-hide-macro-markers 1
+         org-confirm-babel-evaluate nil
+         org-md-headline-style 'setext
+         org-odt-preferred-output-format "doc"
+         org-directory "~/org/")
+   (org-bullets-mode 1)
+   (visual-line-mode 1)
+   (whitespace-mode -1)))
+
+#+end_src
+
+** Dashboard
+
+#+begin_src emacs-lisp
+
+(require 'dashboard)
+(dashboard-setup-startup-hook)
+
+(use-package! dashboard
+  :config
+  (setq dashboard-startup-banner 2
+        dashboard-set-file-icons t
+        dashboard-set-heading-icons t
+        dashboard-set-navigator t
+        dashboard-items '((recents . 5) (agenda . 5))))
+#+end_src
+
+** Highlight indent guides
+Not compatible with whitepsace-mod (looks like shit)
+#+begin_src emacs-lisp :tangle no
+
+(use-package! highlight-indent-guides
+  :config
+  (setq highlight-indent-guides-method 'bitmap
+        highlight-indent-guides-bitmap-function #'highlight-indent-guides--bitmap-line
+        highlight-indent-guides-responsive 'stack
+        highlight-indent-guides-auto-character-face-perc 200))
+#+end_src
+
+** Dired
+#+begin_src emacs-lisp
+
+(use-package! dired
+  :config
+  (setq
+   dired-omit-mode 0
+   dired-auto-revert-buffer t
+   dired-dwim-target t))
+#+end_src
+
+** LSP Mode
+
+#+begin_src emacs-lisp
+
 (require 'lsp-mode)
 (use-package! lsp-mode
-  :config (setq lsp-enable-symbol-highlighting 1
-                lsp-ui-doc-enable 1
-                lsp-lens-enable 1
-                lsp-ui-sideline-enable nil
-                lsp-modeline-code-actions-enable 1
-                lsp-modeline-diagnostics-enable 1
-                lsp-signature-auto-activate 1
-                lsp-signature-render-documentation 1
-                lsp-completion-show-detail 1
-                lsp-completion-show-kind 1
-                ;;pyright
-                lsp-pyright-diagnostic-mode "workspace"))
-
-
-
-
-
-
+:config (setq lsp-enable-symbol-highlighting t
+               lsp-ui-sideline-show-code-actions nil
+               lsp-ui-doc-enable t
+               lsp-ui-peek-enable t
+               lsp-ui-doc-alignment 'frame
+               lsp-ui-doc-include-signature t
+               lsp-ui-doc-delay 0.1
+               lsp-modeline-code-actions-enable t
+               lrp-modeline-diagnostics-enable t
+               lsp-signature-auto-activate t
+               lsp-completion-show-detail t
+               lsp-completion-show-kind t
+               lsp-lens-enable nil
+               ))
 #+end_src
-*** TODO sort rest of config
-#+begin_src elisp
 
-;;org-mode
-(setq org-odt-preffered-output-format "doc")
-(setq org-directory "~/org/")
+** Twittering mode
+Currently not working. I think Elon broke some api.
 
+#+begin_src emacs-lisp
 
-(after! org
-  (+word-wrap-mode 1)
-  (use-package! ox-extra
-    :config
-    (ox-extras-activate '(latex-header-blocks ignore-headlines))))
+(use-package! twittering-mode
+  :config (setq twittering-cert-file "/etc/ssl/certs/ca-bundle.crt"
+                twittering-connection-type-order '(wget curl urllib-http native urllib-https)))
+#+end_src
 
-(after! company
+** Company
+
+#+begin_src emacs-lisp
+
+(use-package! company
+  :config
   (setq company-idle-delay nil
         company-selection-wrap-around t
-        company-show-numbers t))
-
-(after! org
-  (use-package! ox-latex
-    :init
-    :config
-    (setq org-latex-pdf-process
-          '("pdflatex -interaction nonstopmode -output-directory %o %f"
-            "bibtex %b"
-            "pdflatex -interaction nonstopmode -output-directory %o %f"
-            "pdflatex -interaction nonstopmode -output-directory %o %f"))
-    (setq org-latex-with-hyperref nil) ;; stop org adding hypersetup{author..} to latex export
-    (setq org-latex-prefer-user-labels t)
-
-    (setq org-latex-logfiles-extensions
-          (quote ("lof" "lot" "tex~" "aux" "idx" "log" "out" "toc" "nav" "snm" "vrb" "dvi" "fdb_latexmk" "blg" "brf" "fls" "entoc" "ps" "spl" "bbl" "xmpi" "run.xml" "bcf" "acn" "acr" "alg" "glg" "gls" "ist")))
-
-    (unless (boundp 'org-latex-classes)
-      (setq org-latex-classes nil))))
-
-(add-to-list 'auto-mode-alist '("\\.epub\\'" . nov-mode))
-(add-to-list 'auto-mode-alist '("\\.rasi\\'" . css-mode))
-(add-to-list 'auto-mode-alist '("\\.nss\\'" . c-mode))
-
-
+        company-show-quick-access t
+        company-tng-mode t
+        ))
 #+end_src
-*** haskell
-#+begin_src elisp
+
+** Haskell
+
+#+begin_src emacs-lisp
+
+(use-package! lsp-haskell
+ :hook haskell-mode-hook)
 
 (use-package! haskell-mode
   :config (setq haskell-doc-use-inf-haskell 1
                 haskell-interactive-popup-errors nil))
 #+end_src
-*** rust
-#+begin_src elisp
-(after! rustic
-  (setq rustic-lsp-server 'rust-analyzer))
 
-#+end_src
-*** typescript
-#+begin_src elisp
-(setq typescript-indent-level 2
-      web-mode-code-indent-offset 2
-      web-mode-markup-indent-offset 2
-      standard-indent 2)
-#+end_src
-*** C
-#+begin_src elisp
-(setq c-basic-offset 2)
+** Rust
 
+#+begin_src emacs-lisp
+
+(use-package! rustic
+  :config (setq rustic-lsp-server 'rust-analyzer
+                rustic-lsp-client 'lsp-mode ))
 #+end_src
-*** calibredb
-#+begin_src elisp
+
+** Org noter
+#+begin_src emacs-lisp
+
+(use-package! org-noter
+  :config (setq org-noter-notes-window-location 'horizontal-split
+                org-noter-always-create-frame nil
+                org-noter-notes-search-path '("~/org/booknotes/")
+                org-noter-default-heading-title "PAGE $p$"))
+#+end_src
+
+** Ivy
+
+#+begin_src emacs-lisp
+
+(use-package! ivy
+  :config (setq ivy-height 10))
+#+end_src
+
+** Calibredb
+
+#+begin_src emacs-lisp
+
 (setq calibredb-root-dir "~/Library"
       calibredb-db-dir (expand-file-name "metadata.db" calibredb-root-dir)
       calibredb-library-alist '(("~/Library")))
 #+end_src
-*** js2-mode
-#+begin_src elisp
-(setq js2-indent-level 2)
-#+end_src
-*** pdfview
-#+begin_src elisp
-(setq +latex-viewers '(pdf-tools))
-#+end_src
 
-** Global keybindings
-#+begin_src elisp
-(map! :leader
-     (:prefix ("a" . "applications")
-       :desc "Open calibredb" "c" #'calibredb))
+
+
+* Keybindings
+
+#+begin_src emacs-lisp
 
 (map! :leader
-     (:prefix ("t" . "toggle")
-       :desc "Visual line mode" "v" #'visual-line-mode))
-
-(map! :leader
-     (:prefix ("t" . "toggle")
+      (:prefix ("a" . "applications")
+       (:desc "Open calibredb" "c" #'calibredb
+        :desc "Counsel Web Colors" "C" #'counsel-colors-web))
+      (:prefix ("t" . "toggle")
+       :desc "Visual line mode" "v" #'visual-line-mode)
+      (:prefix ("t" . "toggle")
        :desc "Modeline" "M" #'global-hide-mode-line-mode))
-
-#+end_src
-** Blog
-
-
-
-#+begin_src elisp :tangle no
-(require 'ox-publish)
-(setq org-publish-project-alist
-      `(("pages"
-         :base-directory "~/org/blog/"
-         :base-extension "org"
-         :recursive t
-         :publishing-directory "~/programming/implicit-image.github.io/blog/html/"
-         :publishing-function org-html-publish-to-html
-         :html-doctype "html5"
-         :html-html5-fancy t
-         :html-head-include-scripts nil
-         :html-head-include-default-style nilo
-         :html-head "<link rel=\"stylesheet\" href=\"style.css\" type=\"text/css\"/>"
-         :auto-sitemap t
-         :sitemap-filename sitemap.org)
-
-        ("static"
-         :base-directory "~/org/blog/"
-         :base-extension "css\\|txt\\|jpg\\|gif\\|png"
-         :recursive t
-         :publishing-directory  "~/programming/implicit-image.github.io/blog/html/"
-         :publishing-function org-publish-attachment)
-
-        ("implicit-image.github.io" :components ("pages" "static"))))
-
-
-
 #+end_src

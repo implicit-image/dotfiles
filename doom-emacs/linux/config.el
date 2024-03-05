@@ -1,5 +1,3 @@
-;; (load "./local.el")
-
 
 (setq user-full-name "Błażej Niewiadomski"
       user-mail-address "blaz.nie@protonmail.com")
@@ -8,8 +6,6 @@
       doom-variable-pitch-font (font-spec :family "sans" :size 24))
 
 (load-theme 'gruber-darker t)
-;; (load-theme 'doom-sourcerer)
-;;(load-theme ')
 
 (require 'whitespace)
 (require 'color)
@@ -20,6 +16,9 @@
 (set-face-foreground 'font-lock-comment-delimiter-face "#8b8b83")
 (set-face-attribute 'whitespace-space nil :background nil :foreground "#777777")
 
+
+(use-package! gdscript-mode
+  :config (setq gdscript-godot-executable "godot4"))
 
 (use-package! ox-extra
   :config
@@ -51,31 +50,23 @@
 
 
 (after! org
-   (map! :leader
+   (map!
+        :map org-mode-map
+        :leader
          :prefix "m"
          :desc "Render LaTeX blocks" "R" #'org-latex-preview)
      (org-bullets-mode 1)
      (visual-line-mode 1)
      (whitespace-mode -1)
      ;;fix the look of babel blocks
-     ;; (set-face-attribute 'whitespace-space nil :background nil :foreground "#777777")
+     (set-face-attribute 'whitespace-space nil :background nil :foreground "#777777")
      (set-face-attribute 'org-block nil :background "#181818")
-     (set-face-attribute 'org-block-begin-line nil :background
-                         (color-darken-name
-                          (face-attribute 'default :background) 2))
+     (set-face-attribute 'org-block-begin-line nil
+                        :background (color-darken-name (face-attribute 'default :background) 30))
      (set-face-attribute 'org-block-end-line nil :background
-                         (color-darken-name
-                          (face-attribute 'default :background) 2))
-     (set-face-attribute 'org-block nil :foreground
-                         (color-lighten-name
-                          (face-attribute 'default :foreground)
-                          2)))
+                        (color-darken-name
+                         (face-attribute 'default :background) 30)))
 
-
-(use-package org-tidy
-  :ensure t
-  :hook
-  (org-mode . org-tidy-mode))
 
 (require 'dashboard)
 (dashboard-setup-startup-hook)
@@ -107,6 +98,7 @@
 
 (add-hook! 'prog-mode-hook #'whitespace-mode)
 (add-hook! 'prog-mode-hook #'rainbow-delimiters-mode-enable)
+(add-hook! 'gdscript-mode-hook #'lsp)
 
 (use-package! dired
   :config
@@ -117,21 +109,22 @@
 
 (require 'lsp-mode)
 (use-package! lsp-mode
-  :config (setq lsp-enable-symbol-highlighting t
-                lsp-ui-sideline-show-code-actions nil
-                lsp-ui-doc-enable t
-                lsp-ui-peek-enable t
-                lsp-ui-doc-alignment 'frame
-                lsp-ui-doc-delay 0.1
-                lsp-modeline-code-actions-enable t
-                lrp-modeline-diagnostics-enable t
-                lsp-signature-auto-activate t
-                lsp-signature-render-documentation t
-                lsp-completion-show-detail t
-                lsp-completion-show-kind t
-                ;;pyright
-                lsp-pyright-diagnostic-mode "workspace"))
+:config (setq lsp-enable-symbol-highlighting t
+               lsp-ui-sideline-show-code-actions nil
+               lsp-ui-doc-enable t
+               lsp-ui-peek-enable t
+               lsp-ui-doc-alignment 'frame
+               lsp-ui-doc-include-signature t
+               lsp-ui-doc-delay 0.1
+               lsp-modeline-code-actions-enable t
+               lrp-modeline-diagnostics-enable t
+               lsp-signature-auto-activate t
+               lsp-completion-show-detail t
+               lsp-completion-show-kind t
+               lsp-lens-enable nil
+               ))
   ;; bind lsp-ui-doc-show or ls)
+
 
 ;;org-mode
 (setq org-odt-preffered-output-format "doc")
@@ -159,12 +152,11 @@
 (add-to-list 'auto-mode-alist '("\\.nss\\'" . c-mode))
 
 (use-package! lsp-haskell
-  :hook haskell-mode-hook)
+ :hook haskell-mode-hook)
 
 (use-package! haskell-mode
   :config (setq haskell-doc-use-inf-haskell 1
-                haskell-interactive-popup-errors nil)
-  )
+                haskell-interactive-popup-errors nil))
 
 
 (use-package! rustic
@@ -179,6 +171,11 @@
 
 (use-package! ivy
   :config (setq ivy-height 10))
+
+
+
+;; (use-package! lsp-tailwindcss
+;;   :config (setq! lsp-tailwindcss-add-on-mode t))
 
 ;; editor config
 (setq standard-indent 4
@@ -201,15 +198,34 @@
 (setq +latex-viewers '(pdf-tools))
 
 ;; KEYBINDINGS
+;;      EXAMPLES
+;;      (map! :map magit-mode-map
+;;            :m  "C-r" 'do-something           ; C-r in motion state
+;;            :nv "q" 'magit-mode-quit-window   ; q in normal+visual states
+;;            "C-x C-r" 'a-global-keybind
+;;            :g "C-x C-r" 'another-global-keybind  ; same as above
+
+;;            (:when (featurep :system 'macos)
+;;              :n "M-s" 'some-fn
+;;              :i "M-o" (cmd! (message "Hi"))))
+
+;;      (map! (:when (modulep! :completion company) ; Conditional loading
+;;              :i "C-@" #'+company/complete
+;;              (:prefix "C-x"                       ; Use a prefix key
+;;                :i "C-l" #'+company/whole-lines)))
+
+;;      (map! (:when (modulep! :lang latex)    ; local conditional
+;;              (:map LaTeX-mode-map
+;;                :localleader                  ; Use local leader
+;;                :desc "View" "v" #'TeX-view)) ; Add which-key description
+;;            :leader                           ; Use leader key from now on
+;;            :desc "Eval expression" ";" #'eval-expression)
 
 (map! :leader
       (:prefix ("a" . "applications")
-       :desc "Open calibredb" "c" #'calibredb))
-
-(map! :leader
-     (:prefix ("t" . "toggle")
-      :desc "Visual line mode" "v" #'visual-line-mode))
-
-(map! :leader
-     (:prefix ("t" . "toggle")
-      :desc "Modeline" "M" #'global-hide-mode-line-mode))
+       (:desc "Open calibredb" "c" #'calibredb
+        :desc "Counsel Web Colors" "C" #'counsel-colors-web))
+      (:prefix ("t" . "toggle")
+       :desc "Visual line mode" "v" #'visual-line-mode)
+      (:prefix ("t" . "toggle")
+       :desc "Modeline" "M" #'global-hide-mode-line-mode))

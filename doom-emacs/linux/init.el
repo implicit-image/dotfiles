@@ -24,7 +24,7 @@
        company           ; the ultimate code completion backend
        ;; (helm +fuzzy)              ; the *other* search engine for love and life
        ;; ido               ; the other *other* search engine...
-       ivy                ; a search engine for love and life
+       (ivy +icons)                ; a search engine for love and life
 
        :ui
        deft              ; notational velocity for Emacs
@@ -40,11 +40,11 @@
        ;; minimap           ; show a map of the code on the side
        (modeline)          ; snazzy, Atom-inspired modeline, plus API
        ;;nav-flash         ; blink cursor line after big motions
-       neotree           ; a project drawer, like NERDTree for vim
+       ;; neotree           ; a project drawer, like NERDTree for vim
        ophints           ; highlight the region an operation acts on
        (popup +defaults +all)   ; tame sudden yet inevitable temporary windows
        ;;tabs              ; a tab bar for Emacs
-       ;;(treemacs +lsp)          ; a project drawer, like neotree but cooler
+       (treemacs +lsp)          ; a project drawer, like neotree but cooler
        unicode           ; extended unicode support for various languages
        vc-gutter         ; vcs diff in the fringe
        vi-tilde-fringe   ; fringe tildes to mark beyond EOB
@@ -82,7 +82,7 @@
 
        :checkers
        syntax              ; tasing you for every semicolon you forget
-       (spell +flyspell) ; tasing you for misspelling mispelling
+       (spell +hunspell) ; tasing you for misspelling mispelling
        ;;grammar           ; tasing grammar mistake every you make
 
        :tools
@@ -138,7 +138,7 @@
        idris             ; a language you can depend on
        (json +lsp)              ; At least it ain't XML
        (java +lsp +tree-sitter) ; the poster child for carpal tunnel syndrome
-       javascript         ; all(hope(abandon(ye(who(enter(here))))))
+       (javascript +lsp +tree-sitter)        ; all(hope(abandon(ye(who(enter(here))))))
        (julia +lsp)             ; a better, faster MATLAB
        ;;kotlin            ; a better, slicker Java(Script)
        (latex +latexmk +cdlatex +lsp +fold) ; writing papers in Emacs has never been so fun
@@ -162,7 +162,7 @@
        (ruby +rails +lsp)     ; 1.step {|i| p "Ruby is #{i.even? ? 'love' : 'life'}"}
        (rust +lsp +tree-sitter)              ; Fe2O3.unwrap().unwrap().unwrap().unwrap()
        (scala +lsp)            ; java, but good
-       (scheme +mit +guile +racket)   ; a fully conniving family of lisps
+       ;;(scheme +mit +guile +racket)   ; a fully conniving family of lisps
        sh                ; she sells {ba,z,fi}sh shells on the C xor
        ;;sml
        solidity          ; do you need a blockchain? No.
@@ -173,7 +173,7 @@
        (zig +lsp)               ; C, but simpler
 
        :email
-       ;; (mu4e +gmail)
+       (mu4e +gmail)
        (notmuch +afew +org)
        ;;(wanderlust +gmail)
 
@@ -186,5 +186,5 @@
        ;;twitter           ; twitter client https://twitter.com/vnought
 
        :config
-       ;; literate
+       literate
        (default +bindings +smartparens))
