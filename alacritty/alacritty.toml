@@ -39,7 +39,7 @@ size = 10
 
 [font.bold]
 family = "Iosevka"
-style = "Bold"
+style = "Bold Monospace"
 
 [font.glyph_offset]
 x = 0
@@ -47,7 +47,7 @@ y = 0
 
 [font.italic]
 family = "Iosevka"
-style = "Italic"
+style = "Italic Monospace"
 
 [font.normal]
 family = "Iosevka"
