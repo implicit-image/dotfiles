@@ -56,4 +56,3 @@ set $BAR.INACTIVE.BORDER  #181818
 set $BAR.INACTIVE.BG      #181818
 set $BAR.INACTIVE.TEXT    #f1f1f1
 set $BAR.BG               #181818
-
