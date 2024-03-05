@@ -15,7 +15,7 @@ export ZSH="/home/b/.oh-my-zsh"
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-ZSH_THEME="robbyrussell" 
+ZSH_THEME="gallois" 
 
 
 # Set list of themes to pick from when loading at random
@@ -126,6 +126,7 @@ cmd() {
   $1 ${@:2} 
 }
 
+
 #alias mx="mullvad-exclude"
 mx() { cmd mullvad-exclude $@ }
 
@@ -159,7 +160,7 @@ DOTNET_CLI_TELEMETRY_OPTOUT=1.
 #!/bin/bash
 
 [ -f "/home/b/.ghcup/env" ] && source "/home/b/.ghcup/env" # ghcup-env
-
+. /opt/asdf-vm/asdf.sh
 
 export PATH="$HOME/.config/rofi/bin:$PATH"
 # export PATH="$HOME/Projects/scripts/shell:$PATH"
@@ -174,3 +175,4 @@ export PATH="$HOME/.dotnet:$PATH"
 export PATH="/opt/lampp/bin:$PATH"
 export PATH="/opt/anaconda/bin:$PATH"
 export PATH="/home/b/Games/modding/infinityengine/gemrb:$PATH"
+
