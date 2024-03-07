@@ -11,6 +11,7 @@
   - [[#special-faces][Special faces]]
 - [[#package-config][Package config]]
   - [[#gdscript-mode][GDscript mode]]
+  - [[#programming-mode-general][Programming Mode (General)]]
   - [[#org-mode][Org mode]]
   - [[#dashboard][Dashboard]]
   - [[#highlight-indent-guides][Highlight indent guides]]
@@ -92,6 +93,7 @@
 (add-hook! 'prog-mode-hook #'whitespace-mode)
 (add-hook! 'prog-mode-hook #'rainbow-delimiters-mode-enable)
 (add-hook! 'gdscript-mode-hook #'lsp)
+(add-hook! 'gdscript-mode-hook (set-face-attribute 'whitespace-space nil :background (face-attribute 'default :background)  :foreground "#777777"))
 #+end_src
 
 ** Special faces
@@ -123,6 +125,16 @@ By default uses godot4
   :config (setq gdscript-godot-executable "godot4"))
 #+end_src
 
+
+** Programming Mode (General)
+
+#+begin_src emacs-lisp
+
+(use-package! prog-mode
+  :init  (set-face-attribute 'whitespace-space nil :background (face-attribute 'default :background)  :foreground "#777777")
+  )
+
+#+end_src
 ** Org mode
 #+begin_src emacs-lisp
 
