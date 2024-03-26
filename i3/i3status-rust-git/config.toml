@@ -22,9 +22,9 @@ info_bg = "#151515"
 info_fg = "#ffdd33"
 warning_bg = "#181818"
 warning_fg = "#aa1111"
-separator = " | "
-separator_bg = "#181818"
-separator_fg = "#f1f1f1"
+#separator = " | "
+#separator_bg = "#181818"
+#separator_fg = "#f1f1f1"
 [icons]
 icons = "material-nf"
 [icons.overrides]
@@ -58,8 +58,8 @@ block = "disk_space"
 path = "/media/storage"
 info_type = "available"
 interval = 20
-warning = 20.0
-alert = 10.0
+warning = 10
+alert = 5
 format = " $icon $path $available.eng(w:2) "
 
 [[block]]
