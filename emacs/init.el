@@ -40,8 +40,7 @@
   :ensure t)
 
 
-(setq 
-      inhibit-startup-screen t
+(setq inhibit-startup-screen t
       visible-bell nil
       display-line-numbers-type 'relative
       create-lockfiles nil
@@ -205,7 +204,7 @@
 (add-hook 'rjsx-mode-hook #'lsp)
 (add-hook 'rjsx-mode-hook #'setup-react-mode)
 
-(require 'org)
+(require 'org-mode)
 
 (use-package org-mode
   :config (setq org-startup-truncated nil))
