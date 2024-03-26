@@ -24,7 +24,7 @@
        company           ; the ultimate code completion backend
        ;; (helm +fuzzy)              ; the *other* search engine for love and life
        ;; ido               ; the other *other* search engine...
-       (ivy +icons)                ; a search engine for love and life
+       (ivy +icons +childframe)                ; a search engine for love and life
 
        :ui
        deft              ; notational velocity for Emacs
@@ -94,7 +94,7 @@
        ein               ; tame Jupyter notebooks with emacs
        (eval +overlay)     ; run code, run (also, repls)
        ;;gist              ; interacting with github gists
-       (lookup +dictionary +offline)              ; navigate your code and its documentation
+       (lookup +dictionary +offline +docsets)              ; navigate your code and its documentation
        (lsp +peek)
        magit             ; a git porcelain for Emacs
        make              ; run make tasks from Emacs
@@ -129,9 +129,9 @@
        (ess +stan +tree-sitter)               ; emacs speaks statistics
        ;;factor
        ;;faust             ; dsp, but you get to keep your soul
-       fsharp            ; ML stands for Microsoft's Language
+       (fsharp +lsp)            ; ML stands for Microsoft's Language
        fstar             ; (dependent) types and (monadic) effects and Z3
-       gdscript          ; the language you waited for
+       (gdscript +lsp)          ; the language you waited for
        (go +lsp)         ; the hipster dialect
        (haskell +lsp)  ; a language that's lazier than I am
        ;;hy                ; readability of scheme w/ speed of python
@@ -162,7 +162,7 @@
        (ruby +rails +lsp)     ; 1.step {|i| p "Ruby is #{i.even? ? 'love' : 'life'}"}
        (rust +lsp +tree-sitter)              ; Fe2O3.unwrap().unwrap().unwrap().unwrap()
        (scala +lsp)            ; java, but good
-       ;;(scheme +mit +guile +racket)   ; a fully conniving family of lisps
+       (scheme +mit)   ; a fully conniving family of lisps
        sh                ; she sells {ba,z,fi}sh shells on the C xor
        ;;sml
        solidity          ; do you need a blockchain? No.

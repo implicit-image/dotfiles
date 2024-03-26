@@ -7,12 +7,17 @@
 - [[#local-functions][Local functions]]
 - [[#general-settings][General settings]]
   - [[#font][Font]]
+  - [[#theme][Theme]]
+  - [[#additional-faces][Additional faces]]
   - [[#global-variables][Global variables]]
-  - [[#special-faces][Special faces]]
 - [[#package-config][Package config]]
+  - [[#calendar-sync][Calendar sync]]
+  - [[#centaurs-tabs][Centaurs tabs]]
+  - [[#image-mode][Image mode]]
   - [[#gdscript-mode][GDscript mode]]
   - [[#programming-mode-general][Programming Mode (General)]]
   - [[#org-mode][Org mode]]
+  - [[#treemacs][Treemacs]]
   - [[#dashboard][Dashboard]]
   - [[#highlight-indent-guides][Highlight indent guides]]
   - [[#dired][Dired]]
@@ -24,7 +29,8 @@
   - [[#org-noter][Org noter]]
   - [[#ivy][Ivy]]
   - [[#calibredb][Calibredb]]
-- [[#keybindings][Keybindings]]
+- [[#blog][Blog]]
+- [[#global-keybindings][Global Keybindings]]
 
 * Meta
 
@@ -39,36 +45,64 @@
 (require 'whitespace)
 (require 'color)
 (require 'org)
-(require 'olivetti)
 #+end_src
 
 * Custom Variables
 
 #+begin_src emacs-lisp
-(defvar my/org-bg-color "#111111" "Color to which change org-block background")
 #+end_src
 
 * Local functions
-#+begin_src emacs-lisp
+#+begin_src emacs-lisp :tangle no
+
+
+(defun lc/company-quickhelp-toggle ()
+  "Toggle company quickhelp "
+  (interactive)
+  (cond (company)))
+
 
 #+end_src
 
 * General settings
 ** Font
 #+begin_src emacs-lisp
-
 (setq doom-font (font-spec :family "Iosevka" :size 30)
       doom-variable-pitch-font (font-spec :family "sans" :size 24))
 
-(load-theme 'gruber-darker t)
 
 #+end_src
+
+** Theme
+This is a hacky way to get desirable effects (like a frame around ivy frame) until i figure out how to do that in doom-gruber-darker theme file
+#+begin_src emacs-lisp
+(progn
+  (load-theme 'gruber-darker t)
+  (load-theme 'doom-gruber-darker t))
+
+#+end_src
+
+** Additional faces
+
+#+begin_src emacs-lisp
+
+;; (set-face-attribute 'org-block-begin-line nil :background "#101010")
+;; (set-face-attribute 'org-block-end-line nil :background "#101010")
+;; (set-face-attribute 'org-block nil :background "#141414")
+
+#+end_src
+
 ** Global variables
 
 #+begin_src emacs-lisp
-;; TODO move that to use-package declarations
+;; TODO: move that to use-package declarations
 (add-to-list 'org-src-lang-modes (cons "jsx" 'rjsx))
-
+(require 'recentf)
+(add-to-list 'recentf-exclude "\\/home/b/.priv/\\'")
+(add-to-list 'recentf-exclude "\\/home/b/.priv/pictures/\\")
+(add-to-list 'recentf-exclude "\\/home/b/Pictures/p/\\")
+(add-to-list 'recentf-exclude "\\~/.priv/pictures/\\")
+(add-to-list 'recentf-exclude "\\~/.priv/pictures/\\")
 (setq display-line-numbers-type 'relative
       make-backup-files nil
       evil-want-fine-undo t
@@ -88,33 +122,48 @@
       ;;js
       js2-indent-level 4
       ;; pdf
-      +latex-viewers '(pdf-tools))
+      +latex-viewers '(pdf-tools)
+      ;; file size limit
+      large-file-warning-threshold 20000000)
 
-(add-hook! 'prog-mode-hook #'whitespace-mode)
-(add-hook! 'prog-mode-hook #'rainbow-delimiters-mode-enable)
 (add-hook! 'gdscript-mode-hook #'lsp)
-(add-hook! 'gdscript-mode-hook (set-face-attribute 'whitespace-space nil :background (face-attribute 'default :background)  :foreground "#777777"))
-#+end_src
-
-** Special faces
-Sets up faces to fix appearance
-
-#+begin_src emacs-lisp
-;;TODO: move them to theme
-(progn
-  (set-face-foreground 'font-lock-comment-face "#8b8b83")
-  (set-face-foreground 'font-lock-comment-delimiter-face "#8b8b83")
-  (set-face-foreground 'whitespace-space "#777777")
-  (set-face-attribute 'org-block nil :background my/org-bg-color :foreground (color-lighten-name (face-attribute 'default :foreground) 30))
-  (set-face-attribute 'org-block-begin-line nil
-                      :background (color-darken-name (face-attribute 'default :background) 30))
-  (set-face-attribute 'org-block-end-line nil :background
-                      (color-darken-name
-                       (face-attribute 'default :background) 30)))
 #+end_src
 
 
 * Package config
+
+** Calendar sync
+
+#+begin_src emacs-lisp
+
+
+#+end_src
+
+** Centaurs tabs
+
+#+begin_src emacs-lisp :results none
+(use-package! centaur-tabs
+  :config
+  (setq centaur-tabs-style 'box)
+  :bind (:map evil-normal-state-map
+         ("C-<tab>" . #'centaur-tabs-forward)
+         ("C-<iso-lefttab>" . #'centaur-tabs-backward)
+         :map evil-insert-state-map
+         ("C-<tab>" . #'centaur-tabs-forward)
+         ("C-<iso-lefttab>" . #'centaur-tabs-backward)))
+
+
+#+end_src
+
+
+
+** Image mode
+
+#+begin_src emacs-lisp
+(use-package! image-mode
+    :config (setq image-auto-resize 'fit-window))
+
+#+end_src
 
 ** GDscript mode
 
@@ -123,35 +172,173 @@ By default uses godot4
 
 (use-package! gdscript-mode
   :config (setq gdscript-godot-executable "godot4"))
+
 #+end_src
+
+#+RESULTS:
+: t
 
 
 ** Programming Mode (General)
 
 #+begin_src emacs-lisp
 
-(use-package! prog-mode
-  :init  (set-face-attribute 'whitespace-space nil :background (face-attribute 'default :background)  :foreground "#777777")
-  )
+(add-hook! 'prog-mode-hook #'rainbow-delimiters-mode-enable)
+(add-hook! 'prog-mode-hook #'whitespace-mode)
+
 
 #+end_src
+
 ** Org mode
 #+begin_src emacs-lisp
 
+(defun my/setup-org ()
+  "Setup org mode"
+  (set-face-background 'whitespace-space my/org-bg-color))
+
+
 (use-package! org
   :config
-  (progn
-    (set-face-attribute 'whitespace-space nil :background my/org-bg-color :foreground "#777777")
-   (setq org-hide-emphasis-markers 1
-         org-directory "~/org/"
-         org-hide-macro-markers 1
-         org-confirm-babel-evaluate nil
-         org-md-headline-style 'setext
-         org-odt-preferred-output-format "doc"
-         org-directory "~/org/")
-   (org-bullets-mode 1)
-   (visual-line-mode 1)
-   (whitespace-mode -1)))
+  (setq org-hide-emphasis-markers 1
+        org-directory "~/org/"
+        org-hide-macro-markers 1
+        org-confirm-babel-evaluate nil
+        org-md-headline-style 'setext
+        org-odt-preferred-output-format "doc"
+        org-agenda-breadcrumbs-separator ">"
+        ;; agenda
+        org-agenda-start-with-log-mode t
+        org-log-done 'time
+        org-log-into-drawer t
+        org-agenda-files '("~/org/agenda/agenda.org"
+                           "~/org/agenda/birthdays.org"
+                           "~/org/agenda/habits.org"))
+  (require 'org-habit)
+  (add-to-list 'org-modules 'org-habit)
+  (setq org-habit-graph-column 60)
+
+  (setq org-todo-keywords
+        '((sequence "TODO(t)" "NEXT(n)" "|" "DONE(d!)")
+          (sequence "BACKLOG(b)" "PLAN(p)" "READY(r)" "ACTIVE(a)" "REVIEW(v)" "WAIT(w@/!)" "HOLD(h)" "|" "COMPLETED(c)" "CANC(k@)")))
+
+  (setq org-refile-targets
+        '(("archive.org" :maxlevel . 1)
+         ("tasks.org" :maxlevel . 1)))
+
+  (advice-add 'org-refile :after 'org-save-all-org-buffers)
+
+  (setq org-tag-alist
+        '((:startgroup)
+        ; Put mutually exclusive tags here
+          (:endgroup)
+          ("@errand" . ?E)
+          ("@home" . ?H)
+          ("@work" . ?W)
+          ("agenda" . ?a)
+          ("planning" . ?p)
+          ("publish" . ?P)
+          ("batch" . ?b)
+          ("note" . ?n)
+          ("idea" . ?i)))
+  ;; Configure custom agenda views
+  (setq org-agenda-custom-commands
+        '(("d" "Dashboard"
+           ((agenda "" ((org-deadline-warning-days 7)))
+            (todo "NEXT"
+                  ((org-agenda-overriding-header "Next Tasks")))
+            (tags-todo "agenda/ACTIVE" ((org-agenda-overriding-header "Active Projects")))))
+
+          ("n" "Next Tasks"
+           ((todo "NEXT"
+                  ((org-agenda-overriding-header "Next Tasks")))))
+
+          ("W" "Work Tasks" tags-todo "+work-email")
+
+          ;; Low-effort next actions
+          ("e" tags-todo "+TODO=\"NEXT\"+Effort<15&+Effort>0"
+           ((org-agenda-overriding-header "Low Effort Tasks")
+            (org-agenda-max-todos 20)
+            (org-agenda-files org-agenda-files)))
+
+          ("w" "Workflow Status"
+           ((todo "WAIT"
+                  ((org-agenda-overriding-header "Waiting on External")
+                   (org-agenda-files org-agenda-files)))
+            (todo "REVIEW"
+                  ((org-agenda-overriding-header "In Review")
+                   (org-agenda-files org-agenda-files)))
+            (todo "PLAN"
+                  ((org-agenda-overriding-header "In Planning")
+                   (org-agenda-todo-list-sublevels nil)
+                   (org-agenda-files org-agenda-files)))
+            (todo "BACKLOG"
+                  ((org-agenda-overriding-header "Project Backlog")
+                   (org-agenda-todo-list-sublevels nil)
+                   (org-agenda-files org-agenda-files)))
+            (todo "READY"
+                  ((org-agenda-overriding-header "Ready for Work")
+                   (org-agenda-files org-agenda-files)))
+            (todo "ACTIVE"
+                  ((org-agenda-overriding-header "Active Projects")
+                   (org-agenda-files org-agenda-files)))
+            (todo "COMPLETED"
+                  ((org-agenda-overriding-header "Completed Projects")
+                   (org-agenda-files org-agenda-files)))
+            (todo "CANC"
+                  ((org-agenda-overriding-header "Cancelled Projects")
+                   (org-agenda-files org-agenda-files)))))))
+
+  (setq org-capture-templates
+        `(("t" "Tasks / Projects")
+          ("tt" "Task" entry (file+olp "~/org/tasks.org" "Inbox")
+           "* TODO %?\n  %U\n  %a\n  %i" :empty-lines 1)
+
+          ("j" "Journal Entries")
+          ("jj" "Journal" entry
+           (file+olp+datetree "~/org/ournal.org")
+           "\n* %<%I:%M %p> - Journal :journal:\n\n%?\n\n"
+           ;; ,(dw/read-file-as-string "~/Notes/Templates/Daily.org")
+           :clock-in :clock-resume
+           :empty-lines 1)
+          ("jm" "Meeting" entry
+           (file+olp+datetree "~/org/ournal.org")
+           "* %<%I:%M %p> - %a :meetings:\n\n%?\n\n"
+           :clock-in :clock-resume
+           :empty-lines 1)
+
+          ("w" "Workflows")
+          ("we" "Checking Email" entry (file+olp+datetree "~/org/ournal.org")
+           "* Checking Email :email:\n\n%?" :clock-in :clock-resume :empty-lines 1)
+
+          ("m" "Metrics Capture")
+          ("mw" "Weight" table-line (file+headline "~/org/metrics.org" "Weight")
+           "| %U | %^{Weight} | %^{Notes} |" :kill-buffer t)))
+
+  :init (progn (org-bullets-mode 1)
+               (visual-line-mode 1)
+               (whitespace-mode -1)))
+
+(defun org-babel-edit-prep:C (babel-info)
+  "Setup for lsp mode in org src edit buffers."
+  (setq-local default-directory (->> babel-info caddr (alist-get :dir)))
+  (setq-local buffer-file-name (->> babel-info caddr (alist-get :tangle)))
+  (lsp))
+
+
+#+end_src
+
+#+RESULTS:
+: org-babel-edit-prep:C
+
+** Treemacs
+
+#+begin_src emacs-lisp
+
+(use-package! treemacs
+  :commands (treemacs-indent-guide-mode)
+  :config (setq treemacs-indent-guide-style 'line
+                treemacs-project-follow-mode t)
+  :init (treemacs-indent-guide-mode 1))
 
 #+end_src
 
@@ -163,12 +350,11 @@ By default uses godot4
 (dashboard-setup-startup-hook)
 
 (use-package! dashboard
-  :config
-  (setq dashboard-startup-banner 2
-        dashboard-set-file-icons t
-        dashboard-set-heading-icons t
-        dashboard-set-navigator t
-        dashboard-items '((recents . 5) (agenda . 5))))
+  :config (setq dashboard-startup-banner 2
+                dashboard-set-file-icons t
+                dashboard-set-heading-icons t
+                dashboard-set-navigator t
+                dashboard-items '((recents . 5) (agenda . 5))))
 #+end_src
 
 ** Highlight indent guides
@@ -176,22 +362,19 @@ Not compatible with whitepsace-mod (looks like shit)
 #+begin_src emacs-lisp :tangle no
 
 (use-package! highlight-indent-guides
-  :config
-  (setq highlight-indent-guides-method 'bitmap
-        highlight-indent-guides-bitmap-function #'highlight-indent-guides--bitmap-line
-        highlight-indent-guides-responsive 'stack
-        highlight-indent-guides-auto-character-face-perc 200))
+  :config (setq highlight-indent-guides-method 'bitmap
+                highlight-indent-guides-bitmap-function #'highlight-indent-guides--bitmap-line
+                highlight-indent-guides-responsive 'stack
+                highlight-indent-guides-auto-character-face-perc 200))
 #+end_src
 
 ** Dired
 #+begin_src emacs-lisp
 
 (use-package! dired
-  :config
-  (setq
-   dired-omit-mode 0
-   dired-auto-revert-buffer t
-   dired-dwim-target t))
+  :config (setq dired-omit-mode 0
+                dired-auto-revert-buffer t
+                dired-dwim-target t))
 #+end_src
 
 ** LSP Mode
@@ -200,21 +383,23 @@ Not compatible with whitepsace-mod (looks like shit)
 
 (require 'lsp-mode)
 (use-package! lsp-mode
-:config (setq lsp-enable-symbol-highlighting t
-               lsp-ui-sideline-show-code-actions nil
-               lsp-ui-doc-enable t
-               lsp-ui-peek-enable t
-               lsp-ui-doc-alignment 'frame
-               lsp-ui-doc-include-signature t
-               lsp-ui-doc-delay 0.1
-               lsp-modeline-code-actions-enable t
-               lrp-modeline-diagnostics-enable t
-               lsp-signature-auto-activate t
-               lsp-completion-show-detail t
-               lsp-completion-show-kind t
-               lsp-lens-enable nil
-               ))
+  :config (setq lsp-enable-symbol-highlighting t
+                lsp-ui-sideline-show-code-actions nil
+                lsp-ui-doc-enable t
+                lsp-ui-peek-enable t
+                lsp-ui-doc-alignment 'frame
+                lsp-ui-doc-include-signature t
+                lsp-ui-doc-delay 0.1
+                lsp-modeline-code-actions-enable t
+                lrp-modeline-diagnostics-enable t
+                lsp-signature-auto-activate t
+                lsp-completion-show-detail t
+                lsp-completion-show-kind t
+                lsp-lens-enable nil)
+  :bind (:map evil-normal-state-map
+              ("C-k" . #'lsp-ui-doc-toggle)))
 #+end_src
+
 
 ** Twittering mode
 Currently not working. I think Elon broke some api.
@@ -230,13 +415,16 @@ Currently not working. I think Elon broke some api.
 
 #+begin_src emacs-lisp
 
+
 (use-package! company
-  :config
-  (setq company-idle-delay nil
-        company-selection-wrap-around t
-        company-show-quick-access t
-        company-tng-mode t
-        ))
+  :config (setq company-idle-delay nil
+                company-selection-wrap-around t
+                company-show-quick-access t
+                company-quickhelp-max-lines 6
+                company-quickhelp-delay nil)
+  :init (company-quickhelp-mode t)
+  :bind (:map company-active-map
+        ("C-d" . #'company-quickhelp-manual-begin)))
 #+end_src
 
 ** Haskell
@@ -275,8 +463,21 @@ Currently not working. I think Elon broke some api.
 #+begin_src emacs-lisp
 
 (use-package! ivy
-  :config (setq ivy-height 10))
+  :config (setq ivy-height 10)
+  :init (ivy-posframe-mode))
+
+
+(use-package! ivy-posframe
+  :config (setq ivy-posframe-parameters '((min-width . 70 )
+                                          (min-height . 10)
+                                          (max-width . 70))
+                ivy-posframe-display-functions-alist '((t . ivy-posframe-display-at-frame-top-center))
+                ivy-posframe-height 10))
+
 #+end_src
+
+#+RESULTS:
+: t
 
 ** Calibredb
 
@@ -288,17 +489,97 @@ Currently not working. I think Elon broke some api.
 #+end_src
 
 
+* Blog
 
-* Keybindings
+#+begin_src emacs-lisp
+
+(require 'ox-publish)
+(require 'org)
+
+(setq org-export-global-macros
+      '(("timestamp" . "@@html:<span class=\"timestamp\">$1 | </span>@@")))
+
+(defun my/org-sitemap-date-entry-format (entry style project)
+  "Format ENTRY in org-publish PROJECT Sitemap format ENTRY ENTRY STYLE format that includes date."
+  (let
+      ((filename (org-publish-find-title entry project)))
+    (if (= (length filename) 0)
+        (format "*%s*" entry)
+      (format
+       "{{{timestamp(%s)}}} [[file:%s][%s]]"
+       (format-time-string
+        "%Y-%m-%d"
+        (org-publish-find-date entry project))
+       entry filename)
+      )))
+
+
+(setq org-publish-project-alist
+      `(("pages"
+         :base-directory "~/org/blog/"
+         :base-extension "org"
+         :with-author t
+         :timestamp nil
+         :with-date t
+         :recursive t
+         :publishing-directory "~/programming/implicit-image.github.io/blog/"
+         :publishing-function org-html-publish-to-html
+         :html-doctype "html5"
+         :html-html5-fancy t
+         :html-head-include-scripts nil
+         :html-head-include-default-style nil
+         :html-head "<link rel=\"stylesheet\" href=\"../../css/style.css\" type=\"text/css\"/><link rel=\"stylesheet\" href=\"../css/style.css\" type=\"text/css\"/>"
+         :html-preamble "
+    <nav class=\"list flex-container-column\">
+        <a href=\"../../index.html\">Home</a>
+        <a href=\"../../projects.html\">Projects</a>
+        <a href=\"/blog/index.html\"><u><b>Writing</b></u></a>
+    </nav>"
+         :html-postamble "
+<footer>
+  <div class=\"copyright-container\">
+    <div class=\"copyright\">
+      Copyright &copy; 2023 Błażej Niewiadomski some rights reserved<br/>
+    </div>
+  </div>
+</footer>"
+         :with-latex t
+         :headline-levels 1
+         :auto-sitemap t
+         :sitemap-title ""
+         :sitemap-filename "index.org"
+         :sitemap-format-entry my/org-sitemap-date-entry-format)
+
+         ("static"
+          :base-directory "~/org/blog/resources"
+          :base-extension "css\\|txt\\|jpg\\|gif\\|png\\|pdf"
+          :recursive t
+          :publishing-directory  "~/programming/implicit-image.github.io/blog/resources"
+          :publishing-function org-publish-attachment)
+
+         ("implicit-image.github.io" :components ("pages" "static"))))
+
+(setq org-export-with-section-numbers nil)
+#+end_src
+
+* Global Keybindings
 
 #+begin_src emacs-lisp
 
 (map! :leader
       (:prefix ("a" . "applications")
-       (:desc "Open calibredb" "c" #'calibredb
-        :desc "Counsel Web Colors" "C" #'counsel-colors-web))
+               (:desc "Open calibredb"     "c" #'calibredb
+                :desc "Counsel Web Colors" "C" #'counsel-colors-web))
       (:prefix ("t" . "toggle")
-       :desc "Visual line mode" "v" #'visual-line-mode)
-      (:prefix ("t" . "toggle")
-       :desc "Modeline" "M" #'global-hide-mode-line-mode))
+               (:desc "Visual line mode" "v" #'visual-line-mode
+                :desc "Modeline"         "M" #'global-hide-mode-line-mode
+                :desc "Tabs"             "T" #'centaur-tabs-mode
+                :desc "Local tabs"       "t" #'centaur-tabs-local-mode))
+      (:prefix ("e" . "execute")
+               (:desc "Async shell commmand" "a" #'async-shell-command))
+      (:desc "Tabify" "<tab>" #'tabify)
+      (:desc "Untabify" "<backtab>" #'untabify))
 #+end_src
+
+#+RESULTS:
+: untabify

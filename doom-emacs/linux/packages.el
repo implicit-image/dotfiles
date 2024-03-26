@@ -6,30 +6,35 @@
 (package! cheat-sh.el
   :recipe (:host github :repo "davep/cheat-sh.el"
            :files ("cheat-sh.el")))
-(package! doom-gruber-darker
+(package! gruber-darker-theme
   :recipe (:host github
-           :repo "implicit-image/doom-gruber-darker"
-           :files ("doom-gruber-darker-theme.el")))
-;; (package! doom-gruber-darker
-;;   :recipe (:host github
-;;            :repo "implicit-image/doom-gruber-darker"))
+           :repo "implicit-image/gruber-darker-theme"
+           :files ("gruber-darker-theme.el")))
 (package! twittering-mode
   :recipe (:host github
            :repo "hayamiz/twittering-mode"
            :files ("twittering-mode.el")))
-(package! lsp-tailwindcss :recipe (:host github :repo "merrickluo/lsp-tailwindcss"))
-(package! gruber-darker-theme
-  :recipe (
-           :host github
-           :repo "rexim/gruber-darker-theme"
-           :files ("gruber-darker-theme.el")))
-(package! d-mode)
-(package! calibredb)
-(package! nov)
+(package! doom-gruber-darker-theme
+  :recipe (:host github
+           :repo "implicit-image/doom-gruber-darker-theme"
+           :files ("doom-gruber-darker-theme.el")))
+(package! lsp-tailwindcss :recipe (:host 'github :repo "merrickluo/lsp-tailwindcss"))
 (package! color)
-(package! org-bullets)
-(package! ox-rss)
+;; ebooks
+(package! nov)
+(package! calibredb)
+;; ui
+(package! ivy-posframe)
 (package! dashboard)
+(package! centaur-tabs)
+;; org enhancements
+(package! org-gcal)
+(package! org-bullets)
 (package! org-modern)
-(package! olivetti)
 (package! org-tidy)
+(package! olivetti)
+;; org publishing
+(package! ox-rss)
+;; language support
+(package! d-mode)
+;; llm integration
