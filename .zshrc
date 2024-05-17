@@ -142,6 +142,7 @@ PERL_MB_OPT="--install_base \"/home/b/perl5\""; export PERL_MB_OPT;
 PERL_MM_OPT="INSTALL_BASE=/home/b/perl5"; export PERL_MM_OPT;
 export TERM=xterm-256color
 export N_PREFIX=/home/b/.n/
+export N_CACHE_PREFIX=/home/b/.ncache
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 # [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 #[ -f "/home/b/.ghcup/env" ] && source "/home/b/.ghcup/env" # ghcup-env
