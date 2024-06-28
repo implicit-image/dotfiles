@@ -5,5 +5,5 @@
             (env . (("DOOMDIR" . "~/.doom.d")))
             (server-name . "doom")
             (straight-p . 1)))
- ("gnu" . ((user-emacs-directory . "~/.emacs.default.d")
-               (server-name . "gnu"))))
+ ("vanilla" . ((user-emacs-directory . "~/.emacs.vanilla.d")
+               (server-name . "vanilla"))))
