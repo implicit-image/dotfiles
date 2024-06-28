@@ -129,7 +129,10 @@ cmd() {
 
 #alias mx="mullvad-exclude"
 mx() { cmd mullvad-exclude $@ }
+# emacs aliases
 
+# alias doom-emacs="emacs --init-directory=$HOME/.emacs.doom.d"
+# alias vanilla-emacs="emacs --init-directory=$HOME/.emacs.vanilla.d"
 
 
 
@@ -176,4 +179,8 @@ export PATH="$HOME/.dotnet:$PATH"
 export PATH="/opt/lampp/bin:$PATH"
 export PATH="/opt/anaconda/bin:$PATH"
 export PATH="/home/b/Games/modding/infinityengine/gemrb:$PATH"
+ 
+[ -f /opt/miniconda3/etc/profile.d/conda.sh ] && source /opt/miniconda3/etc/profile.d/conda.sh
 
+# opam configuration
+[[ ! -r /home/b/.opam/opam-init/init.zsh ]] || source /home/b/.opam/opam-init/init.zsh  > /dev/null 2> /dev/null
