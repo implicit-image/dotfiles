@@ -28,7 +28,6 @@
 (package! nov)
 (package! calibredb)
 ;; ui
-(package! dashboard)
 (package! centaur-tabs)
 (package! company-box)
 (package! eldoc-box)

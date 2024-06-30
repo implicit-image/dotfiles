@@ -1,0 +1,59 @@
+# load globals first to make variables accessible in all included files
+include "globals.conf"
+include "autostart.conf"
+include "windows.conf"
+include "colors.conf"
+include "keybindings.conf"
+include "bar.conf"
+
+workspace_auto_back_and_forth yes
+
+# control keys variables
+set $mod Mod4
+set $alt Mod1
+set $ctrl Control
+# configuration variables
+set $UI_FONT pango:Iosevka Nerd Font
+set $UI_FONT_SIZE 15
+set $UI_WORKSPACE_INDICATOR_WIDTH 45
+
+# colors (rearrange for easier configuration)
+set $focused.border           #181818
+set $focused.bg               #181818
+set $focused.text             #ffffff
+set $focused.indicator        #484e50
+set $focused.child_border     #aaaaaa
+
+set $inactive.border          #333333
+set $inactive.bg              #181818
+set $inactive.text            #ffffff
+set $inactive.indicator       #484e50
+set $inactive.child_border    #484e50
+
+set $unfocused.border         #181818
+set $unfocused.bg             #181818
+set $unfocused.text           #888888
+set $unfocused.indicator      #292d2e
+set $unfocused.child_border   #222222
+
+set $urgent.border            #2f343a
+set $urgent.bg                #900000
+set $urgent.text              #ffffff
+set $urgent.indicator         #900000
+set $urgent.child_border      #900000
+
+set $placeholder.border       #ffffff
+set $placeholder.bg           #0c0c0c
+set $placeholder.text         #ffffff
+set $placeholder.indicator    #000000
+set $placeholder.child_border #0c0c0c
+set $bg                       #151515
+
+# bar colors
+set $BAR.FOCUSED.BORDER   #f1f1f1
+set $BAR.FOCUSED.BG       #f1f1f1
+set $BAR.FOCUSED.TEXT     #181818
+set $BAR.INACTIVE.BORDER  #181818
+set $BAR.INACTIVE.BG      #181818
+set $BAR.INACTIVE.TEXT    #f1f1f1
+set $BAR.BG               #181818

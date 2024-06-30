@@ -23,7 +23,6 @@
   - [[#org-roam][Org Roam]]
   - [[#org-mode][Org mode]]
   - [[#treemacs][Treemacs]]
-  - [[#dashboard][Dashboard]]
   - [[#dired][Dired]]
   - [[#nwscript-lsp-client][NWScript lsp client]]
   - [[#lsp-mode][LSP Mode]]
@@ -103,7 +102,9 @@
 ** Font
 #+begin_src emacs-lisp
 (setq doom-font (font-spec :family "ComicShannsMono Nerd Font Mono" :size 24)
-      doom-variable-pitch-font (font-spec :family "sans" :size 20))
+      doom-variable-pitch-font (font-spec :family "sans" :size 20)
+      doom-emoji-font (font-spec :family "Iosevka Nerd Font Mono")
+      doom-symbol-font (font-spec :family "Iosevka Nerd Font Mono"))
 
 ;; (setq doom-font (font-spec :family "FantasqueSansM Nerd Font Mono" :size 24)
 ;;       doom-variable-pitch-font (font-spec :family "sans" :size 20))
@@ -111,9 +112,9 @@
 #+end_src
 
 ** Theme
-This is a hacky way to get desirable effects (like a frame around ivy frame) until i figure out how to do that in doom-gruber-darker theme file
 #+begin_src emacs-lisp
-(add-to-list 'custom-theme-load-path "/home/b/.emacs.doom.d/.local/straight/build-29.3/doom-gruber-darker-theme/")
+(require 'f)
+(add-to-list 'custom-theme-load-path (f-join  doom-local-dir "straight/repos/doom-gruber-darker-theme/"))
 (load-theme 'doom-gruber-darker t)
 
 #+end_src
@@ -162,7 +163,6 @@ Changes whitespace-nark to a character copayible with current font
       auto-save-default t
       doom-modeline-buffer-file-name-style 'buffer-name
       whitespace-style '(face tabs spaces indentation space-mark tab-mark)
-      initial-buffer-choice (lambda () (get-buffer-create "*dashboard*"))
       ;; indent
       standard-indent 4
       ;;typescript
@@ -411,21 +411,6 @@ By default uses godot4
                 treemacs-project-follow-mode t)
   :init (treemacs-indent-guide-mode 1))
 
-#+end_src
-
-** Dashboard
-
-#+begin_src emacs-lisp
-
-(require 'dashboard)
-(dashboard-setup-startup-hook)
-
-(use-package! dashboard
-  :config (setq dashboard-startup-banner 2
-                dashboard-set-file-icons t
-                dashboard-set-heading-icons t
-                dashboard-set-navigator t
-                dashboard-items '((recents . 5) (agenda . 5))))
 #+end_src
 
 ** Dired

@@ -13,8 +13,9 @@ set $mod Mod4
 set $alt Mod1
 set $ctrl Control
 # configuration variables
-set $UI_FONT pango:Iosevka Nerd Font
-set $UI_FONT_SIZE 15
+set $UI_FONT pango:FantasqueSansM Nerd Font Mono
+set $UI_FONT_SIZE 20
+set $UI_WORKSPACE_INDICATOR_WIDTH 45
 
 # colors (rearrange for easier configuration)
 set $focused.border           #181818
