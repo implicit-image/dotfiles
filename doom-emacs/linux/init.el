@@ -21,10 +21,10 @@
        ;;layout            ; auie,ctsrnm is the superior home row
 
        :completion
-       company           ; the ultimate code completion backend
+       (company  )           ; the ultimate code completion backend
        ;; (helm +fuzzy)              ; the *other* search engine for love and life
        ;; ido               ; the other *other* search engine...
-       (ivy +icons +childframe)                ; a search engine for love and life
+       (ivy +prescient +icons)                ; a search engine for love and life
 
        :ui
        deft              ; notational velocity for Emacs
@@ -35,7 +35,7 @@
        ;;fill-column       ; a `fill-column' indicator
        hl-todo           ; highlight TODO/FIXME/NOTE/DEPRECATED/HACK/REVIEW
        ;;hydra
-       ;;indent-guides     ; highlighted indent columns
+       ;; indent-guides     ; highlighted indent columns
        ;;(ligatures +iosevka +extra)     ; ligatures and symbols to make your code pretty again
        ;; minimap           ; show a map of the code on the side
        (modeline)          ; snazzy, Atom-inspired modeline, plus API
@@ -49,7 +49,7 @@
        vc-gutter         ; vcs diff in the fringe
        vi-tilde-fringe   ; fringe tildes to mark beyond EOB
        window-select     ; visually switch windows
-       ;;workspaces        ; tab emulation, persistence & separate workspaces
+       workspaces        ; tab emulation, persistence & separate workspaces
        zen               ; distraction-free coding or writing
 
 
@@ -96,7 +96,7 @@
        ;;gist              ; interacting with github gists
        (lookup +dictionary +offline +docsets)              ; navigate your code and its documentation
        (lsp +peek)
-       magit             ; a git porcelain for Emacs
+       (magit +forge)             ; a git porcelain for Emacs
        make              ; run make tasks from Emacs
        (pass +auth)              ; password manager for nerds
        pdf               ; pdf enhancements
@@ -121,7 +121,7 @@
        crystal           ; ruby at the speed of c
        (csharp +lsp +dotnet)            ; unity, .NET, and mono shenanigans
        data              ; config/data formats
-       ;;(dart +flutter)   ; paint ui and not much else
+       (dart +flutter +lsp)   ; paint ui and not much else
        (elixir +lsp)            ; erlang done right
        (elm +lsp +tree-sitter)  ; care for a cup of TEA?
        emacs-lisp        ; drown in parentheses
@@ -147,14 +147,14 @@
        (lua +lsp +tree-sitter)               ; one-based indices? one-based indices
        (markdown +grip)          ; writing docs for people to ignore
        nim               ; python + lisp at the speed of c
-       (nix +tree-sitter)               ; I hereby declare "nix geht mehr!"
-       ;;ocaml             ; an objective camel
+       (nix +lsp +tree-sitter)               ; I hereby declare "nix geht mehr!"
+       (ocaml +lsp +tree-sitter)            ; an objective camel
        (org +pretty +present +noter +journal +brain +gnuplot +dragndrop +roam2); organize your plain life in plain text
        (php +lsp +tree-sitter)               ; perl's insecure younger brother
        ;;plantuml          ; diagrams for confusing people more
        purescript        ; javascript, but functional
        (python +lsp +pyright +poetry +tree-sitter +pyenv)           ; beautiful is better than ugly
-       ;;qt                ; the 'cutest' gui framework ever
+       (qt)                ; the 'cutest' gui framework ever
        (racket)           ; a DSL for DSLs
        ;;raku              ; the artist formerly known as perl6
        (rest +jq)              ; Emacs as a REST client
@@ -162,7 +162,7 @@
        (ruby +rails +lsp)     ; 1.step {|i| p "Ruby is #{i.even? ? 'love' : 'life'}"}
        (rust +lsp +tree-sitter)              ; Fe2O3.unwrap().unwrap().unwrap().unwrap()
        (scala +lsp)            ; java, but good
-       (scheme +mit)   ; a fully conniving family of lisps
+      ;; (scheme +mit)   ; a fully conniving family of lisps
        sh                ; she sells {ba,z,fi}sh shells on the C xor
        ;;sml
        solidity          ; do you need a blockchain? No.

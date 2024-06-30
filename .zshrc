@@ -79,6 +79,7 @@ ZSH_THEME="gallois"
 plugins=(
     git
     archlinux
+    poetry
     npm
     stack
     dotnet

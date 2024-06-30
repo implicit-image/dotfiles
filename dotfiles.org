@@ -1,0 +1,67 @@
+#+title: Dotfiles
+
+
+
+
+
+* Table of contents :toc:
+- [[#i3][i3]]
+  - [[#autostart][Autostart]]
+  - [[#bar][Bar]]
+  - [[#colors][Colors]]
+
+* i3
+
+** Autostart
+
+#+begin_src conf
+exec_always $NO_ID  xss-lock --transfer-sleep-lock -- light-locker-command --lock
+exec_always $NO_ID  light-locker --no-late-locking --lock-on-lid --lock-on-suspend
+exec_always         touchegg
+exec_always         nm-applet
+exec_always         blueman-applet
+
+# execute on start only
+exec $NO_ID         gnome-settings-daemon
+# exec $NO_ID         variety --resume &
+# exec $NO_ID         keepassxc
+exec $NO_ID         ~/.local/share/applications/games.desktop
+# TODO: configure wired first
+# exec                wired -r
+exec                redshift -l 50:30 &
+exec                mpDris2 -c /home/b/.config/mpDris2/mpDris2.conf
+exec                "eval $(ssh-agent)"
+exec                emacs --bg-daemon
+
+# x keymap options
+exec                "setxkbmap -layout us,pl -option grp:alt_shift_toggle"
+exec                "setxkbmap -option keypad:pointerkeys"
+exec_always         "xkbset ma 50 20 30 100 300 "
+exec                lxpolkit
+#+end_src
+
+** Bar
+#+begin_src conf
+bar {
+    # status_command "SCRIPT_DIR=~/.config/i3blocks/i3blocks-contrib i3blocks"
+    # status_command py3status -c ~/.config/py3status/config
+    status_command i3status-rs ~/repos/dotfiles/i3/i3status-rust-git/config.toml
+    mode dock
+    position top
+    font $UI_FONT $UI_FONT_SIZE
+    hidden_state hide
+    modifier none
+    separator_symbol $BAR.SEPARATOR
+    workspace_min_width 45
+    strip_workspace_numbers yes
+    colors {
+        background $BAR.BG
+        #                 border  backgr.  text
+        focused_workspace  $BAR.FOCUSED.BORDER  $BAR.FOCUSED.BG  $BAR.FOCUSED.TEXT
+        Inactive_workspace $BAR.INACTIVE.BORDER $BAR.INACTIVE.BG $BAR.INACTIVE.TEXT
+    }
+
+}
+#+end_src
+
+** Colors

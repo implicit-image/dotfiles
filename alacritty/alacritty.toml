@@ -1,6 +1,6 @@
 
 [shell]
-args = ["--login"]
+# args = ["--login"]
 program = "/usr/bin/zsh"
 
 [colors]
@@ -38,7 +38,7 @@ foreground = "#cccccc"
 size = 10
 
 [font.bold]
-family = "Iosevka"
+family = "ComicShannsMono Nerd Font Mono"
 style = "Bold Monospace"
 
 [font.glyph_offset]
@@ -46,9 +46,9 @@ x = 0
 y = 0
 
 [font.italic]
-family = "Iosevka"
-style = "Italic Monospace"
+family = "ComicShannsMono Nerd Font Mono"
+style = "Bold Monospace"
 
 [font.normal]
-family = "Iosevka"
+family = "ComicShannsMono Nerd Font Mono"
 style = "Monospace"

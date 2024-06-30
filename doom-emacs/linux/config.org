@@ -1,30 +1,39 @@
 #+title: Config
+#+PROPERTY: header-args :results none
 
 * Table of contents :toc:
 - [[#meta][Meta]]
 - [[#require][Require]]
 - [[#custom-variables][Custom Variables]]
 - [[#local-functions][Local functions]]
+- [[#emacs-application-framework][Emacs Application Framework]]
 - [[#general-settings][General settings]]
   - [[#font][Font]]
   - [[#theme][Theme]]
-  - [[#additional-faces][Additional faces]]
+  - [[#popups][Popups]]
+  - [[#whitespace-mode][Whitespace mode]]
   - [[#global-variables][Global variables]]
 - [[#package-config][Package config]]
   - [[#calendar-sync][Calendar sync]]
   - [[#centaurs-tabs][Centaurs tabs]]
   - [[#image-mode][Image mode]]
   - [[#gdscript-mode][GDscript mode]]
+  - [[#magit][Magit]]
   - [[#programming-mode-general][Programming Mode (General)]]
+  - [[#org-roam][Org Roam]]
   - [[#org-mode][Org mode]]
   - [[#treemacs][Treemacs]]
   - [[#dashboard][Dashboard]]
-  - [[#highlight-indent-guides][Highlight indent guides]]
   - [[#dired][Dired]]
+  - [[#nwscript-lsp-client][NWScript lsp client]]
   - [[#lsp-mode][LSP Mode]]
+  - [[#lsp-symbols][LSP Symbols]]
+  - [[#eldoc][Eldoc]]
   - [[#twittering-mode][Twittering mode]]
   - [[#company][Company]]
+  - [[#nwscript-mode][Nwscript mode]]
   - [[#haskell][Haskell]]
+  - [[#typescript][Typescript]]
   - [[#rust][Rust]]
   - [[#org-noter][Org noter]]
   - [[#ivy][Ivy]]
@@ -40,11 +49,14 @@
       user-mail-address "blaz.nie@protonmail.com")
 #+end_src
 
+
 * Require
 #+begin_src emacs-lisp
 (require 'whitespace)
 (require 'color)
 (require 'org)
+(require 'company-box)
+(require 'eldoc-box)
 #+end_src
 
 * Custom Variables
@@ -64,45 +76,86 @@
 
 #+end_src
 
+
+
+* Emacs Application Framework
+#+begin_src emacs-lisp :tangle no
+
+
+(add-to-list 'load-path "~/.emacs.d/site-lisp/emacs-application-framework/")
+(require 'eaf)
+(require 'eaf-music-player) ;; works, check sound
+(require 'eaf-git) ;; works, reset keybidings
+(require 'eaf-browser)
+(require 'eaf-js-video-player)
+(require 'eaf-image-viewer)
+
+
+(setq eaf-jupyter-font-family "Fantasque Sans Mono"
+      eaf-webengine-font-family "Fantasque Sans Mono"
+      eaf-pyqterminal-font-family "Fantasque Sans Mono"
+      eaf-webengine-serif-font-family "Fantasque Sans Mono"
+      eaf-webengine-font-size 22)
+#+end_src
+
+
 * General settings
 ** Font
 #+begin_src emacs-lisp
-(setq doom-font (font-spec :family "Iosevka" :size 30)
-      doom-variable-pitch-font (font-spec :family "sans" :size 24))
+(setq doom-font (font-spec :family "ComicShannsMono Nerd Font Mono" :size 24)
+      doom-variable-pitch-font (font-spec :family "sans" :size 20))
 
+;; (setq doom-font (font-spec :family "FantasqueSansM Nerd Font Mono" :size 24)
+;;       doom-variable-pitch-font (font-spec :family "sans" :size 20))
 
 #+end_src
 
 ** Theme
 This is a hacky way to get desirable effects (like a frame around ivy frame) until i figure out how to do that in doom-gruber-darker theme file
 #+begin_src emacs-lisp
-(progn
-  (load-theme 'gruber-darker t)
-  (load-theme 'doom-gruber-darker t))
+(add-to-list 'custom-theme-load-path "/home/b/.emacs.doom.d/.local/straight/build-29.3/doom-gruber-darker-theme/")
+(load-theme 'doom-gruber-darker t)
 
 #+end_src
 
-** Additional faces
+** Popups
 
 #+begin_src emacs-lisp
+(set-popup-rules!
+  '(("^\\*\\(Man\\|Woman\\)" :size #'popup-display-buffer-fullframe-fn)))
 
-;; (set-face-attribute 'org-block-begin-line nil :background "#101010")
-;; (set-face-attribute 'org-block-end-line nil :background "#101010")
-;; (set-face-attribute 'org-block nil :background "#141414")
+#+end_src
 
+
+
+** Whitespace mode
+
+Changes whitespace-nark to a character copayible with current font
+
+#+begin_src emacs-lisp
+(use-package! whitespace
+  :config (setq whitespace-display-mappings '((tab-mark 9 [8250 9])
+                                            (newline-mark 10 [172 10])
+                                            (space-mark 32 [8226] [46])))
+  :hook (prog-mode . whitespace-mode))
 #+end_src
 
 ** Global variables
 
 #+begin_src emacs-lisp
+(require 'nwscript-mode)
 ;; TODO: move that to use-package declarations
 (add-to-list 'org-src-lang-modes (cons "jsx" 'rjsx))
+(add-to-list 'org-src-lang-modes (cons "nwscript" 'nwscript-mode))
+;; auto mode liist assocs
+
 (require 'recentf)
 (add-to-list 'recentf-exclude "\\/home/b/.priv/\\'")
 (add-to-list 'recentf-exclude "\\/home/b/.priv/pictures/\\")
 (add-to-list 'recentf-exclude "\\/home/b/Pictures/p/\\")
 (add-to-list 'recentf-exclude "\\~/.priv/pictures/\\")
 (add-to-list 'recentf-exclude "\\~/.priv/pictures/\\")
+
 (setq display-line-numbers-type 'relative
       make-backup-files nil
       evil-want-fine-undo t
@@ -125,8 +178,6 @@ This is a hacky way to get desirable effects (like a frame around ivy frame) unt
       +latex-viewers '(pdf-tools)
       ;; file size limit
       large-file-warning-threshold 20000000)
-
-(add-hook! 'gdscript-mode-hook #'lsp)
 #+end_src
 
 
@@ -161,9 +212,11 @@ This is a hacky way to get desirable effects (like a frame around ivy frame) unt
 
 #+begin_src emacs-lisp
 (use-package! image-mode
-    :config (setq image-auto-resize 'fit-window))
+    :config (setq image-auto-resize 'fit-window
+                  image-use-external-converter t))
 
 #+end_src
+
 
 ** GDscript mode
 
@@ -171,20 +224,40 @@ By default uses godot4
 #+begin_src emacs-lisp
 
 (use-package! gdscript-mode
-  :config (setq gdscript-godot-executable "godot4"))
+  :config (setq gdscript-godot-executable "godot"))
 
 #+end_src
 
-#+RESULTS:
-: t
 
+** Magit
+
+#+begin_src emacs-lisp
+;; (use-package! magit
+;;   :config (setq magit-key))
+#+end_src
 
 ** Programming Mode (General)
 
 #+begin_src emacs-lisp
 
 (add-hook! 'prog-mode-hook #'rainbow-delimiters-mode-enable)
-(add-hook! 'prog-mode-hook #'whitespace-mode)
+
+
+#+end_src
+
+** Org Roam
+#+begin_src emacs-lisp
+(use-package org-roam
+  :ensure t
+  :custom
+  (org-roam-directory (substitute-in-file-name "$HOME/org/roam"))
+  :config
+  ;; If you're using a vertical completion framework, you might want a more informative completion interface
+  (setq org-roam-node-display-template (concat "${title:*} " (propertize "${tags:10}" 'face 'org-tag)))
+  (org-roam-db-autosync-mode)
+  ;; If using org-roam-protocol
+  (require 'org-roam-protocol))
+
 
 
 #+end_src
@@ -290,18 +363,18 @@ By default uses godot4
 
   (setq org-capture-templates
         `(("t" "Tasks / Projects")
-          ("tt" "Task" entry (file+olp "~/org/tasks.org" "Inbox")
+          ("tt" "Task" entry (file+olp "~/org/agenda/tasks.org" "Inbox")
            "* TODO %?\n  %U\n  %a\n  %i" :empty-lines 1)
 
           ("j" "Journal Entries")
           ("jj" "Journal" entry
-           (file+olp+datetree "~/org/ournal.org")
+           (file+olp+datetree "~/org/journal.org")
            "\n* %<%I:%M %p> - Journal :journal:\n\n%?\n\n"
            ;; ,(dw/read-file-as-string "~/Notes/Templates/Daily.org")
            :clock-in :clock-resume
            :empty-lines 1)
           ("jm" "Meeting" entry
-           (file+olp+datetree "~/org/ournal.org")
+           (file+olp+datetree "~/org/journal.org")
            "* %<%I:%M %p> - %a :meetings:\n\n%?\n\n"
            :clock-in :clock-resume
            :empty-lines 1)
@@ -327,8 +400,6 @@ By default uses godot4
 
 #+end_src
 
-#+RESULTS:
-: org-babel-edit-prep:C
 
 ** Treemacs
 
@@ -357,17 +428,6 @@ By default uses godot4
                 dashboard-items '((recents . 5) (agenda . 5))))
 #+end_src
 
-** Highlight indent guides
-Not compatible with whitepsace-mod (looks like shit)
-#+begin_src emacs-lisp :tangle no
-
-(use-package! highlight-indent-guides
-  :config (setq highlight-indent-guides-method 'bitmap
-                highlight-indent-guides-bitmap-function #'highlight-indent-guides--bitmap-line
-                highlight-indent-guides-responsive 'stack
-                highlight-indent-guides-auto-character-face-perc 200))
-#+end_src
-
 ** Dired
 #+begin_src emacs-lisp
 
@@ -377,28 +437,61 @@ Not compatible with whitepsace-mod (looks like shit)
                 dired-dwim-target t))
 #+end_src
 
+** NWScript lsp client
+
+
+
+
 ** LSP Mode
 
 #+begin_src emacs-lisp
 
+
+
 (require 'lsp-mode)
 (use-package! lsp-mode
-  :config (setq lsp-enable-symbol-highlighting t
-                lsp-ui-sideline-show-code-actions nil
-                lsp-ui-doc-enable t
-                lsp-ui-peek-enable t
-                lsp-ui-doc-alignment 'frame
-                lsp-ui-doc-include-signature t
-                lsp-ui-doc-delay 0.1
-                lsp-modeline-code-actions-enable t
-                lrp-modeline-diagnostics-enable t
-                lsp-signature-auto-activate t
-                lsp-completion-show-detail t
-                lsp-completion-show-kind t
-                lsp-lens-enable nil)
-  :bind (:map evil-normal-state-map
-              ("C-k" . #'lsp-ui-doc-toggle)))
+  :config
+  (setq lsp-enable-symbol-highlighting t
+        lsp-ui-sideline-show-code-actions nil
+        lsp-ui-doc-enable t
+        lsp-ui-peek-enable t
+        lsp-ui-doc-alignment 'frame
+        lsp-ui-doc-include-signature t
+        lsp-ui-doc-delay 0.1
+        lsp-modeline-code-actions-enable t
+        lsp-modeline-diagnostics-enable t
+        lsp-signature-auto-activate t
+        lsp-signature-render-documentation nil
+        lsp-completion-show-detail t
+        lsp-completion-show-kind t
+        lsp-lens-enable nil)
+  :hook (nwscript-mode . lsp-mode)
+        (gdscript-mode . lsp-mode))
+
 #+end_src
+
+** LSP Symbols
+
+#+begin_src emacs-lisp
+
+
+
+#+end_src
+
+** Eldoc
+
+#+begin_src emacs-lisp :tangle no
+
+(use-package! eldoc
+  :config (setq eldoc-echo-area-use-multiline-p nil
+                max-mini-window-height 3)
+  :init (eldoc-box-hover-at-point-mode 1))
+
+
+
+
+#+end_src
+
 
 
 ** Twittering mode
@@ -417,14 +510,118 @@ Currently not working. I think Elon broke some api.
 
 
 (use-package! company
-  :config (setq company-idle-delay nil
+  :config (setq company-idle-delay -1
                 company-selection-wrap-around t
                 company-show-quick-access t
-                company-quickhelp-max-lines 6
-                company-quickhelp-delay nil)
-  :init (company-quickhelp-mode t)
+                ;; quickhelp
+                company-quickhelp-max-lines 8
+                company-quickhelp-delay nil
+                company-quickhelp-x-offset 40
+                company-format-margin-function 'company-text-icons-margin
+                company-text-icons-add-background t
+                ;; tooltips
+                company-tooltip-flip-when-above t
+                company-tooltip-align-annotations t
+                company-tooltip-width-grow-only t
+                ;; dabbrev
+                company-dabbrev-other-buffers t
+                company-dabbrev-code-everywhere t)
   :bind (:map company-active-map
-        ("C-d" . #'company-quickhelp-manual-begin)))
+              ("C-d" . #'company-quickhelp-manual-begin)))
+
+(after! nwscript-mode
+  (set-company-backend! 'nwscript-mode 'company-dabbrev-code 'company-yasnippet))
+
+(use-package! company-box
+  :config
+  (setq company-idle-delay nil
+        company-box-doc-enable nil
+        company-box-scrollbar nil
+        company-box-frame-parameters '()
+        company-box-doc-frame-parameters '((min-width . 0)
+                                           (min-height . 0)
+                                           (internal-border-width . 2)
+                                           (border-color . "#f1f1f1")
+                                           (border-width . 10)))
+  :hook (company-mode . company-box-mode))
+
+
+#+end_src
+
+
+** Nwscript mode
+
+*** Quick lsp setup
+
+#+begin_src emacs-lisp :tangle no
+(require 'lsp-mode)
+(add-to-list 'lsp-language-id-configuration '(nwscript-mode . "nwscript"))
+(lsp-register-client
+ (make-lsp-client :new-connection (lsp-stdio-connection '("nwscriptls"))
+                  :activation-fn (lsp-activate-on "nwscript")
+                  :priority -1
+                  :server-id 'nwscript-ls))
+(lsp-register-custom-settings
+ '(;; nwscript-ls
+   ;; ("nwscript-ee-lsp.compiler.properties.nwnHome" "/home/b/games/nwn2gog/drive_c/users/b/Documents/Neverwinter Nights 2/")
+   ("nwscript-ee-lsp.compiler.verbose" t t)
+   ("nwscript-ee-lsp.compiler.enabled" t t)
+   ("nwscript-ee-lsp.compiler.reportWarnings" t t)
+   ("nwscript-ee-lsp.compiler.os" "Wine")
+   ("nwscript-ee-lsp.hovering.addCommentsToFunctions" t t)
+   ("nwscript-ee-lsp.completion.addParamsToFunctions" t t)
+   ))
+
+
+#+end_src
+
+*** LSP-NWScript
+
+#+begin_src emacs-lisp
+(require 'lsp-mode)
+
+
+(use-package! lsp-nwscript
+  :load-path "/home/b/projects/lsp-nwscript.el"
+  :config
+  (add-to-list 'lsp-language-id-configuration '(nwscript-mode . "nwscript"))
+  (setq lsp-log-io t)
+  (setq lsp-nwscript-node-local-includes-alist
+        '(("/home/b/projects/mods/src/progression-overhaul"
+           ("./include/ps_include/"
+             "./include/jx_framework/jx/"
+             "./include/jx_framework/2d2f/"
+             "./include/jx_framework/cmi/"
+             "./include/jx_framework/misc/"
+             "./include/jx_framework/tob/"
+             "./include/jx_framework/interfaces"))
+          ("/home/b/projects/mods/src/jx_framework"
+           ("./jx/" "./2d2f/" "./cmi/" "./misc/" "./interfaces/" "./tob/")))
+        lsp-nwscript-server-type "node"
+        lsp-nwscript-node-extra-server-settings
+        '(("nwscript-ee-lsp.compiler.nwn2BaseIncludes"
+           ("/home/b/projects/mods/src/sources/Scripts_X2/"
+            "/home/b/projects/mods/src/sources/Scripts_X1/"
+            "/home/b/projects/mods/src/sources/Scripts/") t))
+        lsp-nwscript-node-server-path (substitute-env-vars "$HOME/projects/nwscript-ee-language-server/server/out/server.js")
+        lsp-nwscript-node-hover-function-comments t
+        lsp-nwscript-node-format-enabled nil
+        lsp-nwscript-node-complete-function-params t
+        lsp-nwscript-node-compiler-os "Linux"
+        lsp-nwscript-node-compiler-report-warnings t
+        lsp-nwscript-node-compiler-verbose t
+        lsp-nwscript-node-compiler-enabled t))
+
+#+end_src
+
+*** Base mode
+
+#+begin_src emacs-lisp
+(use-package! nwscript-mode
+  :config
+  (add-to-list 'auto-mode-alist '("\\.nss\\'" . nwscript-mode))
+  (add-to-list 'auto-mode-alist '("\\.NSS\\'" . nwscript-mode)))
+
 #+end_src
 
 ** Haskell
@@ -439,6 +636,16 @@ Currently not working. I think Elon broke some api.
                 haskell-interactive-popup-errors nil))
 #+end_src
 
+** Typescript
+
+#+begin_src emacs-lisp
+(setq lsp-clients-typescript-prefer-use-project-ts-server t
+      lsp-typescript-suggest-complete-function-calls t
+      lsp-typescript-update-imports-on-file-move-enabled t)
+
+#+end_src
+
+
 ** Rust
 
 #+begin_src emacs-lisp
@@ -449,6 +656,7 @@ Currently not working. I think Elon broke some api.
 #+end_src
 
 ** Org noter
+
 #+begin_src emacs-lisp
 
 (use-package! org-noter
@@ -463,30 +671,19 @@ Currently not working. I think Elon broke some api.
 #+begin_src emacs-lisp
 
 (use-package! ivy
-  :config (setq ivy-height 10)
-  :init (ivy-posframe-mode))
-
-
-(use-package! ivy-posframe
-  :config (setq ivy-posframe-parameters '((min-width . 70 )
-                                          (min-height . 10)
-                                          (max-width . 70))
-                ivy-posframe-display-functions-alist '((t . ivy-posframe-display-at-frame-top-center))
-                ivy-posframe-height 10))
-
+  :config (setq ivy-height 10))
 #+end_src
 
-#+RESULTS:
-: t
 
 ** Calibredb
 
 #+begin_src emacs-lisp
 
-(setq calibredb-root-dir "~/Library"
+(setq calibredb-root-dir "~/library"
       calibredb-db-dir (expand-file-name "metadata.db" calibredb-root-dir)
-      calibredb-library-alist '(("~/Library")))
+      calibredb-library-alist '(("~/library")))
 #+end_src
+
 
 
 * Blog
@@ -512,54 +709,62 @@ Currently not working. I think Elon broke some api.
         (org-publish-find-date entry project))
        entry filename)
       )))
-
+(setq blog/html-head
+      "<link rel=\"stylesheet\" href=\"../../css/style.css\" type=\"text/css\"/><link rel=\"stylesheet\" href=\"../css/style.css\" type=\"text/css\"/>")
+(setq blog/html-preamble
+      "<nav class=\"list flex-container-column\">
+        <a href=\"../../index.html\">Home</a>
+        <a href=\"../../projects.html\">Projects</a>
+        <a href=\"/writing/index.html\"><u><b>Writing</b></u></a>
+    </nav>")
+(setq blog/html-postamble
+      "<footer>
+        <div class=\"copyright-container\">
+        <div class=\"copyright\">
+      Copyright &copy; 2023 Błażej Niewiadomski some rights reserved<br/>
+        </div>
+        </div>
+        </footer>")
 
 (setq org-publish-project-alist
       `(("pages"
-         :base-directory "~/org/blog/"
+         :base-directory "~/org/writing/"
          :base-extension "org"
          :with-author t
          :timestamp nil
          :with-date t
          :recursive t
-         :publishing-directory "~/programming/implicit-image.github.io/blog/"
+         :publishing-directory "~/projects/implicit-image.github.io/writing/"
          :publishing-function org-html-publish-to-html
          :html-doctype "html5"
          :html-html5-fancy t
          :html-head-include-scripts nil
          :html-head-include-default-style nil
-         :html-head "<link rel=\"stylesheet\" href=\"../../css/style.css\" type=\"text/css\"/><link rel=\"stylesheet\" href=\"../css/style.css\" type=\"text/css\"/>"
-         :html-preamble "
-    <nav class=\"list flex-container-column\">
-        <a href=\"../../index.html\">Home</a>
-        <a href=\"../../projects.html\">Projects</a>
-        <a href=\"/blog/index.html\"><u><b>Writing</b></u></a>
-    </nav>"
-         :html-postamble "
-<footer>
-  <div class=\"copyright-container\">
-    <div class=\"copyright\">
-      Copyright &copy; 2023 Błażej Niewiadomski some rights reserved<br/>
-    </div>
-  </div>
-</footer>"
+         :html-head ,blog/html-head
+         :html-preamble ,blog/html-preamble
+         :html-postamble ,blog/html-postamble
          :with-latex t
          :headline-levels 1
+         :makeindex t
          :auto-sitemap t
          :sitemap-title ""
          :sitemap-filename "index.org"
+         :sitemap-sort-files 'chronologically
+         :sitemap-sort-folders 'ignore
+         :sitemap-ignore-case t
          :sitemap-format-entry my/org-sitemap-date-entry-format)
 
          ("static"
-          :base-directory "~/org/blog/resources"
+          :base-directory "~/org/writing/resources"
           :base-extension "css\\|txt\\|jpg\\|gif\\|png\\|pdf"
           :recursive t
-          :publishing-directory  "~/programming/implicit-image.github.io/blog/resources"
+          :publishing-directory  "~/projects/implicit-image.github.io/writing/resources"
           :publishing-function org-publish-attachment)
 
          ("implicit-image.github.io" :components ("pages" "static"))))
 
 (setq org-export-with-section-numbers nil)
+
 #+end_src
 
 * Global Keybindings
@@ -581,5 +786,3 @@ Currently not working. I think Elon broke some api.
       (:desc "Untabify" "<backtab>" #'untabify))
 #+end_src
 
-#+RESULTS:
-: untabify
