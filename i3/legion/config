@@ -1,24 +1,15 @@
 # load globals first to make variables accessible in all included files
+# NOTE: this is a hack, i3 doesnt support including files that use variables from other
+# includes. It works inly because we are loading hte file with global definitions first
+# so it is always the root of the include tree
 include "globals.conf"
 include "autostart.conf"
 include "windows.conf"
+include "workspaces.conf"
 include "colors.conf"
 include "keybindings.conf"
 include "bar.conf"
 
-workspace_auto_back_and_forth yes
-
-# exec_always  "synergys --daemon  --debug INFO --name legion --enable-crypto --tls-cert $HOME/.synergy/SSL/Synergy.pem -c ~/repos/dotfiles/synergy/server-legion.conf -a \":24800\";"
-
-for_window [title="Desktop - Plamsa"] kill, floating enable, border none
-
-# picom integraton
-# for_window [floating] border pixel 0
-# for_window [class="^.*"] border pixel 3
-
-# gaps inner 20px
-# gaps outer 10px
-# smart_gaps on
 
 # control keys variables
 set $mod Mod4
@@ -26,11 +17,14 @@ set $alt Mod1
 set $ctrl Control
 # configuration variables
 set $UI_FONT pango:FantasqueSansM Nerd Font Mono
-set $UI_FONT_SIZE 20
+set $UI_FONT_SIZE 21
 set $UI_WORKSPACE_INDICATOR_WIDTH 45
 
+# wallpaper
+
+
 # colors (rearrange for easier configuration)
-set $focused.border           #181818
+set $focused.border           #585858
 set $focused.bg               #181818
 set $focused.text             #ffffff
 set $focused.indicator        #f1f1f1

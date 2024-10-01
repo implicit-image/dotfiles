@@ -53,15 +53,15 @@ alert = 10.0
 format = " $icon $path $available.eng(w:2) "
 
 
-# [[block]]
-# block = "disk_space"
-# path = "/media/storage"
-# info_type = "available"
-# interval = 20
-# warning = 10
-# alert = 5
-# format = " $icon $path $available.eng(w:2) "
-# format_alt = " $path -- "
+[[block]]
+block = "disk_space"
+path = "/storage"
+info_type = "available"
+interval = 20
+warning = 10
+alert = 5
+format = " $icon $path $available.eng(w:2) "
+format_alt = " $path -- "
 
 [[block]]
 block = "memory"
@@ -92,9 +92,9 @@ format = "$icon $brightness"
 block = "battery"
 device = "BAT0"
 driver = "sysfs"
-full_format     = "$icon $percentage"
-charging_format = "$icon $percentage $time"
-empty_format    = "$icon $percentage $time"
+full_format     = "$icon"
+charging_format = "$icon $percentage"
+empty_format    = "$icon $percentage"
 not_charging_format = "$icon $percentage"
 missing_format  = "battery nor found"
 
