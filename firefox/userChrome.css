@@ -31,13 +31,3 @@ menubar, toolbar, nav-bar, #TabsToolbar > *{
 /* #nav-bar { */
 /*   visibility: collapse !important; */
 /* } */
-/*
- * Tree style Tabs specific
- */
-.tab {
-    background: #181818;
-}
-
-#background {
-  background-color: #181818;
-}
