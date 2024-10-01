@@ -1,0 +1,4 @@
+(defwindow dashboard
+           :monitor 0
+           :geometry (geometry :x "0%"
+                               :y ""))
