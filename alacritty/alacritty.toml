@@ -1,7 +1,7 @@
 
 [shell]
 # args = ["--login"]
-program = "/usr/bin/zsh"
+program = "/run/current-system/sw/bin/zsh"
 
 [colors]
 draw_bold_text_with_bright_colors = true

@@ -24,11 +24,12 @@
           :files ("lsp-nwscript.el")))
 (package! lsp-tailwindcss :recipe (:host github :repo "merrickluo/lsp-tailwindcss"))
 (package! color)
+(package! highlight-indent-guides)
 ;; ebooks
 (package! nov)
+(package! djvu )
 (package! calibredb)
 ;; ui
-(package! centaur-tabs)
 (package! company-box)
 (package! eldoc-box)
 ;; org enhancements
