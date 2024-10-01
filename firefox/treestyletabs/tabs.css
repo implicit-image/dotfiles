@@ -1,0 +1,60 @@
+
+
+:root {
+  --tab-surface-regular: #181818;
+  --tab-surface-active: var(--theme-colors-tab_selected,
+                            var(--theme-colors-toolbar,
+                                var(--browser-bg-for-header-image,
+                                    var(--tab-like-surface))));
+  --tab-surface-active-hover: var(--theme-colors-tab_selected,
+                                  var(--theme-colors-toolbar,
+                                      var(--browser-bg-for-header-image,
+                                          var(--tab-like-surface))));
+  --tab-surface-hover: rgba(255,255,255,.1) /* from https://searchfox.org/mozilla-central/rev/8d722de75886d6bffc116772a1db8854e34ee6a7/browser/themes/shared/tabs.inc.css#590 */;
+  --tab-border: #a1a1a1;
+  --tab-text-regular: var(--theme-colors-tab_background_text,
+                          hsl(240,9%,98%) /* from https://searchfox.org/mozilla-central/rev/8d722de75886d6bffc116772a1db8854e34ee6a7/toolkit/themes/windows/global/tabbox.css#27 */);
+  --tab-text-active: var(--theme-colors-tab_text,
+                         var(--theme-colors-toolbar_text,
+                             -moz-DialogText /* from https://searchfox.org/mozilla-central/rev/8d722de75886d6bffc116772a1db8854e34ee6a7/toolkit/themes/windows/global/tabbox.css#27 */));
+}
+
+tab-item tab-item-substance {
+  background-color: #181818;
+  outline: 1px solid #a1a1a1;
+  padding: .4em .2em .4em .2em;
+}
+
+tab-item.active tab-item-substance {
+  background-color: #383838;
+}
+
+tab-item:not(.collapsed) tab-label {
+  padding-left: .5em;
+}
+
+tab-item tab-item-substance:hover {
+  background: #383838 !important;
+}
+
+:root.left tab-item-substance {
+	margin-left: calc(var(--tab-margin-left) + var(--tab-indent) * 1.5);
+}
+:root.sidebar #background {
+  background: #181818;
+}
+
+#tabbar tab-item tab-item-substance:not(:hover) tab-closebox {
+  display: none;
+}
+
+#tabbar tab-item tab-item-substance tab-closebox {
+  margin-left: .2em;
+}
+.newtab-button-box {
+  border: 1px solid var(--tab-border);
+  padding:  .3em;
+}
+.newtab-button-box:hover {
+  background: #383838 !important;
+}
