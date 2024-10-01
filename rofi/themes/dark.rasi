@@ -1,0 +1,11 @@
+
+* {
+  base-bg: #151515;
+  selected-bg: #666666;
+  background-color: @transparent;
+  base-color: #151515;
+  selected-color: #222222;
+  border-color: #00000066;
+  transparent: #00000000;
+  text-color: #f1f1f1;
+}
