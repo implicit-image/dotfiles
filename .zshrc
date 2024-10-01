@@ -18,6 +18,10 @@ export ZSH="/home/b/.oh-my-zsh"
 ZSH_THEME="gallois" 
 
 
+# home manager
+. "$HOME/.nix-profile/etc/profile.d/hm-session-vars.sh"
+
+
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
 # a theme from this variable instead of looking in $ZSH/themes/
@@ -167,6 +171,8 @@ DOTNET_CLI_TELEMETRY_OPTOUT=1.
 [ -f "/home/b/.ghcup/env" ] && source "/home/b/.ghcup/env" # ghcup-env
 . /opt/asdf-vm/asdf.sh
 
+. ~/.asdf/plugins/java/set-java-home.zsh
+
 export PATH="$HOME/.config/rofi/bin:$PATH"
 # export PATH="$HOME/Projects/scripts/shell:$PATH"
 # export PATH="$HOME/Projects/scripts/python/:$PATH"
@@ -185,3 +191,4 @@ export PATH="/home/b/Games/modding/infinityengine/gemrb:$PATH"
 
 # opam configuration
 [[ ! -r /home/b/.opam/opam-init/init.zsh ]] || source /home/b/.opam/opam-init/init.zsh  > /dev/null 2> /dev/null
+

@@ -20,4 +20,4 @@ configuration {
 	}
 }
 
-@theme "../themes/ribbon.rasi"
+@theme "../themes/center-launch.rasi"
