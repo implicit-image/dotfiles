@@ -103,7 +103,7 @@
         options = "grp:alt_shift_toggle, ctrl:swapcaps";
       };
       autoRepeatDelay = 200;
-      autoRepeatInetrval = 30;
+      autoRepeatInterval = 30;
       displayManager = {
         defaultSession = "none+i3";
         lightdm = {

@@ -29,7 +29,7 @@
   }
 
   services = {
-    flameshot = {
+    flameshot {
       enable = true;
       settings = {
         General = {
