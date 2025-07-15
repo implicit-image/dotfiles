@@ -6,7 +6,7 @@
     addKeysToAgent = "confirm";
     extraConfig="
     Host github.com
-    IdentityFile ~/.ssh/id_ed25519
+    IdentityFile ~/.ssh/git_key_ed25519
     ";
     package = pkgs.openssh;
   };

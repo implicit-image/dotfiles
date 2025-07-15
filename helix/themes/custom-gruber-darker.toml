@@ -1,0 +1,314 @@
+attribute = "#e4e4ef"
+label = "#e4e4ef"
+module = "#8ec07c"
+namespace = "#95a99f"
+tag = "#95a99f"
+"ui.virtual.wrap" = "#453d41"
+
+[comment]
+fg = "#858583"
+modifiers = ["italic"]
+
+["comment.block.documentation"]
+bg = "#453d41"
+
+["constant.builtin"]
+fg = "#ffdd33"
+modifiers = ["bold"]
+
+["constant.character"]
+fg = "#73c936"
+
+["constant.character.escape"]
+fg = "#ffdd33"
+
+["constant.numeric"]
+modifiers = ["italic"]
+
+["diagnostic.deprecated"]
+fg = "#d65d0e"
+modifiers = ["crossed_out", "dim"]
+
+["diagnostic.error"]
+fg = "#f43841"
+modifiers = ["crossed_out"]
+
+["diagnostic.hint".underline]
+color = "#5292c8"
+style = "dashed"
+
+["diagnostic.info".underline]
+color = "#b8bb26"
+style = "dashed"
+
+["diagnostic.unnecessary"]
+modifiers = ["dim"]
+
+["diagnostic.warning".underline]
+color = "#fe8019"
+style = "dashed"
+
+["diff.delta.gutter"]
+fg = "#ffdd33"
+
+["diff.minus.gutter"]
+fg = "#ff4f58"
+
+["diff.plus.gutter"]
+fg = "#b8bb26"
+
+[error]
+fg = "#f43841"
+modifiers = ["bold"]
+
+[function]
+fg = "#96a6c8"
+
+["function.builtin "]
+fg = "#ffdd33"
+
+["function.macro"]
+fg = "#ffdd33"
+
+["function.method "]
+fg = "#5292c8"
+
+[hint]
+fg = "#5292c8"
+modifiers = ["bold"]
+
+[info]
+fg = "#8ec07c"
+modifiers = ["bold"]
+
+[keyword]
+fg = "#ffdd33"
+modifiers = ["bold", "italic"]
+
+["keyword.directive"]
+fg = "#ffdd33"
+
+["markup.bold"]
+modifiers = ["bold"]
+
+["markup.heading"]
+modifiers = ["bold", "italic"]
+
+["markup.heading.1"]
+fg = "#81a2be"
+
+["markup.heading.2"]
+fg = "#96a6c8"
+
+["markup.heading.3"]
+fg = "#95a99f"
+
+["markup.heading.4"]
+fg = "#858583"
+
+["markup.heading.5"]
+fg = "#9e95c7"
+
+["markup.heading.6"]
+fg = "#8ec07c"
+
+["markup.heading.marker"]
+fg = "#8ec07c"
+
+["markup.italic"]
+modifiers = [" italic"]
+
+["markup.link.label"]
+fg = "#f4f4ff"
+
+["markup.link.text"]
+fg = "#8ec07c"
+
+["markup.link.url"]
+fg = "#b8bb26"
+modifiers = ["dim"]
+
+["markup.list.checked"]
+modifiers = ["dim"]
+
+["markup.list.numbered"]
+fg = "#95a99f"
+
+["markup.list.unchecked"]
+modifiers = ["bold"]
+
+["markup.list.unnumbered"]
+fg = "#f5f5f5"
+
+["markup.quote"]
+bg = "#2c2c2c"
+
+["markup.raw.block"]
+bg = "#282828"
+
+["markup.raw.inline"]
+bg = "#282828"
+
+["markup.strikethrough"]
+modifiers = ["crossed_out"]
+
+[operator]
+fg = "#f4f4ff"
+modifiers = ["italic"]
+
+[punctuation]
+fg = "#e4e4ef"
+
+["punctuation.bracket"]
+fg = "#81a2be"
+
+["punctuation.delimiter"]
+fg = "#f4f4ff"
+
+["punctuation.special"]
+fg = "#a89984"
+
+[special]
+fg = "#ffdd33"
+modifiers = ["bold"]
+
+[string]
+fg = "#73c936"
+modifiers = ["italic"]
+
+["string.regexp"]
+fg = "#ffdd33"
+
+["string.special.path"]
+fg = "#73c936"
+
+["string.special.url"]
+fg = "#73c936"
+
+[type]
+fg = "#95a99f"
+
+["ui.background"]
+bg = "#181818"
+
+["ui.bufferline"]
+bg = "#282828"
+fg = "#a89984"
+
+["ui.bufferline.active"]
+bg = "#3f3f3f"
+fg = "#e4e4ef"
+
+["ui.cursor.match"]
+bg = "#ff4f58"
+modifiers = ["bold", "rapid_blink"]
+
+["ui.cursor.primary"]
+bg = "#e4e4ef"
+fg = "#303540"
+
+["ui.cursorline"]
+bg = "#282828"
+
+["ui.help"]
+bg = "#282828"
+fg = "#e4e4ef"
+
+["ui.highlight"]
+bg = "#453d41"
+
+["ui.linenr"]
+fg = "#52494e"
+
+["ui.linenr.selected"]
+fg = "#ffdd33"
+
+["ui.menu"]
+bg = "#282828"
+fg = "#e4e4ef"
+
+["ui.menu.selected"]
+bg = "#454545"
+fg = "#e4e4ef"
+modifiers = ["bold"]
+
+["ui.popup"]
+bg = "#282828"
+
+["ui.popup.info"]
+bg = "#282828"
+
+["ui.selection"]
+bg = "#453d41"
+modifiers = ["reversed"]
+
+["ui.selection.primary"]
+bg = "#454545"
+
+["ui.statusline"]
+bg = "#282828"
+fg = "#e4e4ef"
+
+["ui.statusline.inactive"]
+bg = "#282828"
+fg = "#a89984"
+
+["ui.statusline.insert"]
+bg = "#5292c8"
+fg = "#282828"
+modifiers = ["bold"]
+
+["ui.statusline.normal"]
+bg = "#ffdd33"
+fg = "#282828"
+modifiers = ["bold"]
+
+["ui.statusline.select"]
+bg = "#9e95c7"
+fg = "#282828"
+modifiers = ["bold"]
+
+["ui.text"]
+fg = "#e4e4ef"
+
+["ui.text.focus"]
+bg = "#52494e"
+
+["ui.virtual.indent-guide"]
+fg = "#454545"
+
+["ui.virtual.inlay-hint"]
+fg = "#858583"
+modifiers = ["dim"]
+
+["ui.virtual.inlay-hint.parameter"]
+fg = "#858583"
+
+["ui.virtual.inlay-hint.type"]
+fg = "#95a99f"
+
+["ui.virtual.jump-label"]
+bg = "#454545"
+fg = "#5292c8"
+modifiers = ["bold", "slow_blink"]
+
+["ui.virtual.ruler"]
+bg = "#282828"
+fg = "#454545"
+
+["ui.virtual.whitespace"]
+fg = "#454545"
+
+["ui.window"]
+fg = "#282828"
+
+[variable]
+fg = "#e4e4ef"
+
+["variable.builtin "]
+fg = "#ffdd33"
+modifiers = ["bold"]
+
+[warning]
+fg = "#fe8019"
+modifiers = ["bold"]

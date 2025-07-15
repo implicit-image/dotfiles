@@ -7,16 +7,16 @@
   home.file = {
     "helix-config" = {
       target = "${config.xdg.configHome}/helix/config.toml";
-      source = "${home.sessionVariables.DOTFILES}/helix/config.toml";
+      source = "${config.home.sessionVariables.DOTFILES}/helix/config.toml";
     };
     "helix-themes" = {
       recursive = true;
       target = "${config.xdg.configHome}/helix/themes";
-      source = "${home.sessionVariables.DOTFILES}/helix/themes";
+      source = "${config.home.sessionVariables.DOTFILES}/helix/themes";
     };
     "helix-lang" = {
       target = "${config.xdg.configHome}/helix/languages.toml";
-      source = "${home.sessionVariables.DOTFILES}/helix/languages.toml";
+      source = "${config.home.sessionVariables.DOTFILES}/helix/languages.toml";
     };
   };
 

@@ -1,0 +1,71 @@
+
+[[grammar]]
+name = "csv"
+
+[grammar.source]
+git = "https://github.com/tree-sitter-grammars/tree-sitter-csv"
+rev = "7eb7297823605392d2bbcc4c09b1cd18d6fa9529"
+subpath = "csv/"
+
+[[grammar]]
+name = "tsv"
+
+[grammar.source]
+git = "https://github.com/tree-sitter-grammars/tree-sitter-csv"
+rev = "7eb7297823605392d2bbcc4c09b1cd18d6fa9529"
+subpath = "tsv/"
+
+[[grammar]]
+name = "psv"
+
+[grammar.source]
+git = "https://github.com/tree-sitter-grammars/tree-sitter-csv"
+rev = "7eb7297823605392d2bbcc4c09b1cd18d6fa9529"
+subpath = "psv/"
+
+[[grammar]]
+name = "nwscript"
+
+[grammar.source]
+git = "https://github.com/stuart/tree-sitter-nwscript"
+rev = "8a1cc0898cc8e9f0f7b2728fe6f3ba78ef613eb1"
+
+[[language]]
+name = "c"
+language-servers = ["ccls"]
+
+[[language]]
+name = "nwscript"
+comment-tokens = "//"
+file-types = ["nss"]
+grammar = "c"
+scope = "source.nwscript"
+
+[language.block-comment-tokens]
+end = "*/"
+start = "/*"
+
+[language.indent]
+tab-width = 4
+unit = "    "
+
+[[language]]
+file-types = ["2da", "2DA"]
+grammar = "tsv"
+name = "2da"
+scope = "text.2da"
+
+[language.soft-wrap]
+enable = false
+
+[[language]]
+file-types = ["csv"]
+grammar = "csv"
+name = "csv"
+scope = "text.csv"
+
+[language-server.ccls]
+command = "ccls"
+
+[language-server.lsp-ai]
+command = "lsp-ai"

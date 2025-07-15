@@ -23,7 +23,7 @@
         lua-language-server
         yaml-language-server
         bash-language-server
-        #astro-language-server
+        astro-language-server
         kotlin-language-server
         svelte-language-server
         haskell-language-server
@@ -79,6 +79,13 @@
       ++ python-pkgs;
 
   programs = {
+    fzf = {
+      enable = true;
+      enableZshIntegration = true;
+    };
+    lazygit = {
+      enable = true;
+    };
     vscode = {
       enable = true;
       package = pkgs.vscodium;

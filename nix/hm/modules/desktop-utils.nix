@@ -25,11 +25,12 @@
   programs.eww = {
     enable = true;
     enableZshIntegration = true;
-    configDir = "${config.home.sessionVaribles.DOTFILES}/eww/";
-  }
+    configDir = "${config.home.sessionVariables.DOTFILES}/eww/";
+  };
 
   services = {
-    flameshot {
+    kdeconnect.enable = true;
+    flameshot = {
       enable = true;
       settings = {
         General = {

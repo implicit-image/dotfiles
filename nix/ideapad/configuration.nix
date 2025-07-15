@@ -102,7 +102,7 @@
         layout = "us, pl";
         options = "grp:alt_shift_toggle, ctrl:swapcaps";
       };
-      autoRepeatDelay = 200;
+      autoRepeatDelay = 300;
       autoRepeatInterval = 30;
       displayManager = {
         defaultSession = "none+i3";

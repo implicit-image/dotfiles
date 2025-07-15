@@ -1,0 +1,165 @@
+
+theme = "custom-gruber-darker"
+[editor]
+color-modes = true
+cursorline = true
+line-number = "relative"
+popup-border = "all"
+
+[editor.cursor-shape]
+insert = "bar"
+normal = "block"
+select = "underline"
+
+[editor.file-picker]
+git-ignore = true
+hidden = true
+ignore = true
+parents = true
+
+[editor.gutters]
+layout = ["diagnostics", "spacer", "diff", "line-numbers", "spacer"]
+
+[editor.gutters.line-numbers]
+min-width = 2
+
+[editor.indent-guides]
+render = false
+
+[editor.lsp]
+auto-signature-help = true
+display-inlay-hints = true
+display-signature-help-docs = true
+
+[editor.smart-tab]
+enable = true
+
+[editor.soft-wrap]
+enable = true
+
+[editor.statusline]
+left = ["mode", "selections", "file-name", "position"]
+right = ["diagnostics", "file-encoding", "file-type", "version-control"]
+separator = " "
+
+[editor.statusline.mode]
+insert = "<I>"
+normal = "<N>"
+select = "<S>"
+
+[editor.whitespace.characters]
+space = "·"
+tab = ">"
+tabpad = "·"
+
+[editor.whitespace.render]
+space = "all"
+tab = "all"
+
+[keys.insert]
+A-x = ["command_mode"]
+"C-\"" = ["insert_register"]
+C-r = ["redo"]
+C-space = ["completion"]
+[keys.insert.A-space]
+"." = [":open"]
+q = [":quit"]
+space = ["file_picker"]
+
+[keys.insert.A-space.i]
+"!" = ["shell_insert_output"]
+r = ["insert_register"]
+
+[keys.insert.C-x]
+K = [":buffer-close!"]
+k = [":buffer-close"]
+
+[keys.normal]
+"=" = ["format_selections"]
+A-x = ["command_mode"]
+C-h = ["jump_view_left"]
+C-j = ["jump_view_down"]
+C-k = ["jump_view_up"]
+C-l = ["jump_view_right"]
+C-r = ["redo"]
+G = ["goto_last_line"]
+K = ["hover"]
+V = ["extend_to_line_bounds", "select_mode"]
+"`" = ["select_register"]
+
+[keys.normal.C-x]
+K = [":buffer-close!"]
+S-tab = ["unindent"]
+k = [":buffer-close"]
+tab = ["indent"]
+
+[keys.normal.g]
+c = ["toggle_comments"]
+
+[keys.normal.space]
+"*" = [
+    "select_mode",
+    "move_next_long_word_end",
+    "extend_prev_long_word_start",
+    "search_selection",
+    "normal_mode",
+    "global_search",
+]
+"." = "file_picker_in_current_buffer_directory"
+":" = "command_mode"
+"`" = ":buffer-previous"
+space = "file_picker"
+
+[keys.normal.space.b]
+R = ":reload-all"
+b = "buffer_picker"
+r = ":reload"
+
+[keys.normal.space.f.c]
+c = ":config-open"
+l = ":log-open"
+r = ":config-reload"
+
+[keys.normal.space.f.o]
+P = [":cd /home/b/programming", ":open /home/b/programming"]
+p = [":cd /home/b/projects", ":open /home/b/projects"]
+r = [":cd /home/b/repos", ":open /home/b/repos"]
+
+[keys.normal.space.g]
+a = [":sh git add ."]
+b = ":sh git branch -l"
+g = [":vsplit git", "select_all", "delete_selection", ":insert-output git status", ":lang bash"]
+s = ":sh git status | column"
+x = [":buffer-close git"]
+
+[keys.normal.space.i]
+"!" = "shell_insert_output"
+d = ":insert-output date +%d/%m/%Y"
+
+[keys.normal.space.n.r]
+f = ":open ~/org/roam"
+
+[keys.normal.space.q]
+A = ":quit-all!"
+W = ":write-quit-all!"
+a = ":quit-all"
+w = ":write-quit-all"
+
+[keys.normal.space.t]
+a = ":toggle auto-completion"
+b = ":toggle bufferline always never"
+d = ":toggle lsp.display-signature-help-docs"
+f = ":toggle auto-format"
+h = ":toggle lsp.auto-signature-help"
+i = ":toggle lsp.display-inlay-hints"
+l = ":toggle lsp.enable"
+w = ":toggle soft-wrap.enable"
+
+[keys.select]
+A-x = ["command_mode"]
+G = ["goto_last_line"]
+S-tab = ["unindent"]
+tab = ["indent"]
+
+[keys.select.g]
+c = ["toggle_comments"]
