@@ -12,7 +12,7 @@
   // border-color: #00000066;
   // transparent: #00000000;
   // text-color: #f1f1f1;
-  font: "Iosevka Nerd Font 20";
+  font: "Iosevka Nerd Font 15";
   padding: 0;
   margin: 0;
 }
@@ -26,8 +26,8 @@ window {
   background-color: @base-bg;
   margin: 0px 0px 0px 0px;
   children: [ entryline, listview ];
-  border: 5px solid;
-  border-radius: 10px;
+  border: 2px solid;
+  border-radius: 0px;
   border-color: @selected-bg;
   box-shadow: 20px;
   padding: 10px;
@@ -38,7 +38,7 @@ entryline {
   padding: 2px;
   orientation: horizontal;
   children: [prompt, entry];
-  border-radius: 10px;
+  border-radius: 0px;
 }
 
 listview {
@@ -73,7 +73,7 @@ element {
 
 element selected {
   border: 0px 1px;
-  border-radius: 5px;
+  border-radius: 0px;
   padding: 0 1px 0 1px;
   text-color: @selected-color;
   background-color: @selected-bg;

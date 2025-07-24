@@ -64,19 +64,16 @@
   environment.systemPackages = with pkgs; [
   #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
   #  wget
-  git
-  vim
-  neovim
-  btop
-  unzip
-  gzip
-  zip
-  xarchiver
+    git
+    vim
+    neovim
+    btop
+    unzip
+    gzip
+    zip
+    xarchiver
+    stdmanpages
   ];
-
-  environment.variables = {
-    EDITOR = "nvim";
-  };
 
   environment.pathsToLink = [ "/share/zsh" ];
   services.libinput.touchpad = {

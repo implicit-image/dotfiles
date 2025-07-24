@@ -1,5 +1,10 @@
 { config, pkgs, ... }:
 {
+
+  environment.systemPackages = with pkgs; [
+    vulkan-tools
+  ];
+
   hardware.graphics = {
     enable = true;
     enable32Bit = true;

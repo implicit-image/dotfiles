@@ -13,6 +13,7 @@
         gnumake
         libtool
         file
+        powershell
         devenv
         # language servers
         nixd

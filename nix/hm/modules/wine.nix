@@ -2,7 +2,25 @@
 {
   home.packages = with pkgs; [
     wineWowPackages.stagingFull
-    winetricks
-    lutris
   ];
+
+  programs = {
+    lutris = {
+      enable = true;
+      extraPackages = with pkgs; [
+        mangohud
+        winetricks
+        gamescope
+        umu-launcher
+        zenity
+      ];
+      protonPackages = with pkgs; [
+        proton-ge-bin
+      ];
+      winePackages = with pkgs; [
+        wineWowPackages.stagingFull
+        wineWowPackages.full
+      ];
+    };
+  };
 }
