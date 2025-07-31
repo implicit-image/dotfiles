@@ -21,7 +21,10 @@
       ../nixos/modules/filesystem.nix
 
       # graphics
-      # ./system-modules/graphics.nix
+      ./nixos/modules/graphics.nix
+
+      # steam
+      ./nixos/modules/steam.nix
     ];
 
   # Bootloader.
@@ -107,6 +110,10 @@
           enable = true;
         };
       };
+      videoDrivers = [
+        "intel"
+        "modesetting"
+      ];
       windowManager.i3 = {
         enable = true;
         extraPackages = with pkgs; [
@@ -141,10 +148,20 @@
     };
   };
 
-  fonts.packages = with pkgs; let
-    my-nerdfonts = builtins.filter lib.attrsets.isDerivation (builtins.attrValues pkgs.nerd-fonts);
+  fonts = {
+    packages = with pkgs; let
+      my-nerdfonts = builtins.filter lib.attrsets.isDerivation (builtins.attrValues pkgs.nerd-fonts);
     in
-    my-nerdfonts;
+      my-nerdfonts
+      ++ [
+        noto-fonts
+        noto-fonts-cjk
+        noto-fonts-emoji
+        font-awesome
+        source-han-sans
+        source-han-sans-japanese
+        source-han-serif-japanese];
+  };
 
 
   # enable flake feature
