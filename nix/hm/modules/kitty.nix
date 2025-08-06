@@ -17,7 +17,7 @@
         font_size = 14;
         shell = "${config.home.sessionVariables.SHELL}";
       };
-      # for term-keys
+      # for emacs term-keys
       extraConfig = "
 # emacs Kitty Keyboard Protocol keys
 map CTRL+GRAVE_ACCENT                                       send_text all \x1b\x1f\x2a\x62\x1f

@@ -2,6 +2,8 @@
 {
   home.packages = with pkgs; [
     wineWowPackages.stagingFull
+    zenity
+    winetricks
   ];
 
   programs = {
@@ -9,10 +11,8 @@
       enable = true;
       extraPackages = with pkgs; [
         mangohud
-        winetricks
         gamescope
         umu-launcher
-        zenity
       ];
       protonPackages = with pkgs; [
         proton-ge-bin

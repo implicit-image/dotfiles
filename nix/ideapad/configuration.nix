@@ -21,10 +21,10 @@
       ../nixos/modules/filesystem.nix
 
       # graphics
-      ./nixos/modules/graphics.nix
+      ../nixos/modules/graphics.nix
 
       # steam
-      ./nixos/modules/steam.nix
+      ../nixos/modules/steam.nix
     ];
 
   # Bootloader.
@@ -155,7 +155,7 @@
       my-nerdfonts
       ++ [
         noto-fonts
-        noto-fonts-cjk
+        noto-fonts-cjk-sans
         noto-fonts-emoji
         font-awesome
         source-han-sans

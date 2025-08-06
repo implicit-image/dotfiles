@@ -17,16 +17,5 @@
       enable = true;
       createDirectories = true;
     };
-    desktopEntries = {
-      # open pdfs in emacs if client is running
-      "emacs-pdf" = {
-        name = "Emacs pdf";
-        genericName = "PDF Reader";
-        exec = "emacsclient -c -a %U";
-        terminal = false;
-        categories = [ "Application" ];
-        mimeType = [ "application/pdf" ];
-      };
-    };
   };
 }
