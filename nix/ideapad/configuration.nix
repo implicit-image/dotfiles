@@ -25,6 +25,9 @@
 
       # steam
       ../nixos/modules/steam.nix
+
+      # package overlays
+      ../nixos/modules/overlays.nix
     ];
 
   # Bootloader.
@@ -49,9 +52,6 @@
     LC_TIME = "pl_PL.UTF-8";
   };
 
-  # Configure keymap in X11
-
-  # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.b = {
     isNormalUser = true;
     description = "b";
@@ -83,17 +83,6 @@
     tapping = false;
   };
 
-  # Some programs need SUID wrappers, can be configured further or are
-  # started in user sessions.
-  # programs.mtr.enable = true;
-  # programs.gnupg.agent = {
-  #   enable = true;
-  #   enableSSHSupport = true;
-  # };
-
-  # List services that you want to enable:
-
-  # Enable the OpenSSH daemon.
   services = {
     openssh.enable = true;
     xserver = {
@@ -150,7 +139,9 @@
 
   fonts = {
     packages = with pkgs; let
-      my-nerdfonts = builtins.filter lib.attrsets.isDerivation (builtins.attrValues pkgs.nerd-fonts);
+      my-nerdfonts = builtins.filter
+        lib.attrsets.isDerivation
+        (builtins.attrValues pkgs.nerd-fonts);
     in
       my-nerdfonts
       ++ [

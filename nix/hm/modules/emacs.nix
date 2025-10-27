@@ -2,8 +2,7 @@
 {
   programs.emacs = {
     enable = true;
-    package = pkgs.emacs30;
-    # lsp bridge installation that works with nixos
+    package = pkgs.emacs-unstable;
     extraPackages = epkgs: [ epkgs.lsp-bridge ];
   };
 

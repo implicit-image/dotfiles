@@ -7,7 +7,7 @@
     # FIXME: figure this shit out
     helix.url = "github:mattwparas/helix/a9d5557a3b3c11767432bdacd36ccb3bea02bfa5";
     steel.url = "github:mattwparas/steel/af792c7b3412b85fffe1b69b9e5cf2c752d39c36";
-
+    emacs-overlay.url = "github:nix-community/emacs-overlay";
     # home-manager, used for managing user configuration
     home-manager = {
       url = "github:nix-community/home-manager";
@@ -18,18 +18,16 @@
       # to avoid problems caused by different versions of nixpkgs.
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
   };
 
-  outputs = inputs@{ nixpkgs, home-manager, helix, steel, ... }: {
+  outputs = inputs@{ nixpkgs, home-manager, helix, steel, emacs-overlay, ... }: {
     nixosConfigurations = {
       nixos =
         let
           system = "x86_64-linux";
-          specialArgs = { inherit helix steel; };
+          specialArgs = { inherit helix steel emacs-overlay ; };
           modules = [
             ./configuration.nix
-
             # make home-manager as a module of nixos
             # so that home-manager configuration will be deployed automatically when executing `nixos-rebuild switch`
             home-manager.nixosModules.home-manager

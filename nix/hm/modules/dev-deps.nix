@@ -16,6 +16,7 @@
         powershell
         devenv
         # language servers
+
         nixd
         nixdoc
         ccls
@@ -47,6 +48,7 @@
         cargo
         # code
         ast-grep
+        ugrep
         pnpm
         # d
         dmd

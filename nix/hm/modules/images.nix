@@ -3,5 +3,6 @@
   home.packages = with pkgs; [
     exif
     vimiv-qt
+    gimp3
   ];
 }
