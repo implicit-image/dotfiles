@@ -2,7 +2,7 @@
 {
   programs.emacs = {
     enable = true;
-    package = pkgs.emacs-unstable;
+    package = pkgs.emacs-git;
     extraPackages = epkgs: [ epkgs.lsp-bridge ];
   };
 

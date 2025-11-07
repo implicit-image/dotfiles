@@ -3,11 +3,14 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-    # helix with plugins
-    # FIXME: figure this shit out
-    helix.url = "github:mattwparas/helix/a9d5557a3b3c11767432bdacd36ccb3bea02bfa5";
-    steel.url = "github:mattwparas/steel/af792c7b3412b85fffe1b69b9e5cf2c752d39c36";
-    emacs-overlay.url = "github:nix-community/emacs-overlay";
+    lem = {
+      url = "github:lem-project/lem/f0e72880524950a2a6bbb3b20cf2666b89735e56";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    emacs-overlay = {
+      url = "github:nix-community/emacs-overlay/b877b340deac13aeca7063f4801a1cbf9b8a4a00";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     # home-manager, used for managing user configuration
     home-manager = {
       url = "github:nix-community/home-manager";
@@ -20,12 +23,12 @@
     };
   };
 
-  outputs = inputs@{ nixpkgs, home-manager, helix, steel, emacs-overlay, ... }: {
+  outputs = inputs@{ nixpkgs, home-manager, emacs-overlay, ... }: {
     nixosConfigurations = {
       nixos =
         let
           system = "x86_64-linux";
-          specialArgs = { inherit helix steel emacs-overlay ; };
+          specialArgs = { inherit emacs-overlay ; };
           modules = [
             ./configuration.nix
             # make home-manager as a module of nixos
