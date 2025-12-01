@@ -16,7 +16,6 @@
         powershell
         devenv
         # language servers
-
         nixd
         nixdoc
         ccls
@@ -32,10 +31,8 @@
         vscode-langservers-extracted
         basedpyright
         # emace helpers
-        emacs-lsp-booster
         nodejs
         yarn
-        zellij
         # haskell
         ghc
         # haskellPackages.ghcup
@@ -53,6 +50,8 @@
         # d
         dmd
         vlang
+        #llm
+        gemini-cli
       ];
       python-pkgs = with pkgs.python312Packages; [
         uv

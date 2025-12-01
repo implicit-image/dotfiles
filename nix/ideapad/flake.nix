@@ -3,10 +3,6 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-    lem = {
-      url = "github:lem-project/lem/f0e72880524950a2a6bbb3b20cf2666b89735e56";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     emacs-overlay = {
       url = "github:nix-community/emacs-overlay/b877b340deac13aeca7063f4801a1cbf9b8a4a00";
       inputs.nixpkgs.follows = "nixpkgs";

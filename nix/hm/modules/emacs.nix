@@ -3,9 +3,26 @@
   programs.emacs = {
     enable = true;
     package = pkgs.emacs-git;
-    extraPackages = epkgs: [ epkgs.lsp-bridge ];
-  };
-
+    extraPackages = (epkgs: (with epkgs; [
+    treesit-grammars.with-all-grammars
+    (melpaBuild {
+      ename = "reader";
+      pname = "emacs-reader";
+      version = "20250630";
+      src = fetchFromGitea {
+        domain = "codeberg.org";
+        owner = "divyaranjan";
+        repo = "emacs-reader";
+        rev = "9d62d26fe4ae63e5cecf57bc399b20f7feefb620"; # replace with 'tag' for stable
+        hash = "sha256-hkRa52PYfBG090jior3GPOeZyftwmpr2Q7jPKFHsR88=";
+      };
+      files = ''(:defaults "render-core.so")'';
+      nativeBuildInputs = [ pkg-config ];
+      buildInputs = [ gcc mupdf gnumake pkg-config ];
+      preBuild = "make clean all";
+    })
+    ]));
+  }
   xdg.desktopEntries = {
     "emacs-pdf" = {
       name = "Emacs pdf";
@@ -15,16 +32,7 @@
       categories = [ "Application" ];
       mimeType = [ "application/pdf" ];
     };
-    # "emacs-dired" = {
-    #   name = "Emacs Dired";
-    #   genericName = "Directory Browser";
-    #   exec = "emacsclient -c %U";
-    #   terminal = false;
-    #   categories = ["Application"];
-    #   mimeType = [ "" ];
-    # }
   };
-
   home.packages = with pkgs; [
     # formatters
     cljfmt
@@ -34,5 +42,4 @@
     hunspellDicts.en_US
     hunspellDicts.el_GR
   ];
-
 }

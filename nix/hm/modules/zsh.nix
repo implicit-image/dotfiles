@@ -17,6 +17,8 @@
     };
     shellAliases = {
       system-rebuild = "sudo nixos-rebuild switch";
+      mcs = "emacsclient -c";
+      tmcs = "emacsclient -nw -c";
     };
     oh-my-zsh = {
       enable = true;
