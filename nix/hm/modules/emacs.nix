@@ -13,7 +13,7 @@
         domain = "codeberg.org";
         owner = "divyaranjan";
         repo = "emacs-reader";
-        rev = "9d62d26fe4ae63e5cecf57bc399b20f7feefb620"; # replace with 'tag' for stable
+        rev = "2d95199bbb0f2c488f8d5d1ae8e9dc2de937f430"; # replace with 'tag' for stable
         hash = "sha256-hkRa52PYfBG090jior3GPOeZyftwmpr2Q7jPKFHsR88=";
       };
       files = ''(:defaults "render-core.so")'';
