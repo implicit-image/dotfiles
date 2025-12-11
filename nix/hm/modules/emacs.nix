@@ -9,20 +9,20 @@
       ename = "reader";
       pname = "emacs-reader";
       version = "20250630";
-      src = fetchFromGitea {
+      src = pkgs.fetchFromGitea {
         domain = "codeberg.org";
         owner = "divyaranjan";
         repo = "emacs-reader";
-        rev = "2d95199bbb0f2c488f8d5d1ae8e9dc2de937f430"; # replace with 'tag' for stable
+        rev = "9d62d26fe4ae63e5cecf57bc399b20f7feefb620"; # replace with 'tag' for stable
         hash = "sha256-hkRa52PYfBG090jior3GPOeZyftwmpr2Q7jPKFHsR88=";
       };
       files = ''(:defaults "render-core.so")'';
-      nativeBuildInputs = [ pkg-config ];
-      buildInputs = [ gcc mupdf gnumake pkg-config ];
+      nativeBuildInputs = [ pkgs.pkg-config ];
+      buildInputs = with pkgs; [ gcc mupdf gnumake pkg-config ];
       preBuild = "make clean all";
     })
     ]));
-  }
+  };
   xdg.desktopEntries = {
     "emacs-pdf" = {
       name = "Emacs pdf";
@@ -36,6 +36,8 @@
   home.packages = with pkgs; [
     # formatters
     cljfmt
+    # djvu utils
+    djvulibre
     # spellcheckers
     hunspell
     hunspellDicts.pl-pl

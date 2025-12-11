@@ -38,6 +38,7 @@
     ../hm/modules/chromium.nix
     ../hm/modules/mpv.nix
     ../hm/modules/mpd.nix
+    ../hm/modules/ytdlp.nix
   ];
 
   home.username = "b";

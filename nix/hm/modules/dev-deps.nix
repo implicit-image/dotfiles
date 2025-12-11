@@ -46,6 +46,7 @@
         # code
         ast-grep
         ugrep
+        ripgrep-all
         pnpm
         # d
         dmd
