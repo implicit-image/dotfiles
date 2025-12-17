@@ -14,7 +14,7 @@
         bold_font = "auto";
         italic_font = "auto";
         bold_italic_font = "auto";
-        font_size = 14;
+        font_size = 12;
         shell = "${config.home.sessionVariables.SHELL}";
       };
       # for emacs term-keys

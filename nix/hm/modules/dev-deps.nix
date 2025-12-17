@@ -5,6 +5,7 @@
     let
       nixos-pkgs = with pkgs; [
         ripgrep
+        fuse-emulator
         # generic gnu stuff
         tree-sitter
         lsp-ai
