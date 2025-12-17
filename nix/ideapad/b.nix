@@ -40,6 +40,7 @@
     ../hm/modules/mpd.nix
     ../hm/modules/ytdlp.nix
     ../hm/modules/floorp.nix
+    ../hm/modules/firefox.nix
   ];
 
   home.username = "b";

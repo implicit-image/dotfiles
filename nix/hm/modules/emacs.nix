@@ -3,7 +3,7 @@
   programs.emacs = {
     enable = true;
     package = pkgs.emacs-git.overrideAttrs (final: prev: {
-      configureFlags = prev.configureFlags ++ [ "--with-cairo=no" "--with-x-toolkit=gtk3"  "--with-pgtk=no" "--with-tree-sitter=yes" ];
+      configureFlags = prev.configureFlags ++ [ "--with-cairo=yes" "--with-x-toolkit=gtk3"  "--with-pgtk=no" "--with-tree-sitter=yes" "--with-libotf" "--with-xtf"];
       buildInputs = (with pkgs; [ gtk3 libgccjit]) ++ prev.buildInputs;
     });
 
