@@ -122,12 +122,6 @@
 
   programs = {
     xfconf.enable = true;
-    firefox = {
-      enable = true;
-      preferences = {
-        "toolkit.legacyUserProfileCustomizations.stylesheets" = true;
-      };
-    };
     nm-applet = {
       enable = true;
       indicator = false;

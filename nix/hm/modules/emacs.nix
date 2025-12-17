@@ -2,7 +2,11 @@
 {
   programs.emacs = {
     enable = true;
-    package = pkgs.emacs-git;
+    package = pkgs.emacs-git.overrideAttrs (final: prev: {
+      configureFlags = (builtins.filter
+        (option: !(option == "--with-cairo"))
+        prev.configureFlags) ++ [ "--with-xwidgets=yes" ];
+    });
     extraPackages = (epkgs: (with epkgs; [
     treesit-grammars.with-all-grammars
     (melpaBuild {

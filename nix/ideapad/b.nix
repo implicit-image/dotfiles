@@ -39,6 +39,7 @@
     ../hm/modules/mpv.nix
     ../hm/modules/mpd.nix
     ../hm/modules/ytdlp.nix
+    ../hm/modules/floorp.nix
   ];
 
   home.username = "b";
