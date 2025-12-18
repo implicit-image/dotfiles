@@ -8,7 +8,7 @@
       PROJECTS = "${config.home.homeDirectory}/projects";
       REPOS = "${config.home.homeDirectory}/repos";
       PROGRAMMING = "${config.home.homeDirectory}/programming";
-      UV_PYTHON = "${pkgs.python313Full}";
+      UV_PYTHON = "${pkgs.python312}";
     };
   };
 }

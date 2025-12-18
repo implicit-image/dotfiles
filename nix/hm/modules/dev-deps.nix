@@ -55,7 +55,7 @@
         #llm
         gemini-cli
       ];
-      python-pkgs = with pkgs.python313Packages; [
+      python-pkgs = with pkgs.python312Packages; [
         uv
         pip
         jedi-language-server
