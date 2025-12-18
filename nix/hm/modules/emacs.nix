@@ -5,16 +5,16 @@
     package = pkgs.emacs-git.overrideAttrs (final: prev: {
       configureFlags = prev.configureFlags ++ [ "--with-cairo=yes" "--with-x-toolkit=gtk3"  "--with-pgtk=no" "--with-tree-sitter=yes" "--with-libotf" "--with-xtf"];
       buildInputs = (with pkgs; [ gtk3 libgccjit]) ++ prev.buildInputs;
+      src = builtins.fetchGit {
+        url = "https://github.com/emacs-mirror/emacs";
+        rev = "42dab7e7855348abf2665acabddf737c3aec5de6";
+        ref = "master";
+      };
     });
 
     #   # configureFlags = (builtins.filter
     #   #   (option: !(option == "--with-cairo"))
     #   #   prev.configureFlags) ++ [ "--with-x-toolkit=gtk3" "--with-xwidgets=yes" ];
-    #   src = builtins.fetchGit {
-    #     url = "https://github.com/emacs-mirror/emacs";
-    #     rev = "42dab7e7855348abf2665acabddf737c3aec5de6";
-    #     ref = "master";
-    #   };
     #   buildInputs = with pkgs; [
     #     gtk3
     #     (webkitgtk_6_0.overrideAttrs (final: prev: {
