@@ -41,6 +41,7 @@
     ../hm/modules/ytdlp.nix
     ../hm/modules/floorp.nix
     ../hm/modules/firefox.nix
+    ../hm/modules/claude-code.nix
   ];
 
   home.username = "b";
