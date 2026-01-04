@@ -1,5 +1,15 @@
 { config, pkgs, ... }:
 {
+
+  # home.file =  {
+  #   ".local/bin/,nixos-rebuild" = {
+  #     executable = true;
+  #     force = true;
+  #     text = builtins.readFile "${config.home.sessionVariables.DOTFILES}/nix/scripts/,nix-rebuild.sh";
+  #   };
+  # };
+
+
   programs.zsh = {
     enable = true;
     enableCompletion = true;
@@ -16,9 +26,10 @@
       strategy = [ "history" "completion" ];
     };
     shellAliases = {
-      system-rebuild = "sudo nixos-rebuild switch";
-      mcs = "emacsclient -c";
-      tmcs = "emacsclient -nw -c";
+      edbg = "emacs --debug-init ";
+      tedbg = "emacs --debug-init -nw";
+      e = "emacsclient -q -u --alternate-editor= -c";
+      te = "emacsclient -q -u --alternate-editor= -nw -c";
     };
     oh-my-zsh = {
       enable = true;
