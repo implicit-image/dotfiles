@@ -7,6 +7,7 @@
       url = "github:nix-community/emacs-overlay/b877b340deac13aeca7063f4801a1cbf9b8a4a00";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    lem-overlay.url = "github:lem-project/lem";
     # home-manager, used for managing user configuration
     home-manager = {
       url = "github:nix-community/home-manager";
@@ -19,12 +20,14 @@
     };
   };
 
-  outputs = inputs@{ nixpkgs, home-manager, emacs-overlay, ... }: {
+  outputs = inputs@{ nixpkgs, home-manager, emacs-overlay, lem-overlay, ... }: {
     nixosConfigurations = {
       nixos =
         let
           system = "x86_64-linux";
-          specialArgs = { inherit emacs-overlay ; };
+          specialArgs = {
+            inherit emacs-overlay lem-overlay;
+          };
           modules = [
             ./configuration.nix
             # make home-manager as a module of nixos
@@ -37,7 +40,7 @@
                 b = import ./b.nix;
               };
               home-manager.extraSpecialArgs = specialArgs;
-              home-manager.backupFileExtension = "backup";
+              home-manager.backupFileExtension = "nix-backup";
             }
           ];
         in
