@@ -49,6 +49,7 @@
         ugrep
         ripgrep-all
         pnpm
+        yazi
         # d
         dmd
         vlang
