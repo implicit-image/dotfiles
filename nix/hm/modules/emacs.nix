@@ -7,7 +7,7 @@
       buildInputs = (with pkgs; [ gtk3 libgccjit]) ++ prev.buildInputs;
       src = builtins.fetchGit {
         url = "https://github.com/emacs-mirror/emacs";
-        rev = "42dab7e7855348abf2665acabddf737c3aec5de6";
+        rev = "ec5479f0b5a9622be9a0f7eb923c7ea738fe8b4a";
         ref = "master";
       };
     });
@@ -45,6 +45,7 @@
   home.packages = with pkgs; [
     # formatters
     cljfmt
+    gnuplot
     # djvu utils
     djvulibre
     # spellcheckers

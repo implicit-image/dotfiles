@@ -1,10 +1,10 @@
 { config, pkgs, ... }:
 {
 
-  # home.packages = with pkgs; [
-  #   git
-  #   gh
-  # ];
+  # emacs diff scripts
+  # home.file = {
+
+ #  }
 
   programs = {
     git = {
@@ -18,6 +18,11 @@
         ".ccls-cache"
         "node_modules/*"
       ];
+      # config = {
+      #   difftool."ediff" = {
+      #     cmd = "emacsclient -nw -u -q -a= -c -e \"$\""
+      #   };
+      # };
     };
     gh = {
       enable = true;

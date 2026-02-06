@@ -12,8 +12,10 @@
         gcc
         cmake
         gnumake
+        perf
         libtool
         file
+        fd
         powershell
         devenv
         # language servers
@@ -40,6 +42,7 @@
         stack
         # rust
         rustc
+        sbcl
         rust-code-analysis
         rust-analyzer
         rustfmt
@@ -77,16 +80,22 @@
       llm-pkgs = with pkgs; [
         aider-chat
       ];
+      custom-pkgs = with pkgs; [
+      ];
     in
       nixos-pkgs
       ++ cloud-pkgs
       ++ llm-pkgs
-      ++ python-pkgs;
+      ++ python-pkgs
+      ++ custom-pkgs;
 
   programs = {
     fzf = {
       enable = true;
       enableZshIntegration = true;
+    };
+    ty = {
+      enable = true;
     };
     lazygit = {
       enable = true;
@@ -157,5 +166,6 @@
 
   home.sessionPath = [
     "${config.home.homeDirectory}/.asdf/shims/"
+    "${config.home.homeDirectory}/.local/bin"
   ];
 }

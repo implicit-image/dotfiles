@@ -2,7 +2,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, self, ... }:
+{ config, pkgs, self, lem-overlay, ... }:
 
 {
   imports =
@@ -74,6 +74,9 @@
     unzip
     gzip
     zip
+    lem-ncurses
+    lem-webview
+    lem-sdl2
     xarchiver
     stdmanpages
   ];

@@ -13,6 +13,6 @@
 
   nixpkgs.overlays = [
     (import emacs-overlay)
-    (import lem-overlay)
+    lem-overlay.overlays.default
   ];
 }

@@ -7,7 +7,10 @@
       url = "github:nix-community/emacs-overlay/b877b340deac13aeca7063f4801a1cbf9b8a4a00";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    lem-overlay.url = "github:lem-project/lem";
+    lem-overlay = {
+      url = "github:lem-project/lem";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     # home-manager, used for managing user configuration
     home-manager = {
       url = "github:nix-community/home-manager";

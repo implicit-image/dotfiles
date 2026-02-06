@@ -50,7 +50,7 @@ select = "<S>"
 [editor.whitespace.characters]
 space = "·"
 tab = ">"
-tabpad = "·"
+tabpad = " "
 
 [editor.whitespace.render]
 space = "all"
@@ -73,6 +73,7 @@ r = ["insert_register"]
 [keys.insert.C-x]
 K = [":buffer-close!"]
 k = [":buffer-close"]
+C-c = [":wq"]
 
 [keys.normal]
 "=" = ["format_selections"]

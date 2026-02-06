@@ -1,27 +1,24 @@
-{
-  lib,
-  buildPythonPackage,
-  fetchPypi,
-  setuptools,
-  wheel,
-}:
+{ lib, buildPythonPackage, fetchPypi }:
 
 buildPythonPackage rec {
   pname = "nwscriptd";
-  version = "0.16.0";
+  version = "0.16";
 
   src = fetchPypi {
     inherit pname version;
-    hash = "sha256-CP3V73yWSArRHBLUct4hrNMjWZlvaaUlkpm1QP66RWA=";
+    hash = "";  # Get this from PyPI
   };
 
-  # do not run tests
+  # Optional: add dependencies
+  propagatedBuildInputs = [
+    # other python packages
+  ];
+
+  # Optional: disable tests
   doCheck = false;
 
-  # specific to buildPythonPackage, see its reference
-  pyproject = true;
-  build-system = [
-    setuptools
-    wheel
-  ];
+  meta = with lib; {
+    description = "Description of the package";
+    homepage = "https://pypi.org/project/${pname}/";
+  };
 }

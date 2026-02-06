@@ -18,6 +18,8 @@
     ../hm/modules/latex.nix
     # emacs config
     ../hm/modules/emacs.nix
+    # lem
+    # ../hm/modules/lem.nix
     # nvim config
     # ../hm/modules/nvim.nix
     # books
@@ -38,7 +40,7 @@
   home.packages = with pkgs; [ wineWowPackages.stagingFull ];
   home.username = "b";
   home.homeDirectory = "/home/b";
-  
+
   home.stateVersion = "24.11";
   programs.home-manager.enable = true;
 }
