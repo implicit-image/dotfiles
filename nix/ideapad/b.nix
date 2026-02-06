@@ -34,6 +34,7 @@
     # software
     ../hm/modules/zsh.nix
     ../hm/modules/kitty.nix
+    ../hm/modules/btop.nix
     ../hm/modules/helix.nix
     ../hm/modules/chromium.nix
     ../hm/modules/mpv.nix
