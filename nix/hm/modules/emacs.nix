@@ -46,6 +46,7 @@
     # formatters
     cljfmt
     lha
+    unar
     _7zz
     gnuplot
     # djvu utils
