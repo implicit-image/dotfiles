@@ -45,6 +45,8 @@
   home.packages = with pkgs; [
     # formatters
     cljfmt
+    lha
+    _7zz
     gnuplot
     # djvu utils
     djvulibre
