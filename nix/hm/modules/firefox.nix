@@ -9,6 +9,8 @@
       userChrome = builtins.readFile "${config.home.sessionVariables.DOTFILES}/firefox/userChrome.css";
       search = {
         default = "ddg";
+        privateDefault = "ddg";
+        force = true;
         engines = {
           nix-packages = {
             name = "Nix Packages";

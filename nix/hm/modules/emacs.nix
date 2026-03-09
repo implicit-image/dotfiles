@@ -7,7 +7,7 @@
       buildInputs = (with pkgs; [ gtk3 libgccjit]) ++ prev.buildInputs;
       src = builtins.fetchGit {
         url = "https://github.com/emacs-mirror/emacs";
-        rev = "ec5479f0b5a9622be9a0f7eb923c7ea738fe8b4a";
+        rev = "f3aff938fa1a01612e951bfedf40165b5db5dabb";
         ref = "master";
       };
     });

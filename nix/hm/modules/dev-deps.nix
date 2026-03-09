@@ -41,12 +41,10 @@
         # haskellPackages.ghcup
         stack
         # rust
+        rustup
         rustc
         sbcl
         rust-code-analysis
-        rust-analyzer
-        rustfmt
-        cargo
         # code
         ast-grep
         ugrep

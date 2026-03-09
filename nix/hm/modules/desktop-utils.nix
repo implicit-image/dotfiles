@@ -15,6 +15,11 @@
     xfce.thunar-archive-plugin
     xournalpp
     dconf
+    libreoffice
+    kdePackages.okular
+    pdf4qt
+    # pdfstudioviewer
+    masterpdfeditor4
   ];
 
   # screenshot directory

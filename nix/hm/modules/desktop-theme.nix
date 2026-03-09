@@ -3,9 +3,7 @@
 
   qt = {
     enable = true;
-    style = {
-      name = "Adwaita Dark";
-    };
+    platformTheme = "kde";
   };
   gtk = {
     enable = true;
@@ -20,13 +18,10 @@
       package = pkgs.nerd-fonts.iosevka;
       size = 12;
     };
-    iconTheme = {
-      name = "vimix-icons";
-      package = pkgs.vimix-gtk-theme;
-    };
     theme = {
-      name = "Adwaita Dark";
+      name = "Adwaita-Dark";
       package = pkgs.gnome-themes-extra;
     };
   };
 }
+
