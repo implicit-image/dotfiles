@@ -79,6 +79,7 @@
         aider-chat
       ];
       custom-pkgs = with pkgs; [
+        (callPackage ./../../derivations/rassumfrassum.nix {})
       ];
     in
       nixos-pkgs
