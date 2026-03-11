@@ -1,12 +1,15 @@
-{ lib, buildPythonPackage, fetchPypi }:
+{ lib, pythonPackages, fetchPypi }:
 
-buildPythonPackage rec {
+pythonPackages.buildPythonPackage rec {
   pname = "rassumfrassum";
   version = "0.3.3";
+  pyproject = true;
+  build-system = [ pythonPackages.setuptools ];
+#  format = "wheel";
 
   src = fetchPypi {
     inherit pname version;
-    hash = "";  # Get this from PyPI
+    hash = "sha256-Gs2Qgwafj9m1tdVcw1k4UXTbxgbS5awTCINBkb5HIhc=";  # Get this from PyPI
   };
 
   # Optional: add dependencies

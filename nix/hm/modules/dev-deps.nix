@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, pkgs, lib, ... }:
 {
 
   home.packages =
@@ -33,6 +33,8 @@
         haskell-language-server
         vscode-langservers-extracted
         basedpyright
+        ruff
+        ty
         # emace helpers
         nodejs
         yarn
@@ -79,7 +81,9 @@
         aider-chat
       ];
       custom-pkgs = with pkgs; [
-        (callPackage ./../../derivations/rassumfrassum.nix {})
+        (callPackage ./../../derivations/rassumfrassum.nix { pythonPackages = python312Packages; })
+        # TODO: resolve the 404 issue
+        # (callPackage ./../../derivations/nwscriptd.nix { pythonPackages = python312Packages; })
       ];
     in
       nixos-pkgs
