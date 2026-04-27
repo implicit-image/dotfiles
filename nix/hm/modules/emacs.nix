@@ -43,14 +43,21 @@
     };
   };
   home.packages = with pkgs; [
+    eask-cli
+    (callPackage ./../../derivations/emskin.nix { inherit pkgs; })
+    enchant
+    pkgconf
     # formatters
     cljfmt
+    ffmpeg
+    jq
     lha
     unar
     _7zz
     gnuplot
     # djvu utils
     djvulibre
+    xwayland-satellite
     # spellcheckers
     hunspell
     hunspellDicts.pl-pl
