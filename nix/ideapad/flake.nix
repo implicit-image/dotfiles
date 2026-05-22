@@ -4,16 +4,17 @@
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     emacs-overlay = {
-      url = "github:nix-community/emacs-overlay/b877b340deac13aeca7063f4801a1cbf9b8a4a00";
+      url = "github:nix-community/emacs-overlay/a63610b5d388b610bad32939ccac1c9d3cc64303";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     lem-overlay = {
       url = "github:lem-project/lem";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    # neomacs = {
-    #   url = "github:eval-exec/neomacs";
-    # };
+    neomacs = {
+      url = "github:eval-exec/neomacs";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     # home-manager, used for managing user configuration
     home-manager = {
       url = "github:nix-community/home-manager";

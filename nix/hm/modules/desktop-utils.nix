@@ -20,6 +20,8 @@
     pdf4qt
     # pdfstudioviewer
     masterpdfeditor4
+    gns3-gui
+    gns3-server
   ];
 
   # screenshot directory

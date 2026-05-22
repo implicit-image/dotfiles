@@ -1,4 +1,4 @@
-{ pkgs ? import <nixpkgs> {} }:
+{ lib, pkgs ? import <nixpkgs> {} }:
 let
   rustPlatform = pkgs.rustPlatform;
 
@@ -21,21 +21,29 @@ in
 
     src = emskin ;
 
+    doCheck = false;
+
     # Use the Cargo.lock that must be present in the source tree.
     # If smithay is not already in the lock file, you need to provide its output hash:
     cargoLock = {
       lockFile = ./emskin.lock;
-      # outputHashes = {
-      #   "smithay-0.3.0" = "sha256-...";   # calculate with `nix run nixpkgs#nix-prefetch-git ...`
-      # };
+      outputHashes = {
+        "smithay-0.7.0" = "sha256-oQ5zqAaQI2FbFxByterrgq5zfHGPU9vY5Dc1hDm39HM=";   # calculate with `nix run nixpkgs#nix-prefetch-git ...`
+      };
+      # allowBuiltinFetchGit = true;
     };
 
-    # postPatch  = ''
-    #   ln -s ${./Cargo.lock} Cargo.lock
-    # '';
+    postPatch  = ''
+      ln -s ${./emskin.lock} Cargo.lock
+      cargo build -p emez
+    '';
 
-    nativeBuildInputs = with pkgs; [ pkg-config ];
-    buildInputs = with pkgs; [ wayland libxkbcommon mesa ];
+    postInstall = ''
+      wrapProgram $out/bin/emskin --prefix LD_LIBRARY_PATH : ${pkgs.mesa}/lib
+    '';
+
+    nativeBuildInputs = with pkgs; [ pkg-config makeWrapper ];
+    buildInputs = with pkgs; [ wayland libxkbcommon mesa libx11 libxcursor libxi egl-wayland eglexternalplatform  libGL ];
 
     # Enable LTO as specified in Cargo.toml [profile.release]
     CARGO_PROFILE_RELEASE_LTO = "true";

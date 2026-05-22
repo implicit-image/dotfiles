@@ -106,19 +106,21 @@
         "intel"
         "modesetting"
       ];
-      windowManager.i3 = {
-        enable = true;
-        extraPackages = with pkgs; [
-          i3lock
-          i3status-rust
-          lightlocker
-          i3status
-          networkmanagerapplet
-          rofi
-          xterm
-          kitty
-          dmenu
-        ];
+      windowManager = {
+        i3 = {
+          enable = true;
+          extraPackages = with pkgs; [
+            i3lock
+            i3status-rust
+            lightlocker
+            i3status
+            networkmanagerapplet
+            rofi
+            xterm
+            kitty
+            dmenu
+          ];
+        };
       };
     };
   };

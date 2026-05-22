@@ -3,11 +3,11 @@
   programs.emacs = {
     enable = true;
     package = pkgs.emacs-git.overrideAttrs (final: prev: {
-      configureFlags = prev.configureFlags ++ [ "--with-cairo=yes" "--with-x-toolkit=gtk3"  "--with-pgtk=no" "--with-tree-sitter=yes" "--with-libotf" "--with-xtf"];
+      configureFlags = prev.configureFlags ++ [ "--with-cairo=yes" "--with-x-toolkit=lucid"  "--with-pgtk=no" "--with-tree-sitter=yes" "--with-libotf" "--with-xtf"];
       buildInputs = (with pkgs; [ gtk3 libgccjit]) ++ prev.buildInputs;
       src = builtins.fetchGit {
         url = "https://github.com/emacs-mirror/emacs";
-        rev = "f3aff938fa1a01612e951bfedf40165b5db5dabb";
+        rev = "876a1db6ee00f1d1b2af0329236acc8bdcceda5b";
         ref = "master";
       };
     });
@@ -45,7 +45,9 @@
   home.packages = with pkgs; [
     eask-cli
     (callPackage ./../../derivations/emskin.nix { inherit pkgs; })
+    mesa
     enchant
+    libx11
     pkgconf
     # formatters
     cljfmt
